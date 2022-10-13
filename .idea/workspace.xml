@@ -2,7 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="748fb5f5-9b81-4ba5-bba7-f32dab2a35bb" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/streamingsystems/implemented/CommandHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/streamingsystems/implemented/MovingItemImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/streamingsystems/Query.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/streamingsystems/Query.java" afterDir="false" />
+    </list>
+    <list id="766454d9-919e-40bb-b89f-6cd1528b4b56" name="Changes by basti" comment="">
+      <change beforePath="$PROJECT_DIR$/src/streamingsystems/Commands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/streamingsystems/Commands.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/streamingsystems/MovingItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/streamingsystems/MovingItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/streamingsystems/Query.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/streamingsystems/Query.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -12,8 +20,24 @@
   <component name="CodeStyleSettingsInfer">
     <option name="done" value="true" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/streamingsystems/Query.java">
+      <ranges>
+        <range start1="2" end1="2" start2="2" end2="6" changelist="748fb5f5-9b81-4ba5-bba7-f32dab2a35bb" />
+        <range start1="4" end1="4" start2="8" end2="9" changelist="766454d9-919e-40bb-b89f-6cd1528b4b56" />
+        <range start1="5" end1="5" start2="10" end2="11" changelist="766454d9-919e-40bb-b89f-6cd1528b4b56" />
+      </ranges>
+    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -27,13 +51,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "codeWithMe.voiceChat.enabledByDefault": "false"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -42,7 +67,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1665322327634</updated>
-      <workItem from="1665653458944" duration="809000" />
+      <workItem from="1665653458944" duration="3085000" />
     </task>
     <task id="LOCAL-00001" summary="added missing package statements">
       <created>1665653568277</created>
@@ -51,7 +76,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665653568278</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="added project configuration files">
+      <created>1665654408209</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1665654408209</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -70,6 +102,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added missing package statements" />
-    <option name="LAST_COMMIT_MESSAGE" value="added missing package statements" />
+    <MESSAGE value="added project configuration files" />
+    <option name="LAST_COMMIT_MESSAGE" value="added project configuration files" />
   </component>
 </project>
