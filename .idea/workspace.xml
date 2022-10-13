@@ -2,15 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="748fb5f5-9b81-4ba5-bba7-f32dab2a35bb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/streamingsystems/implemented/CommandHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/streamingsystems/implemented/MovingItemImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/streamingsystems/Event.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/streamingsystems/implemented/events/MovingItemCreatedEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/streamingsystems/implemented/events/MovingItemDeletedEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/streamingsystems/implemented/events/MovingItemMovedEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/streamingsystems/implemented/events/MovingItemValueChangedEvent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/streamingsystems/Query.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/streamingsystems/Query.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/streamingsystems/DomainModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/streamingsystems/implemented/DomainModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/streamingsystems/EventStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/streamingsystems/implemented/EventStore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/streamingsystems/implemented/MovingItemImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/streamingsystems/implemented/MovingItemImpl.java" afterDir="false" />
     </list>
     <list id="766454d9-919e-40bb-b89f-6cd1528b4b56" name="Changes by basti" comment="">
       <change beforePath="$PROJECT_DIR$/src/streamingsystems/Commands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/streamingsystems/Commands.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/streamingsystems/DomainModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/streamingsystems/implemented/DomainModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/streamingsystems/EventStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/streamingsystems/implemented/EventStore.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/streamingsystems/MovingItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/streamingsystems/MovingItem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/streamingsystems/Query.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/streamingsystems/Query.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/streamingsystems/implemented/CommandHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/streamingsystems/implemented/CommandHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +31,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -31,11 +40,20 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/streamingsystems/Query.java">
+    <file path="$PROJECT_DIR$/src/streamingsystems/implemented/DomainModel.java">
       <ranges>
-        <range start1="2" end1="2" start2="2" end2="6" changelist="748fb5f5-9b81-4ba5-bba7-f32dab2a35bb" />
-        <range start1="4" end1="4" start2="8" end2="9" changelist="766454d9-919e-40bb-b89f-6cd1528b4b56" />
-        <range start1="5" end1="5" start2="10" end2="11" changelist="766454d9-919e-40bb-b89f-6cd1528b4b56" />
+        <range start1="0" end1="1" start2="0" end2="3" changelist="748fb5f5-9b81-4ba5-bba7-f32dab2a35bb" />
+        <range start1="7" end1="7" start2="9" end2="10" changelist="766454d9-919e-40bb-b89f-6cd1528b4b56" />
+        <range start1="9" end1="10" start2="12" end2="13" changelist="748fb5f5-9b81-4ba5-bba7-f32dab2a35bb" />
+        <range start1="15" end1="15" start2="18" end2="22" changelist="766454d9-919e-40bb-b89f-6cd1528b4b56" />
+        <range start1="16" end1="16" start2="23" end2="28" changelist="766454d9-919e-40bb-b89f-6cd1528b4b56" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/streamingsystems/implemented/EventStore.java">
+      <ranges>
+        <range start1="0" end1="1" start2="0" end2="3" changelist="748fb5f5-9b81-4ba5-bba7-f32dab2a35bb" />
+        <range start1="7" end1="8" start2="9" end2="11" changelist="766454d9-919e-40bb-b89f-6cd1528b4b56" />
+        <range start1="9" end1="9" start2="12" end2="18" changelist="766454d9-919e-40bb-b89f-6cd1528b4b56" />
       </ranges>
     </file>
   </component>
@@ -67,7 +85,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1665322327634</updated>
-      <workItem from="1665653458944" duration="3085000" />
+      <workItem from="1665653458944" duration="5211000" />
     </task>
     <task id="LOCAL-00001" summary="added missing package statements">
       <created>1665653568277</created>
@@ -83,7 +101,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665654408209</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="added domain model and event store">
+      <created>1665656576090</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1665656576090</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -103,6 +128,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added missing package statements" />
     <MESSAGE value="added project configuration files" />
-    <option name="LAST_COMMIT_MESSAGE" value="added project configuration files" />
+    <MESSAGE value="added domain model and event store" />
+    <option name="LAST_COMMIT_MESSAGE" value="added domain model and event store" />
   </component>
 </project>

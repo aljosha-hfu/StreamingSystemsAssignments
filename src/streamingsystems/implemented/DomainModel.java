@@ -1,4 +1,6 @@
-package streamingsystems;
+package streamingsystems.implemented;
+
+import streamingsystems.MovingItem;
 
 import java.util.HashMap;
 
@@ -7,7 +9,7 @@ public class DomainModel {
 
     private HashMap<String, MovingItem> movingItemHashMap = new HashMap<>();
 
-    public boolean movingItemExists(String movingItemName) {
+    public boolean movingItemExists(MovingItem movingItemName) {
         return movingItemHashMap.containsKey(movingItemName);
     }
 

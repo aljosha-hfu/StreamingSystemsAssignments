@@ -15,6 +15,10 @@ public class MovingItemImpl implements MovingItem {
         this.value = value;
     }
 
+    public MovingItemImpl(String name) {
+        this(name, new int[]{0,0,0}, 0, 0);
+    }
+
     @Override
     public String getName() {
         return name;
