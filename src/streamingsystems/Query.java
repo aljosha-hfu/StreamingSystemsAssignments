@@ -1,3 +1,5 @@
+package streamingsystems;
+
 public interface Query {
     public MovingItemDTO getMovingItemByName(String name);
     public Enumeration<MovingItemDTO> getMovingItems();
