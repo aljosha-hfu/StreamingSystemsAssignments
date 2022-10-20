@@ -9,7 +9,7 @@ public class DomainModel {
 
     private HashMap<String, MovingItem> movingItemHashMap = new HashMap<>();
 
-    public boolean movingItemExists(MovingItem movingItemName) {
+    public boolean movingItemExists(String movingItemName) {
         return movingItemHashMap.containsKey(movingItemName);
     }
 
