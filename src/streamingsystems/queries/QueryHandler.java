@@ -1,10 +1,21 @@
 package streamingsystems.queries;
 
+import streamingsystems.commands.CommandHandler;
 import streamingsystems.implemented.MovingItemDTO;
 
 import java.util.Enumeration;
 
 public class QueryHandler implements Query {
+
+    private static final QueryHandler singletonInstance = new QueryHandler();
+
+    private QueryHandler() {
+        System.out.println("Instantiated QueryHandler singleton...");
+    }
+
+    public static QueryHandler getInstance() {
+        return singletonInstance;
+    }
 
     @Override
     public MovingItemDTO getMovingItemByName(String name) {
