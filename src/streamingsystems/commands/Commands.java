@@ -2,7 +2,7 @@ package streamingsystems.commands;
 
 import streamingsystems.MovingItem;
 
-public interface Command {
+public interface Commands {
     void createItem(MovingItem movingItem);
     void deleteItem(String id);
     void moveItem(String id, int[] vector);

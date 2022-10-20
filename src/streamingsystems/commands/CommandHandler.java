@@ -1,9 +1,5 @@
 package streamingsystems.commands;
 
-import streamingsystems.MovingItem;
-
-import java.util.concurrent.LinkedBlockingQueue;
-
 public class CommandHandler {
 
     private static final CommandHandler singletonInstance = new CommandHandler();
@@ -16,7 +12,7 @@ public class CommandHandler {
         return singletonInstance;
     }
 
-    public void handleCommand(Command commandToExecute) {
+    public void handleCommand(Commands commandsToExecute) {
         // TODO
     }
 }
