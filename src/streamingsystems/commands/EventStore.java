@@ -1,5 +1,7 @@
 package streamingsystems.commands;
 
+import streamingsystems.MovingItem;
+
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class EventStore {
