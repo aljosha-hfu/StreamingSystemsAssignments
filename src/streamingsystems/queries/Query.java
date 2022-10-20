@@ -1,4 +1,4 @@
-package streamingsystems;
+package streamingsystems.queries;
 
 import streamingsystems.implemented.MovingItemDTO;
 

@@ -1,6 +1,6 @@
-package streamingsystems.implemented;
+package streamingsystems.queries;
 
-import streamingsystems.Query;
+import streamingsystems.implemented.MovingItemDTO;
 
 import java.util.Enumeration;
 

@@ -1,6 +1,6 @@
 package streamingsystems.implemented.events;
 
-import streamingsystems.Event;
+import streamingsystems.commands.Event;
 
 public class MovingItemDeletedEvent extends Event {
 }

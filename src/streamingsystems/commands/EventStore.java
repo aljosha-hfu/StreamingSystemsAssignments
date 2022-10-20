@@ -1,6 +1,4 @@
-package streamingsystems.implemented;
-
-import streamingsystems.Event;
+package streamingsystems.commands;
 
 import java.util.concurrent.LinkedBlockingQueue;
 
