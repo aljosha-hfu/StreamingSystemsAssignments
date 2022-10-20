@@ -1,13 +1,13 @@
-package streamingsystems.commands;
+package streamingsystems.CommandsModel;
 
 import streamingsystems.MovingItem;
 
-import java.util.HashMap;
+import java.util.List;
 
 public class DomainModel {
     private static final DomainModel singletonInstance = new DomainModel();
 
-    private HashMap<String, MovingItem> movingItemHashMap = new HashMap<>();
+    private List<String> movingItemList = new List<>;
 
     public boolean movingItemExists(String movingItemName) {
         return movingItemHashMap.containsKey(movingItemName);

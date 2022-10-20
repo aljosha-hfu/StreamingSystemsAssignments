@@ -1,4 +1,4 @@
-package streamingsystems.commands;
+package streamingsystems.CommandsModel;
 
 public class CommandHandler {
 
