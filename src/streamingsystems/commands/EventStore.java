@@ -11,7 +11,7 @@ public class EventStore {
 
 
     private EventStore() {
-        System.out.println("Objekt gebildet...");
+        System.out.println("Instantiated EventStore singleton...");
     }
 
     public static EventStore getInstance() {
