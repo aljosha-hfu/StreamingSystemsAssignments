@@ -2,6 +2,8 @@ package streamingsystems.implemented;
 
 import streamingsystems.MovingItem;
 
+import java.util.Arrays;
+
 public class MovingItemDTO implements MovingItem {
     private final String name;
     private final int[] location;
@@ -44,5 +46,15 @@ public class MovingItemDTO implements MovingItem {
     @Override
     public int getValue() {
         return value;
+    }
+
+    @Override
+    public String toString() {
+        return "MovingItemDTO{" +
+                "name='" + name + '\'' +
+                ", location=" + Arrays.toString(location) +
+                ", numberOfMoves=" + numberOfMoves +
+                ", value=" + value +
+                '}';
     }
 }
