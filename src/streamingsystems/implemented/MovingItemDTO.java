@@ -15,8 +15,15 @@ public class MovingItemDTO implements MovingItem {
         this.value = value;
     }
 
+    public MovingItemDTO(MovingItem movingItem) {
+        this.name = movingItem.getName();
+        this.location = movingItem.getLocation();
+        this.numberOfMoves = movingItem.getNumberOfMoves();
+        this.value = movingItem.getNumberOfMoves();
+    }
+
     public MovingItemDTO(String name) {
-        this(name, new int[]{0,0,0}, 0, 0);
+        this(name, new int[]{0, 0, 0}, 0, 0);
     }
 
     @Override
