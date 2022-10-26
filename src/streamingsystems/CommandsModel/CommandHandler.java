@@ -1,5 +1,7 @@
 package streamingsystems.CommandsModel;
 
+import streamingsystems.CommandsModel.Predefined.Commands;
+
 public class CommandHandler {
 
     private static final CommandHandler singletonInstance = new CommandHandler();

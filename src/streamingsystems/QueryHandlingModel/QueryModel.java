@@ -1,4 +1,4 @@
-package streamingsystems.queries;
+package streamingsystems.QueryHandlingModel;
 
 import streamingsystems.MovingItem;
 
