@@ -21,8 +21,4 @@ public class EventStore {
     public void addEvent(Event event) {
         this.eventQueue.add(event);
     }
-
-    public Event getLastEvent() throws InterruptedException {
-        return this.eventQueue.take();
-    }
 }
