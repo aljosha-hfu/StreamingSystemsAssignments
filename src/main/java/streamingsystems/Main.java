@@ -1,6 +1,9 @@
 package streamingsystems;
 
 import streamingsystems.CommandsModel.CommandHandler;
+import streamingsystems.CommandsModel.EventStore;
+import streamingsystems.QueryHandlingModel.QueryHandler;
+import streamingsystems.QueryHandlingModel.QueryModel;
 import streamingsystems.implemented.MovingItemDTO;
 
 public class Main {
@@ -17,6 +20,13 @@ public class Main {
         commandHandlerInstance.changeValue("Moving Item 3", 4711);
         commandHandlerInstance.moveItem("Moving Item 1", new int[]{1, 2, 3});
         commandHandlerInstance.deleteItem("Moving Item 1");
+
+//        System.out.println(QueryHandler.getInstance().getMovingItemByName("Moving Item 2"));
+
+        EventStore eventStore = EventStore.getInstance();
+        QueryModel queryModel = new QueryModel(eventStore);
+
+        System.out.println(queryModel.getAllMovingItems());
 
         System.out.println("Terminating...");
     }
