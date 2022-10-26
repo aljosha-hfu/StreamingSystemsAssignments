@@ -12,6 +12,6 @@ public class DeleteItemCommand extends Command {
 
     @Override
     public void handle() {
-
+        // TODO
     }
 }

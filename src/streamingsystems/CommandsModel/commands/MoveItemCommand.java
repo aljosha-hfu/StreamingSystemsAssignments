@@ -14,6 +14,6 @@ public class MoveItemCommand extends Command {
 
     @Override
     public void handle() {
-
+        // TODO
     }
 }
