@@ -4,31 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="748fb5f5-9b81-4ba5-bba7-f32dab2a35bb" name="Changes" comment="Documentation of an alternative approach&#10;Documented an alternative way to handle creation of Map of MovingItems in QueryModel to documentation">
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="748fb5f5-9b81-4ba5-bba7-f32dab2a35bb" name="Changes" comment="added maven">
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apiguardian_apiguardian_api_1_1_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_5_9_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_9_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_engine_5_9_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_params_5_9_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_commons_1_9_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_9_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_opentest4j_opentest4j_1_2_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/StreamingSystems.iml" beforeDir="false" afterPath="$PROJECT_DIR$/StreamingSystems.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/streamingsystems/CommandsModel/CommandHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/streamingsystems/CommandsModel/CommandHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/streamingsystems/CommandsModel/DomainModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/streamingsystems/CommandsModel/DomainModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/streamingsystems/CommandsModel/EventStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/streamingsystems/CommandsModel/EventStore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/streamingsystems/CommandsModel/Meta/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/streamingsystems/CommandsModel/Meta/Command.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/streamingsystems/CommandsModel/Meta/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/streamingsystems/CommandsModel/Meta/Event.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/streamingsystems/CommandsModel/Meta/Predefined/Commands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/streamingsystems/CommandsModel/Meta/Predefined/Commands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/streamingsystems/CommandsModel/commands/ChangeValueCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/streamingsystems/CommandsModel/commands/ChangeValueCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/streamingsystems/CommandsModel/commands/CreateItemCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/streamingsystems/CommandsModel/commands/CreateItemCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/streamingsystems/CommandsModel/commands/DeleteItemCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/streamingsystems/CommandsModel/commands/DeleteItemCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/streamingsystems/CommandsModel/commands/MoveItemCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/streamingsystems/CommandsModel/commands/MoveItemCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/streamingsystems/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/streamingsystems/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/streamingsystems/MovingItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/streamingsystems/MovingItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/streamingsystems/QueryHandlingModel/Predefined/Query.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/streamingsystems/QueryHandlingModel/Predefined/Query.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/streamingsystems/QueryHandlingModel/QueryHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/streamingsystems/QueryHandlingModel/QueryHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/streamingsystems/QueryHandlingModel/QueryModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/streamingsystems/QueryHandlingModel/QueryModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/streamingsystems/implemented/MovingItemDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/streamingsystems/implemented/MovingItemDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/streamingsystems/implemented/events/MovingItemCreatedEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/streamingsystems/implemented/events/MovingItemCreatedEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/streamingsystems/implemented/events/MovingItemDeletedEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/streamingsystems/implemented/events/MovingItemDeletedEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/streamingsystems/implemented/events/MovingItemMovedEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/streamingsystems/implemented/events/MovingItemMovedEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/streamingsystems/implemented/events/MovingItemValueChangedEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/streamingsystems/implemented/events/MovingItemValueChangedEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <list id="766454d9-919e-40bb-b89f-6cd1528b4b56" name="Changes by basti" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -69,17 +60,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.0"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -112,7 +104,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665656576090</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="added maven">
+      <created>1666795547365</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1666795547365</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -133,6 +132,7 @@
     <MESSAGE value="added missing package statements" />
     <MESSAGE value="added project configuration files" />
     <MESSAGE value="added domain model and event store" />
-    <option name="LAST_COMMIT_MESSAGE" value="added domain model and event store" />
+    <MESSAGE value="added maven" />
+    <option name="LAST_COMMIT_MESSAGE" value="added maven" />
   </component>
 </project>
