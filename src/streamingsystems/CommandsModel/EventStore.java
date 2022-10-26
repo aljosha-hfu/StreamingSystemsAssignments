@@ -7,9 +7,6 @@ import java.util.concurrent.LinkedBlockingQueue;
 public class EventStore {
     private static final EventStore singletonInstance = new EventStore();
 
-    private LinkedBlockingQueue<Event> eventQueue = new LinkedBlockingQueue<>();
-
-
     private EventStore() {
         System.out.println("Instantiated EventStore singleton...");
     }
@@ -17,6 +14,8 @@ public class EventStore {
     public static EventStore getInstance() {
         return singletonInstance;
     }
+
+    private final LinkedBlockingQueue<Event> eventQueue = new LinkedBlockingQueue<>();
 
     public void addEvent(Event event) {
         this.eventQueue.add(event);
