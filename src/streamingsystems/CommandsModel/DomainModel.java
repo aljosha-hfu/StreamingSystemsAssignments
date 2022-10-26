@@ -4,17 +4,14 @@ import java.util.ArrayList;
 
 public class DomainModel {
     private static final DomainModel singletonInstance = new DomainModel();
-
-    private final ArrayList<String> movingItemNameList = new ArrayList<>();
-
     private DomainModel() {
         System.out.println("DomainModel Instance created.");
     }
-
     public static DomainModel getInstance() {
         return singletonInstance;
     }
 
+    private final ArrayList<String> movingItemNameList = new ArrayList<>();
 
     public boolean movingItemNameExists(String movingItemName) {
         return movingItemNameList.contains(movingItemName);
