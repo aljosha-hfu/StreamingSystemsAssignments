@@ -1,14 +1,11 @@
 package streamingsystems.CommandsModel;
 
-import streamingsystems.MovingItem;
-
 import java.util.ArrayList;
-import java.util.List;
 
 public class DomainModel {
     private static final DomainModel singletonInstance = new DomainModel();
 
-    private final ArrayList<String> movingItemList = new ArrayList<>();
+    private final ArrayList<String> movingItemNameList = new ArrayList<>();
 
     private DomainModel() {
         System.out.println("DomainModel Instance created.");
@@ -20,11 +17,11 @@ public class DomainModel {
 
 
     public boolean movingItemNameExists(String movingItemName) {
-        return movingItemList.contains(movingItemName);
+        return movingItemNameList.contains(movingItemName);
     }
 
     public void addMovingItemNameToModel(String movingItemName) {
-        movingItemList.add(movingItemName);
+        movingItemNameList.add(movingItemName);
     }
 
     public void removeMovingItemNameFromModel(String movingItemName) {
@@ -32,6 +29,6 @@ public class DomainModel {
             throw new IllegalArgumentException("A moving item with the name " + movingItemName + " does not exist in the domain model.");
         }
 
-        this.movingItemList.remove(movingItemName);
+        this.movingItemNameList.remove(movingItemName);
     }
 }
