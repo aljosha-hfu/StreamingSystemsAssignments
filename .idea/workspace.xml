@@ -2,24 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="748fb5f5-9b81-4ba5-bba7-f32dab2a35bb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/streamingsystems/Event.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/streamingsystems/implemented/events/MovingItemCreatedEvent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/streamingsystems/implemented/events/MovingItemDeletedEvent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/streamingsystems/implemented/events/MovingItemMovedEvent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/streamingsystems/implemented/events/MovingItemValueChangedEvent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/streamingsystems/DomainModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/streamingsystems/implemented/DomainModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/streamingsystems/EventStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/streamingsystems/implemented/EventStore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/streamingsystems/implemented/MovingItemImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/streamingsystems/implemented/MovingItemImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/streamingsystems/CommandsModel/Meta/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/streamingsystems/CommandsModel/Meta/Event.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/streamingsystems/CommandsModel/commands/CreateItemCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/streamingsystems/CommandsModel/commands/CreateItemCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/streamingsystems/QueryHandlingModel/QueryModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/streamingsystems/QueryHandlingModel/QueryModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/streamingsystems/implemented/events/MovingItemCreatedEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/streamingsystems/implemented/events/MovingItemCreatedEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/streamingsystems/implemented/events/MovingItemDeletedEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/streamingsystems/implemented/events/MovingItemDeletedEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/streamingsystems/implemented/events/MovingItemMovedEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/streamingsystems/implemented/events/MovingItemMovedEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/streamingsystems/implemented/events/MovingItemValueChangedEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/streamingsystems/implemented/events/MovingItemValueChangedEvent.java" afterDir="false" />
     </list>
-    <list id="766454d9-919e-40bb-b89f-6cd1528b4b56" name="Changes by basti" comment="">
-      <change beforePath="$PROJECT_DIR$/src/streamingsystems/Commands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/streamingsystems/Commands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/streamingsystems/DomainModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/streamingsystems/implemented/DomainModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/streamingsystems/EventStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/streamingsystems/implemented/EventStore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/streamingsystems/MovingItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/streamingsystems/MovingItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/streamingsystems/Query.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/streamingsystems/Query.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/streamingsystems/implemented/CommandHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/streamingsystems/implemented/CommandHandler.java" afterDir="false" />
-    </list>
+    <list id="766454d9-919e-40bb-b89f-6cd1528b4b56" name="Changes by basti" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -39,24 +31,6 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/streamingsystems/implemented/DomainModel.java">
-      <ranges>
-        <range start1="0" end1="1" start2="0" end2="3" changelist="748fb5f5-9b81-4ba5-bba7-f32dab2a35bb" />
-        <range start1="7" end1="7" start2="9" end2="10" changelist="766454d9-919e-40bb-b89f-6cd1528b4b56" />
-        <range start1="9" end1="10" start2="12" end2="13" changelist="748fb5f5-9b81-4ba5-bba7-f32dab2a35bb" />
-        <range start1="15" end1="15" start2="18" end2="22" changelist="766454d9-919e-40bb-b89f-6cd1528b4b56" />
-        <range start1="16" end1="16" start2="23" end2="28" changelist="766454d9-919e-40bb-b89f-6cd1528b4b56" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/streamingsystems/implemented/EventStore.java">
-      <ranges>
-        <range start1="0" end1="1" start2="0" end2="3" changelist="748fb5f5-9b81-4ba5-bba7-f32dab2a35bb" />
-        <range start1="7" end1="8" start2="9" end2="11" changelist="766454d9-919e-40bb-b89f-6cd1528b4b56" />
-        <range start1="9" end1="9" start2="12" end2="18" changelist="766454d9-919e-40bb-b89f-6cd1528b4b56" />
-      </ranges>
-    </file>
-  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -74,7 +48,10 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "codeWithMe.voiceChat.enabledByDefault": "false"
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.0"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -86,6 +63,7 @@
       <option name="presentableId" value="Default" />
       <updated>1665322327634</updated>
       <workItem from="1665653458944" duration="5211000" />
+      <workItem from="1666789424410" duration="3781000" />
     </task>
     <task id="LOCAL-00001" summary="added missing package statements">
       <created>1665653568277</created>
