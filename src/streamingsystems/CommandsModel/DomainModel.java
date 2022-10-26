@@ -10,6 +10,15 @@ public class DomainModel {
 
     private final ArrayList<String> movingItemList = new ArrayList<>();
 
+    private DomainModel() {
+        System.out.println("DomainModel Instance created.");
+    }
+
+    public static DomainModel getInstance() {
+        return singletonInstance;
+    }
+
+
     public boolean movingItemNameExists(String movingItemName) {
         return movingItemList.contains(movingItemName);
     }
@@ -18,11 +27,11 @@ public class DomainModel {
         movingItemList.add(movingItemName);
     }
 
-    private DomainModel() {
-        System.out.println("DomainModel Instance created.");
-    }
+    public void removeMovingItemNameFromModel(String movingItemName) {
+        if (!movingItemNameExists(movingItemName)) {
+            throw new IllegalArgumentException("A moving item with the name " + movingItemName + " does not exist in the domain model.");
+        }
 
-    public static DomainModel getInstance() {
-        return singletonInstance;
+        this.movingItemList.remove(movingItemName);
     }
 }
