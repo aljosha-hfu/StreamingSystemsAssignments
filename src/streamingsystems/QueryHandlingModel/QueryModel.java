@@ -3,6 +3,7 @@ package streamingsystems.QueryHandlingModel;
 import streamingsystems.CommandsModel.Meta.Event;
 import streamingsystems.MovingItem;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.concurrent.LinkedBlockingQueue;
 
@@ -17,7 +18,6 @@ public class QueryModel {
         return singletonInstance;
     }
 
-
     private HashMap<String, MovingItem> movingItemHashMap = new HashMap<>();
 
     private HashMap<String, MovingItem> createEventStoreFroEvents(LinkedBlockingQueue<Event> eventQueue) {
@@ -28,5 +28,12 @@ public class QueryModel {
             }
         });
 
+    }
+    public MovingItem getMovingItemFromName(String name) {
+        return movingItemHashMap.get(name);
+    }
+
+    public Collection<MovingItem> getAllMovingItems() {
+        return this.movingItemHashMap.values();
     }
 }

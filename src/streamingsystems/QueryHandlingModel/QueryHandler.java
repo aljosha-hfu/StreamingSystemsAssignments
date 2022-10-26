@@ -1,9 +1,13 @@
 package streamingsystems.QueryHandlingModel;
 
+import streamingsystems.MovingItem;
 import streamingsystems.implemented.MovingItemDTO;
 import streamingsystems.QueryHandlingModel.Predefined.Query;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Enumeration;
+import java.util.stream.Collectors;
 
 public class QueryHandler implements Query {
 
@@ -19,16 +23,25 @@ public class QueryHandler implements Query {
 
     @Override
     public MovingItemDTO getMovingItemByName(String name) {
-        return null;
+        return new MovingItemDTO(QueryModel.getInstance().getMovingItemFromName(name));
+    }
+
+    @SuppressWarnings("Convert2MethodRef")
+    public Collection<MovingItemDTO> getAllMovingItemsAsCollection() {
+        Collection<MovingItem> allMovingItemsCollection = QueryModel.getInstance().getAllMovingItems();
+        return allMovingItemsCollection.stream().map((MovingItem eachMovingItem) -> new MovingItemDTO(eachMovingItem)).toList();
     }
 
     @Override
     public Enumeration<MovingItemDTO> getMovingItems() {
-        return null;
+        return Collections.enumeration(getAllMovingItemsAsCollection());
     }
 
     @Override
     public Enumeration<MovingItemDTO> getMovingItemsAtPosition(int[] position) {
-        return null;
+        Collection<MovingItemDTO> movingItemDTOsAtPosition = getAllMovingItemsAsCollection()
+                .stream().filter((MovingItem eachMovingItem) -> eachMovingItem.getLocation() == position).toList();
+
+        return Collections.enumeration(movingItemDTOsAtPosition);
     }
 }
