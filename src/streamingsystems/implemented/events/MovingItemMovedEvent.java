@@ -10,9 +10,4 @@ public class MovingItemMovedEvent extends Event {
         this.id = id;
         this.vector = vector;
     }
-
-    @Override
-    public void executeEvent() {
-        // TODO
-    }
 }

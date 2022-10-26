@@ -8,9 +8,4 @@ public class MovingItemDeletedEvent extends Event {
     public MovingItemDeletedEvent(String id) {
         this.id = id;
     }
-
-    @Override
-    public void executeEvent() {
-        // TODO
-    }
 }

@@ -10,9 +10,4 @@ public class MovingItemValueChangedEvent extends Event {
         this.id = id;
         this.newValue = newValue;
     }
-
-    @Override
-    public void executeEvent() {
-        // TODO
-    }
 }
