@@ -15,7 +15,8 @@ public class Main {
         commandHandlerInstance.changeValue("Moving Item 1", 42);
         commandHandlerInstance.changeValue("Moving Item 2", 69);
         commandHandlerInstance.changeValue("Moving Item 3", 4711);
-//        commandHandlerInstance.changeValue("Moving Item 4", 4711);
+        commandHandlerInstance.moveItem("Moving Item 1", new int[]{1, 2, 3});
+        commandHandlerInstance.deleteItem("Moving Item 1");
 
         System.out.println("Terminating...");
     }
