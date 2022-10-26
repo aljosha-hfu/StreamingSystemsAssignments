@@ -7,3 +7,7 @@
 ## Questions
 
 - Are `id` and `name` the same thing?
+
+## TODO
+
+- Add JUnit für unit tests
