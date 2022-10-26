@@ -7,6 +7,7 @@ public class MovingItemValueChangedEvent extends Event {
     int newValue;
 
     public MovingItemValueChangedEvent(String id, int newValue) {
+        super(id);
         this.id = id;
         this.newValue = newValue;
     }

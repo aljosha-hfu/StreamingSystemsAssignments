@@ -5,7 +5,6 @@ import streamingsystems.CommandsModel.EventStore;
 import streamingsystems.CommandsModel.Meta.Command;
 import streamingsystems.MovingItem;
 import streamingsystems.implemented.events.MovingItemCreatedEvent;
-import streamingsystems.implemented.events.MovingItemValueChangedEvent;
 
 public class CreateItemCommand extends Command {
 
