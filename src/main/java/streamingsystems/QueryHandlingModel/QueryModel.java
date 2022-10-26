@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 
 public class QueryModel {
 
-    private EventStore eventStore;
+    private final EventStore eventStore;
     private HashMap<String, MovingItemDTO> movingItemHashMap = new HashMap<>();
 
     public QueryModel(EventStore eventStore) {
