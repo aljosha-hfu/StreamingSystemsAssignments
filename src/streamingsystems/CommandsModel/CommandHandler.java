@@ -16,6 +16,12 @@ public class CommandHandler implements Commands {
         return singletonInstance;
     }
 
+    public void checkMovingItemExistsAndThrowException(String id) {
+        if (!DomainModel.getInstance().movingItemNameExists(id)) {
+            throw new IllegalArgumentException("An item with this name does not exist");
+        }
+    }
+
     @Override
     public void createItem(MovingItem movingItem) {
         if (DomainModel.getInstance().movingItemNameExists(movingItem.getName())) {
@@ -31,6 +37,8 @@ public class CommandHandler implements Commands {
         if (id.isBlank()) {
             throw new IllegalArgumentException("ID must be a valid, non-blank string");
         }
+        checkMovingItemExistsAndThrowException(id);
+
 
         Command command = new DeleteItemCommand(id);
         command.handle();
@@ -41,6 +49,7 @@ public class CommandHandler implements Commands {
         if (vector.length != 3) {
             throw new IllegalArgumentException("Vector must be of length 3 (x, y, z)");
         }
+        checkMovingItemExistsAndThrowException(id);
 
         Command command = new MoveItemCommand(id, vector);
         command.handle();
@@ -51,6 +60,7 @@ public class CommandHandler implements Commands {
         if (id.isBlank()) {
             throw new IllegalArgumentException("ID must be a valid, non-blank string");
         }
+        checkMovingItemExistsAndThrowException(id);
 
         Command command = new ChangeValueCommand(id, newValue);
         command.handle();
