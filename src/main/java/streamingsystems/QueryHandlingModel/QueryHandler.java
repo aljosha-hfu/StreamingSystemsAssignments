@@ -7,29 +7,22 @@ import streamingsystems.QueryHandlingModel.Predefined.Query;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Enumeration;
-import java.util.stream.Collectors;
 
 public class QueryHandler implements Query {
+    private final QueryModel queryModel;
 
-    private static final QueryHandler singletonInstance = new QueryHandler();
-
-    private QueryHandler() {
-        System.out.println("Instantiated QueryHandler singleton...");
-    }
-
-    public static QueryHandler getInstance() {
-        return singletonInstance;
+    public QueryHandler(QueryModel queryModel) {
+        this.queryModel = queryModel;
     }
 
     @Override
     public MovingItemDTO getMovingItemByName(String name) {
-        return new MovingItemDTO(QueryModel.getInstance().getMovingItemFromName(name));
+        return new MovingItemDTO(queryModel.getMovingItemFromName(name));
     }
 
     @SuppressWarnings("Convert2MethodRef")
     public Collection<MovingItemDTO> getAllMovingItemsAsCollection() {
-        Collection<MovingItem> allMovingItemsCollection = QueryModel.getInstance().getAllMovingItems();
-        return allMovingItemsCollection.stream().map((MovingItem eachMovingItem) -> new MovingItemDTO(eachMovingItem)).toList();
+        return queryModel.getAllMovingItems();
     }
 
     @Override

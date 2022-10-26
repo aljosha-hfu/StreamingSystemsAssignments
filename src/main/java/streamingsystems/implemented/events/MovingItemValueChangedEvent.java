@@ -3,12 +3,15 @@ package streamingsystems.implemented.events;
 import streamingsystems.CommandsModel.Meta.Event;
 
 public class MovingItemValueChangedEvent extends Event {
-    String id;
-    int newValue;
+    private final int newValue;
 
     public MovingItemValueChangedEvent(String id, int newValue) {
         super(id);
-        this.id = id;
         this.newValue = newValue;
+    }
+
+
+    public int getNewValue() {
+        return newValue;
     }
 }

@@ -20,4 +20,8 @@ public class EventStore {
     public void addEvent(Event event) {
         this.eventQueue.add(event);
     }
+
+    public LinkedBlockingQueue<Event> getEventQueue() {
+        return eventQueue;
+    }
 }

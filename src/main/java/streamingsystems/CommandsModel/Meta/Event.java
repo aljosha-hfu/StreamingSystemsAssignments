@@ -1,7 +1,7 @@
 package streamingsystems.CommandsModel.Meta;
 
 public abstract class Event {
-    private String id;
+    private final String id;
 
     public Event(String id) {
         this.id = id;

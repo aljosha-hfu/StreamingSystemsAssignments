@@ -5,10 +5,14 @@ import streamingsystems.MovingItem;
 
 public class MovingItemCreatedEvent extends Event {
 
-    MovingItem movingItem;
+    private final MovingItem movingItem;
 
     public MovingItemCreatedEvent(MovingItem movingItem) {
         super(movingItem.getName());
         this.movingItem = movingItem;
+    }
+
+    public MovingItem getMovingItem() {
+        return movingItem;
     }
 }

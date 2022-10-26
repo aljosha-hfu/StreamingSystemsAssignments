@@ -5,4 +5,6 @@ public interface MovingItem {
     int[] getLocation();
     int getNumberOfMoves();
     int getValue();
+
+
 }
