@@ -15,6 +15,9 @@ public class QueryModel {
         return singletonInstance;
     }
 
-
     private HashMap<String, MovingItem> movingItemHashMap = new HashMap<>();
+
+    public MovingItem getMovingItemFromName(String name) {
+        return movingItemHashMap.get(name);
+    }
 }
