@@ -1,4 +1,4 @@
-package streamingsystems.CommandsModel.Predefined;
+package streamingsystems.CommandsModel.Meta.Predefined;
 
 import streamingsystems.MovingItem;
 

@@ -1,5 +1,7 @@
 package streamingsystems.CommandsModel.commands;
 
+import streamingsystems.CommandsModel.Meta.Command;
+
 public class DeleteItemCommand extends Command {
     String id;
 

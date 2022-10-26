@@ -1,6 +1,6 @@
 package streamingsystems.CommandsModel;
 
-import streamingsystems.MovingItem;
+import streamingsystems.CommandsModel.Meta.Event;
 
 import java.util.concurrent.LinkedBlockingQueue;
 

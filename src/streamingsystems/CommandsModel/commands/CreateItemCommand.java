@@ -1,5 +1,6 @@
 package streamingsystems.CommandsModel.commands;
 
+import streamingsystems.CommandsModel.Meta.Command;
 import streamingsystems.MovingItem;
 
 public class CreateItemCommand extends Command {

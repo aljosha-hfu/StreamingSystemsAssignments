@@ -1,6 +1,7 @@
 package streamingsystems.CommandsModel;
 
-import streamingsystems.CommandsModel.Predefined.Commands;
+import streamingsystems.CommandsModel.Meta.Command;
+import streamingsystems.CommandsModel.Meta.Predefined.Commands;
 import streamingsystems.CommandsModel.commands.*;
 import streamingsystems.MovingItem;
 

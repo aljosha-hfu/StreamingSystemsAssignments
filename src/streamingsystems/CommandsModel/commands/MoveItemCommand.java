@@ -1,6 +1,8 @@
 package streamingsystems.CommandsModel.commands;
 
 
+import streamingsystems.CommandsModel.Meta.Command;
+
 public class MoveItemCommand extends Command {
     String id;
     int[] vector;

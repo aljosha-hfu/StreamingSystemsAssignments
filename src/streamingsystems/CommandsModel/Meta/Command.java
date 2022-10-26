@@ -1,4 +1,4 @@
-package streamingsystems.CommandsModel.commands;
+package streamingsystems.CommandsModel.Meta;
 
 public abstract class Command {
     /**

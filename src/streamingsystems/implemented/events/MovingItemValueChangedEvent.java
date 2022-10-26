@@ -1,6 +1,6 @@
 package streamingsystems.implemented.events;
 
-import streamingsystems.CommandsModel.Event;
+import streamingsystems.CommandsModel.Meta.Event;
 
 public class MovingItemValueChangedEvent extends Event {
 }
