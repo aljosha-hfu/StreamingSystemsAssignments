@@ -6,6 +6,16 @@ import streamingsystems.CommandsModel.commands.*;
 import streamingsystems.MovingItem;
 
 public class CommandHandler implements Commands {
+    private static final CommandHandler singletonInstance = new CommandHandler();
+
+    private CommandHandler() {
+        System.out.println("CommandHandler Instance created.");
+    }
+
+    public static CommandHandler getInstance() {
+        return singletonInstance;
+    }
+
     @Override
     public void createItem(MovingItem movingItem) {
         if (DomainModel.getInstance().movingItemNameExists(movingItem.getName())) {
