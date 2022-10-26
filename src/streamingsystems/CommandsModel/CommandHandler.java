@@ -8,6 +8,9 @@ import streamingsystems.MovingItem;
 public class CommandHandler implements Commands {
     @Override
     public void createItem(MovingItem movingItem) {
+        if (DomainModel.getInstance().movingItemNameExists(movingItem.getName())) {
+            throw new IllegalArgumentException("An item with this name already exists");
+        }
 
         Command command = new CreateItemCommand(movingItem);
     }
