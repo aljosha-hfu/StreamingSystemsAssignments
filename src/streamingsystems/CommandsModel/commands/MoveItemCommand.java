@@ -1,7 +1,9 @@
 package streamingsystems.CommandsModel.commands;
 
 
+import streamingsystems.CommandsModel.EventStore;
 import streamingsystems.CommandsModel.Meta.Command;
+import streamingsystems.implemented.events.MovingItemMovedEvent;
 
 public class MoveItemCommand extends Command {
     String id;
@@ -14,6 +16,6 @@ public class MoveItemCommand extends Command {
 
     @Override
     public void handle() {
-        // TODO
+        EventStore.getInstance().addEvent(new MovingItemMovedEvent(id, vector));
     }
 }
