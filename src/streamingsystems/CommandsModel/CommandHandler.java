@@ -13,6 +13,7 @@ public class CommandHandler implements Commands {
         }
 
         Command command = new CreateItemCommand(movingItem);
+        command.handle();
     }
 
     @Override
@@ -22,6 +23,7 @@ public class CommandHandler implements Commands {
         }
 
         Command command = new DeleteItemCommand(id);
+        command.handle();
     }
 
     @Override
@@ -31,6 +33,7 @@ public class CommandHandler implements Commands {
         }
 
         Command command = new MoveItemCommand(id, vector);
+        command.handle();
     }
 
     @Override
@@ -40,5 +43,6 @@ public class CommandHandler implements Commands {
         }
 
         Command command = new ChangeValueCommand(id, newValue);
+        command.handle();
     }
 }
