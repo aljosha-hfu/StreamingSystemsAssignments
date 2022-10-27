@@ -23,8 +23,6 @@ public class Main {
         commandHandlerInstance.moveItem("Moving Item 1", new int[]{1, 2, 3});
         commandHandlerInstance.deleteItem("Moving Item 1");
 
-//        System.out.println(QueryHandler.getInstance().getMovingItemByName("Moving Item 2"));
-
         EventStore eventStore = EventStore.getInstance();
         QueryModel queryModel = new QueryModel(eventStore);
         QueryHandler queryHandler = new QueryHandler(queryModel);

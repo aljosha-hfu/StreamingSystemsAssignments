@@ -20,7 +20,7 @@ class MainTest {
     void setUp() {
         commandHandlerInstance = CommandHandler.getInstance();
         eventStore = EventStore.getInstance();
-        queryModel = new QueryModel(eventStore);
+        queryModel =  QueryModel.getInstance(eventStore);
         queryHandler = new QueryHandler(queryModel);
     }
 

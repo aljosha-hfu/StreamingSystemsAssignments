@@ -13,18 +13,29 @@ import streamingsystems.implemented.events.MovingItemValueChangedEvent;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.stream.Collectors;
 
 public class QueryModel {
+    private static QueryModel INSTANCE;
+
+    public static QueryModel getInstance(EventStore eventStore) {
+        if(INSTANCE == null){
+            INSTANCE = new QueryModel(eventStore);
+        }
+        return INSTANCE;
+    }
+
 
     private final EventStore eventStore;
     private HashMap<String, MovingItemDTO> movingItemHashMap = new HashMap<>();
 
-    public QueryModel(EventStore eventStore) {
+    private QueryModel(EventStore eventStore) {
         this.eventStore = eventStore;
         updateEventStore();
     }
+
 
     public void updateEventStore(){
        movingItemHashMap =  convertToMovingItemDTOMap(createEventStoreFromEvents(eventStore.getEventQueue()));
@@ -62,6 +73,9 @@ public class QueryModel {
 
 
     public MovingItem getMovingItemFromName(String name) {
+        if(!movingItemHashMap.containsKey(name)){
+            throw new NoSuchElementException("There is no Item with this specific name!");
+        }
         return movingItemHashMap.get(name);
     }
 
