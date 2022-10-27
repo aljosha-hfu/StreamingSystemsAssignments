@@ -3,10 +3,8 @@ package streamingsystems;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import streamingsystems.CommandsModel.CommandHandler;
-import streamingsystems.CommandsModel.EventStore;
 import streamingsystems.QueryHandlingModel.QueryHandler;
 import streamingsystems.QueryHandlingModel.QueryModel;
-import streamingsystems.implemented.MovingItemDTO;
 import streamingsystems.implemented.MovingItemImpl;
 
 public class Main {

@@ -4,7 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import streamingsystems.CommandsModel.EventStore;
 import streamingsystems.CommandsModel.Meta.Event;
-import streamingsystems.Main;
 import streamingsystems.implemented.MovingItemDTO;
 import streamingsystems.implemented.MovingItemImpl;
 
