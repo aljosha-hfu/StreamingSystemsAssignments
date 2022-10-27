@@ -1,6 +1,6 @@
 package streamingsystems.QueryHandlingModel;
 
-import streamingsystems.MovingItem;
+import streamingsystems.MovingItemImpl;
 import streamingsystems.implemented.MovingItemDTO;
 import streamingsystems.QueryHandlingModel.Predefined.Query;
 
@@ -17,7 +17,7 @@ public class QueryHandler implements Query {
 
     @Override
     public MovingItemDTO getMovingItemByName(String name) {
-        return new MovingItemDTO(queryModel.getMovingItemFromName(name));
+        return new MovingItemDTO(queryModel.getMovingItemDTOByName(name));
     }
 
     @SuppressWarnings("Convert2MethodRef")
@@ -33,7 +33,7 @@ public class QueryHandler implements Query {
     @Override
     public Enumeration<MovingItemDTO> getMovingItemsAtPosition(int[] position) {
         Collection<MovingItemDTO> movingItemDTOsAtPosition = getAllMovingItemsAsCollection()
-                .stream().filter((MovingItem eachMovingItem) -> eachMovingItem.getLocation() == position).toList();
+                .stream().filter((MovingItemImpl eachMovingItem) -> eachMovingItem.getLocation() == position).toList();
 
         return Collections.enumeration(movingItemDTOsAtPosition);
     }

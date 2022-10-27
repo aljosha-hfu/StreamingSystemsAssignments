@@ -1,18 +1,24 @@
 package streamingsystems.implemented.events;
 
 import streamingsystems.CommandsModel.Meta.Event;
-import streamingsystems.MovingItem;
+import streamingsystems.implemented.MovingItemImpl;
 
 public class MovingItemCreatedEvent extends Event {
 
-    private final MovingItem movingItem;
+    private final MovingItemImpl movingItemImpl;
 
-    public MovingItemCreatedEvent(MovingItem movingItem) {
+    public MovingItemCreatedEvent(MovingItemImpl movingItem) {
         super(movingItem.getName());
-        this.movingItem = movingItem;
+        this.movingItemImpl = movingItem;
     }
 
-    public MovingItem getMovingItem() {
-        return movingItem;
+    public MovingItemImpl getMovingItemImpl() {
+        return movingItemImpl;
+    }
+
+
+    @Override
+    public MovingItemImpl apply() {
+        return movingItemImpl;
     }
 }

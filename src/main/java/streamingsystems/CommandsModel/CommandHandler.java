@@ -2,8 +2,11 @@ package streamingsystems.CommandsModel;
 
 import streamingsystems.CommandsModel.Meta.Command;
 import streamingsystems.CommandsModel.Meta.Predefined.Commands;
-import streamingsystems.CommandsModel.commands.*;
-import streamingsystems.MovingItem;
+import streamingsystems.CommandsModel.commands.ChangeValueCommand;
+import streamingsystems.CommandsModel.commands.CreateItemCommand;
+import streamingsystems.CommandsModel.commands.DeleteItemCommand;
+import streamingsystems.CommandsModel.commands.MoveItemCommand;
+import streamingsystems.implemented.MovingItemImpl;
 
 public class CommandHandler implements Commands {
     private static final CommandHandler singletonInstance = new CommandHandler();
@@ -23,7 +26,7 @@ public class CommandHandler implements Commands {
     }
 
     @Override
-    public void createItem(MovingItem movingItem) {
+    public void createItem(MovingItemImpl movingItem) {
         if (DomainModel.getInstance().movingItemNameExists(movingItem.getName())) {
             throw new IllegalArgumentException("An item with this name already exists");
         }

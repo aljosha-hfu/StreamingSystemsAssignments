@@ -1,10 +1,10 @@
 package streamingsystems.implemented;
 
-import streamingsystems.MovingItem;
+import streamingsystems.MovingItemImpl;
 
 import java.util.Arrays;
 
-public class MovingItemDTO implements MovingItem {
+public class MovingItemDTO implements MovingItemImpl {
     private final String name;
     private final int[] location;
     private final int numberOfMoves;
@@ -17,7 +17,7 @@ public class MovingItemDTO implements MovingItem {
         this.value = value;
     }
 
-    public MovingItemDTO(MovingItem movingItem) {
+    public MovingItemDTO(MovingItemImpl movingItem) {
         this.name = movingItem.getName();
         this.location = movingItem.getLocation();
         this.numberOfMoves = movingItem.getNumberOfMoves();
