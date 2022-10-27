@@ -1,9 +1,11 @@
 package streamingsystems.implemented;
 
+import streamingsystems.MovingItem;
+
 import java.util.Arrays;
 import java.util.stream.IntStream;
 
-public class MovingItemImpl implements streamingsystems.MovingItemImpl {
+public class MovingItemImpl implements MovingItem {
     private final String name;
     private int[] location;
     private int numberOfMoves;
@@ -16,7 +18,7 @@ public class MovingItemImpl implements streamingsystems.MovingItemImpl {
         this.value = value;
     }
 
-    public MovingItemImpl(streamingsystems.MovingItemImpl movingItem) {
+    public MovingItemImpl(MovingItem movingItem) {
         this.name = movingItem.getName();
         this.location = movingItem.getLocation();
         this.numberOfMoves = movingItem.getNumberOfMoves();

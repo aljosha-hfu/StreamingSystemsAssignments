@@ -1,7 +1,10 @@
 package streamingsystems.QueryHandlingModel;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import streamingsystems.CommandsModel.EventStore;
 import streamingsystems.CommandsModel.Meta.Event;
+import streamingsystems.Main;
 import streamingsystems.implemented.MovingItemDTO;
 import streamingsystems.implemented.MovingItemImpl;
 
@@ -14,52 +17,56 @@ public class QueryModel {
     private static QueryModel INSTANCE;
 
     public static QueryModel getInstance() {
-        if(INSTANCE == null){
+        if (INSTANCE == null) {
             INSTANCE = new QueryModel();
         }
         return INSTANCE;
     }
+    Logger logger = LoggerFactory.getLogger(QueryModel.class);
 
 
     private HashMap<String, MovingItemDTO> movingItemDTOHashMap = new HashMap<>();
-       private HashMap<String, MovingItemImpl> movingItemImplHashMap = new HashMap<>();
+    private final HashMap<String, MovingItemImpl> movingItemImplHashMap = new HashMap<>();
 
     private QueryModel() {
         updateEventStore();
     }
 
 
-    public void updateEventStore(){
+    public void updateEventStore() {
         recalculateEventStoreFromEvents(EventStore.getInstance().getEventQueue());
-       movingItemDTOHashMap =  convertToMovingItemDTOMap(movingItemImplHashMap);
+        movingItemDTOHashMap = convertToMovingItemDTOMap(movingItemImplHashMap);
     }
 
-    private HashMap<String, MovingItemDTO> convertToMovingItemDTOMap(HashMap<String, streamingsystems.implemented.MovingItemImpl> movingItemImplHashMap){
+    private HashMap<String, MovingItemDTO> convertToMovingItemDTOMap(HashMap<String, streamingsystems.implemented.MovingItemImpl> movingItemImplHashMap) {
         HashMap<String, MovingItemDTO> movingItemDTOHashMap = new HashMap<>();
         movingItemImplHashMap.forEach((k, v) -> movingItemDTOHashMap.put(k, new MovingItemDTO(v)));
         return movingItemDTOHashMap;
     }
 
 
-    public void recalculateEventStoreFromEvents(LinkedBlockingQueue<Event> eventQueue){
+    private void recalculateEventStoreFromEvents(LinkedBlockingQueue<Event> eventQueue) {
+        logger.info("Recalculating EventStore ...");
         eventQueue.forEach(event -> {
-            if(event.apply() != null){
-            movingItemImplHashMap.put(event.getId(), event.apply());
+            logger.info("Event: " + event.getClass().getName() + ": " + event.getId());
+            if (event.apply() != null) {
+                movingItemImplHashMap.put(event.getId(), event.apply());
             } else {
                 movingItemImplHashMap.remove(event.getId());
             }
         });
+        movingItemImplHashMap.forEach((k,v) -> logger.info(k + " " + v));
     }
 
 
     public MovingItemDTO getMovingItemDTOByName(String name) {
-        if(!movingItemDTOHashMap.containsKey(name)){
+        if (!movingItemDTOHashMap.containsKey(name)) {
             throw new NoSuchElementException("There is no Item with this specific name!");
         }
         return movingItemDTOHashMap.get(name);
     }
 
-    public MovingItemImpl getMovingItemImplByName(String name){
+    public MovingItemImpl getMovingItemImplByName(String name) {
         return movingItemImplHashMap.get(name);
     }
 
