@@ -1,9 +1,8 @@
 package streamingsystems.CommandsModel;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
+import streamingsystems.Helpers;
+
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class DomainModel {
@@ -19,7 +18,7 @@ public class DomainModel {
 
     // Data
     private final HashMap<String, Integer> movingItemsMoveCounts = new HashMap<>();
-    private final HashMap<int[], String> movingItemsPositions = new HashMap<>();
+    private final HashMap<String, int[]> movingItemsPositions = new HashMap<>();
 
     public void checkMovingItemExistsAndThrowException(String movingItemName) {
         if (!movingItemNameExists(movingItemName)) {
@@ -36,17 +35,24 @@ public class DomainModel {
     public int[] getPositionForMovingItemName(String movingItemName) {
         checkMovingItemExistsAndThrowException(movingItemName);
 
-        Optional<int[]> foundPosition = movingItemsPositions.entrySet().stream().filter(entry -> Objects.equals(entry.getValue(), movingItemName))
+        return movingItemsPositions.get(movingItemName);
+    }
+
+    public void moveMovingItem(String movingItemName, int[] vector) {
+        movingItemsPositions.replace(
+                movingItemName,
+                Helpers.addArrays(movingItemsPositions.get(movingItemName), vector))
+        ;
+    }
+
+    public String getItemNameForPosition(int[] positionToFind) {
+        Optional<String> foundItemName = movingItemsPositions.entrySet().stream().filter(entry -> Arrays.equals(entry.getValue(), positionToFind))
                 .map(Map.Entry::getKey)
                 .collect(Collectors.toSet())
                 .stream()
                 .findFirst();
 
-        return foundPosition.orElse(null);
-    }
-
-    public String findItemWithPosition(int[] positionToFind) {
-        return movingItemsPositions.get(positionToFind);
+        return foundItemName.orElse(null);
     }
 
     public void incrementNumberOfMovesForMovingItemNameByOne(String movingItemName) {
@@ -62,7 +68,7 @@ public class DomainModel {
 
     public void addMovingItemNameToModel(String movingItemName) {
         movingItemsMoveCounts.put(movingItemName, 0);
-        movingItemsPositions.put(new int[]{0, 0, 0}, movingItemName);
+        movingItemsPositions.put(movingItemName, new int[]{0, 0, 0});
     }
 
     public void removeMovingItemNameFromModel(String movingItemName) {
