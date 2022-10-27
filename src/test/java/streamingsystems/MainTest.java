@@ -3,16 +3,25 @@ package streamingsystems;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import streamingsystems.CommandsModel.CommandHandler;
+import streamingsystems.CommandsModel.EventStore;
+import streamingsystems.QueryHandlingModel.QueryHandler;
+import streamingsystems.QueryHandlingModel.QueryModel;
 import streamingsystems.implemented.MovingItemDTO;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class MainTest {
     CommandHandler commandHandlerInstance;
+    EventStore eventStore;
+    QueryModel queryModel;
+    QueryHandler queryHandler;
 
     @BeforeEach
     void setUp() {
         commandHandlerInstance = CommandHandler.getInstance();
+        eventStore = EventStore.getInstance();
+        queryModel = new QueryModel(eventStore);
+        queryHandler = new QueryHandler(queryModel);
     }
 
     @Test
