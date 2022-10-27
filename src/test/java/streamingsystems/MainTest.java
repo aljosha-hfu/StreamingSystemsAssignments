@@ -8,6 +8,8 @@ import streamingsystems.QueryHandlingModel.QueryHandler;
 import streamingsystems.QueryHandlingModel.QueryModel;
 import streamingsystems.implemented.MovingItemImpl;
 
+import java.util.stream.IntStream;
+
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class MainTest {
@@ -58,6 +60,28 @@ class MainTest {
 
         assertThrows(IllegalArgumentException.class, () -> commandHandlerInstance.deleteItem(movingItemTestName1));
         commandHandlerInstance.deleteItem(movingItemTestName2);
+    }
+
+    @Test
+    void assertDeleteMovingItemIfMoved19Times() {
+        commandHandlerInstance.createItem(new MovingItemImpl(movingItemTestName1));
+
+        IntStream
+                .rangeClosed(1, 19)
+                .forEach((i) -> commandHandlerInstance.moveItem(movingItemTestName1, new int[]{i, i, i}));
+
+        commandHandlerInstance.deleteItem(movingItemTestName1);
+    }
+
+    @Test
+    void assertDeleteMovingItemIfMoved20Times() {
+        commandHandlerInstance.createItem(new MovingItemImpl(movingItemTestName1));
+
+        IntStream
+                .rangeClosed(1, 20)
+                .forEach((i) -> commandHandlerInstance.moveItem(movingItemTestName1, new int[]{i, i, i}));
+        
+        assertThrows(IllegalArgumentException.class, () -> commandHandlerInstance.deleteItem(movingItemTestName1));
     }
 
     @Test
