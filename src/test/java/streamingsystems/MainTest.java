@@ -17,6 +17,7 @@ class MainTest {
     QueryModel queryModel;
     QueryHandler queryHandler;
 
+    @BeforeEach
     void setUp() {
         commandHandlerInstance = CommandHandler.getInstance();
         eventStore = EventStore.getInstance();
