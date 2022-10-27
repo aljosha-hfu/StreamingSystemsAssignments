@@ -26,13 +26,13 @@ public class DomainModel {
         return movingItemsMoveCounts.get(movingItemName);
     }
 
-    public int incrementNumberOfMovesForMovingItemNameByOne(String movingItemName) {
+    public void incrementNumberOfMovesForMovingItemNameByOne(String movingItemName) {
         if (!movingItemNameExists(movingItemName)) {
             throw new IllegalArgumentException("A moving item with the name " + movingItemName + " does not exist in the domain model.");
         }
 
         // https://stackoverflow.com/a/42648785
-        return movingItemsMoveCounts.merge(movingItemName, 1, Integer::sum);
+        movingItemsMoveCounts.merge(movingItemName, 1, Integer::sum);
     }
 
     public boolean movingItemNameExists(String movingItemName) {
