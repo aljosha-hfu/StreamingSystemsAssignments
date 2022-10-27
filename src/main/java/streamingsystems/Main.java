@@ -1,5 +1,7 @@
 package streamingsystems;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import streamingsystems.CommandsModel.CommandHandler;
 import streamingsystems.CommandsModel.EventStore;
 import streamingsystems.QueryHandlingModel.QueryHandler;
@@ -8,8 +10,8 @@ import streamingsystems.implemented.MovingItemDTO;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Starting...");
-
+        Logger logger = LoggerFactory.getLogger(Main.class);
+        logger.info("Starting...");
         CommandHandler commandHandlerInstance = CommandHandler.getInstance();
 
         commandHandlerInstance.createItem(new MovingItemDTO("Moving Item 1"));
@@ -27,8 +29,9 @@ public class Main {
         QueryModel queryModel = new QueryModel(eventStore);
         QueryHandler queryHandler = new QueryHandler(queryModel);
 
-        System.out.println(queryHandler.getMovingItemByName("Moving Item 2"));
+        logger.info(queryHandler.getMovingItemByName("Moving Item 2").toString());
+        queryModel.getAllMovingItems().forEach(x -> logger.info(x.toString()));
 
-        System.out.println("Terminating...");
+        logger.info("Terminating...");
     }
 }
