@@ -7,7 +7,7 @@ import streamingsystems.implemented.events.MovingItemCreatedEvent;
 import streamingsystems.implemented.events.MovingItemDeletedEvent;
 
 public class DeleteItemCommand extends Command {
-    String id;
+    final String id;
 
     public DeleteItemCommand(String id) {
         this.id = id;

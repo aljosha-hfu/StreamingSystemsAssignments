@@ -5,8 +5,8 @@ import streamingsystems.CommandsModel.Meta.Command;
 import streamingsystems.implemented.events.MovingItemValueChangedEvent;
 
 public class ChangeValueCommand extends Command {
-    String id;
-    int newValue;
+    final String id;
+    final int newValue;
 
     public ChangeValueCommand(String id, int newValue) {
         this.id = id;

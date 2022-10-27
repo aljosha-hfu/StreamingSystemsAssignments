@@ -19,7 +19,6 @@ public class QueryHandler implements Query {
         return queryModel.getMovingItemDTOByName(name);
     }
 
-    @SuppressWarnings("Convert2MethodRef")
     public Collection<MovingItemDTO> getAllMovingItemsAsCollection() {
         return queryModel.getAllMovingItems();
     }

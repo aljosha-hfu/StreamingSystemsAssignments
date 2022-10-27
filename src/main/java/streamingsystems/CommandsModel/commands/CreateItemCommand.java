@@ -8,7 +8,7 @@ import streamingsystems.implemented.events.MovingItemCreatedEvent;
 
 public class CreateItemCommand extends Command {
 
-    MovingItemImpl movingItem;
+    final MovingItemImpl movingItem;
 
     public CreateItemCommand(MovingItemImpl movingItem) {
         this.movingItem = movingItem;

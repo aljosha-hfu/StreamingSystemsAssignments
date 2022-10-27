@@ -8,8 +8,8 @@ import streamingsystems.implemented.events.MovingItemDeletedEvent;
 import streamingsystems.implemented.events.MovingItemMovedEvent;
 
 public class MoveItemCommand extends Command {
-    String id;
-    int[] vector;
+    final String id;
+    final int[] vector;
 
     public MoveItemCommand(String id, int[] vector) {
         this.id = id;

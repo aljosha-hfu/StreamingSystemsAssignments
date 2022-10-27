@@ -22,7 +22,7 @@ public class QueryModel {
         }
         return INSTANCE;
     }
-    Logger logger = LoggerFactory.getLogger(QueryModel.class);
+    final Logger logger = LoggerFactory.getLogger(QueryModel.class);
 
 
     private HashMap<String, MovingItemDTO> movingItemDTOHashMap = new HashMap<>();
