@@ -25,8 +25,9 @@ public class Main {
 
         EventStore eventStore = EventStore.getInstance();
         QueryModel queryModel = new QueryModel(eventStore);
+        QueryHandler queryHandler = new QueryHandler(queryModel);
 
-        System.out.println(queryModel.getAllMovingItems());
+        System.out.println(queryHandler.getMovingItemByName("Moving Item 2"));
 
         System.out.println("Terminating...");
     }
