@@ -50,7 +50,3 @@ public class QueryModel {
   }
 }
 ```
-
-## TODO
-
-- Add JUnit für unit tests
