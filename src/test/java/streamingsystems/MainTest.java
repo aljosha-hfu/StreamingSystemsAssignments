@@ -16,6 +16,8 @@ class MainTest {
     QueryModel queryModel;
     QueryHandler queryHandler;
 
+    public static String baseMovingItemName = "Moving Item 1";
+
     @BeforeEach
     void setUp() {
         commandHandlerInstance = CommandHandler.getInstance();
@@ -26,22 +28,36 @@ class MainTest {
 
     @Test
     void createAndDeleteMovingItem() {
-        commandHandlerInstance.createItem(new MovingItemDTO("Moving Item 1"));
-        commandHandlerInstance.deleteItem("Moving Item 1");
+        commandHandlerInstance.createItem(new MovingItemDTO(baseMovingItemName));
+        commandHandlerInstance.deleteItem(baseMovingItemName);
+    }
+
+    @Test
+    void createAndMoveMovingItem() {
+        commandHandlerInstance.createItem(new MovingItemDTO(baseMovingItemName));
+        commandHandlerInstance.moveItem(baseMovingItemName, new int[]{1, 1, 1});
+        commandHandlerInstance.deleteItem(baseMovingItemName);
+    }
+
+    @Test
+    void createMovingItemAndChangeValue() {
+        commandHandlerInstance.createItem(new MovingItemDTO(baseMovingItemName));
+        commandHandlerInstance.changeValue(baseMovingItemName, 42);
+        commandHandlerInstance.deleteItem(baseMovingItemName);
     }
 
     @Test
     void deleteItemThatDoesNotExist() {
-        assertThrows(IllegalArgumentException.class, () -> commandHandlerInstance.deleteItem("Moving Item 1"));
+        assertThrows(IllegalArgumentException.class, () -> commandHandlerInstance.deleteItem(baseMovingItemName));
     }
 
     @Test
     void moveItemThatDoesNotExist() {
-        assertThrows(IllegalArgumentException.class, () -> commandHandlerInstance.moveItem("Moving Item 1", new int[]{1, 2, 3}));
+        assertThrows(IllegalArgumentException.class, () -> commandHandlerInstance.moveItem(baseMovingItemName, new int[]{1, 2, 3}));
     }
 
     @Test
     void changeValueOfItemThatDoesNotExist() {
-        assertThrows(IllegalArgumentException.class, () -> commandHandlerInstance.changeValue("Moving Item 1", 420));
+        assertThrows(IllegalArgumentException.class, () -> commandHandlerInstance.changeValue(baseMovingItemName, 420));
     }
 }
