@@ -3,11 +3,10 @@ package streamingsystems.CommandsModel.commands;
 import streamingsystems.CommandsModel.DomainModel;
 import streamingsystems.CommandsModel.EventStore;
 import streamingsystems.CommandsModel.Meta.Command;
-import streamingsystems.implemented.events.MovingItemCreatedEvent;
 import streamingsystems.implemented.events.MovingItemDeletedEvent;
 
 public class DeleteItemCommand extends Command {
-    String id;
+    final String id;
 
     public DeleteItemCommand(String id) {
         this.id = id;

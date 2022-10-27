@@ -3,14 +3,14 @@ package streamingsystems.CommandsModel.commands;
 import streamingsystems.CommandsModel.DomainModel;
 import streamingsystems.CommandsModel.EventStore;
 import streamingsystems.CommandsModel.Meta.Command;
-import streamingsystems.MovingItem;
+import streamingsystems.implemented.MovingItemImpl;
 import streamingsystems.implemented.events.MovingItemCreatedEvent;
 
 public class CreateItemCommand extends Command {
 
-    MovingItem movingItem;
+    final MovingItemImpl movingItem;
 
-    public CreateItemCommand(MovingItem movingItem) {
+    public CreateItemCommand(MovingItemImpl movingItem) {
         this.movingItem = movingItem;
     }
 

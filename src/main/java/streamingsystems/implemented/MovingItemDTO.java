@@ -17,7 +17,7 @@ public class MovingItemDTO implements MovingItem {
         this.value = value;
     }
 
-    public MovingItemDTO(MovingItem movingItem) {
+    public MovingItemDTO(MovingItemImpl movingItem) {
         this.name = movingItem.getName();
         this.location = movingItem.getLocation();
         this.numberOfMoves = movingItem.getNumberOfMoves();

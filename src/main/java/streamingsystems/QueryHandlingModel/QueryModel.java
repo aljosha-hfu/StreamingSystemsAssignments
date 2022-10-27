@@ -1,71 +1,75 @@
 package streamingsystems.QueryHandlingModel;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import streamingsystems.CommandsModel.EventStore;
 import streamingsystems.CommandsModel.Meta.Event;
-import streamingsystems.MovingItem;
 import streamingsystems.implemented.MovingItemDTO;
 import streamingsystems.implemented.MovingItemImpl;
-import streamingsystems.implemented.events.MovingItemCreatedEvent;
-import streamingsystems.implemented.events.MovingItemDeletedEvent;
-import streamingsystems.implemented.events.MovingItemMovedEvent;
-import streamingsystems.implemented.events.MovingItemValueChangedEvent;
 
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.concurrent.LinkedBlockingQueue;
-import java.util.stream.Collectors;
 
 public class QueryModel {
+    private static QueryModel INSTANCE;
 
-    private final EventStore eventStore;
-    private HashMap<String, MovingItemDTO> movingItemHashMap = new HashMap<>();
+    public static QueryModel getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new QueryModel();
+        }
+        return INSTANCE;
+    }
+    final Logger logger = LoggerFactory.getLogger(QueryModel.class);
 
-    public QueryModel(EventStore eventStore) {
-        this.eventStore = eventStore;
+
+    private HashMap<String, MovingItemDTO> movingItemDTOHashMap = new HashMap<>();
+    private final HashMap<String, MovingItemImpl> movingItemImplHashMap = new HashMap<>();
+
+    private QueryModel() {
         updateEventStore();
     }
 
-    public void updateEventStore(){
-       movingItemHashMap =  convertToMovingItemDTOMap(createEventStoreFromEvents(eventStore.getEventQueue()));
+
+    public void updateEventStore() {
+        recalculateEventStoreFromEvents(EventStore.getInstance().getEventQueue());
+        movingItemDTOHashMap = convertToMovingItemDTOMap(movingItemImplHashMap);
     }
 
-    private HashMap<String, MovingItemDTO> convertToMovingItemDTOMap(HashMap<String, MovingItemImpl> movingItemImplHashMap){
+    private HashMap<String, MovingItemDTO> convertToMovingItemDTOMap(HashMap<String, streamingsystems.implemented.MovingItemImpl> movingItemImplHashMap) {
         HashMap<String, MovingItemDTO> movingItemDTOHashMap = new HashMap<>();
         movingItemImplHashMap.forEach((k, v) -> movingItemDTOHashMap.put(k, new MovingItemDTO(v)));
         return movingItemDTOHashMap;
     }
 
-    private HashMap<String, MovingItemImpl> createEventStoreFromEvents(LinkedBlockingQueue<Event> eventQueue) {
-        HashMap<String, MovingItemImpl> map = new HashMap<>();
+
+    private void recalculateEventStoreFromEvents(LinkedBlockingQueue<Event> eventQueue) {
+        logger.info("Recalculating EventStore ...");
         eventQueue.forEach(event -> {
-            String itemId = event.getId();
-            if (event instanceof MovingItemValueChangedEvent movingItemValueChangedEvent) {
-                MovingItemImpl movingItem = map.get(itemId);
-                movingItem.setValue(movingItemValueChangedEvent.getNewValue());
-                map.put(itemId, movingItem);
-            } else if (event instanceof MovingItemCreatedEvent movingItemCreatedEvent) {
-                map.put(itemId, new MovingItemImpl(movingItemCreatedEvent.getMovingItem()));
-            } else if (event instanceof MovingItemMovedEvent movingItemMovedEvent) {
-                MovingItemImpl movingItem = map.get(itemId);
-                movingItem.addMoveToMoveCounter();
-                movingItem.move(movingItemMovedEvent.getVector());
-                map.put(itemId, movingItem);
-            } else if (event instanceof MovingItemDeletedEvent) {
-                map.remove(itemId);
+            logger.info("Event: " + event.getClass().getName() + ": " + event.getId());
+            if (event.apply() != null) {
+                movingItemImplHashMap.put(event.getId(), event.apply());
+            } else {
+                movingItemImplHashMap.remove(event.getId());
             }
-
         });
-        return map;
-
+        movingItemImplHashMap.forEach((k,v) -> logger.info(k + " " + v));
     }
 
 
-    public MovingItem getMovingItemFromName(String name) {
-        return movingItemHashMap.get(name);
+    public MovingItemDTO getMovingItemDTOByName(String name) {
+        if (!movingItemDTOHashMap.containsKey(name)) {
+            throw new NoSuchElementException("There is no Item with this specific name!");
+        }
+        return movingItemDTOHashMap.get(name);
+    }
+
+    public MovingItemImpl getMovingItemImplByName(String name) {
+        return movingItemImplHashMap.get(name);
     }
 
     public Collection<MovingItemDTO> getAllMovingItems() {
-        return this.movingItemHashMap.values();
+        return this.movingItemDTOHashMap.values();
     }
 }
