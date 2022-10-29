@@ -1,5 +1,6 @@
 package streamingsystems.implemented;
 
+import streamingsystems.Helpers;
 import streamingsystems.MovingItem;
 
 import java.util.Arrays;
@@ -54,10 +55,9 @@ public class MovingItemImpl implements MovingItem {
     }
 
     public void move(int[] location) {
-        this.location =
-                IntStream.range(0, this.location.length).
-                        mapToObj(i -> this.location[i] + location[i]).mapToInt(i -> i).toArray();
+        this.location = Helpers.addArrays(this.location, location);
     }
+
 
     public void addMoveToMoveCounter() {
         this.numberOfMoves++;

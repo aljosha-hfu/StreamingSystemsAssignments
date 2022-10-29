@@ -1,7 +1,9 @@
 package streamingsystems.CommandsModel;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import streamingsystems.Helpers;
+
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class DomainModel {
     private static final DomainModel singletonInstance = new DomainModel();
@@ -15,41 +17,64 @@ public class DomainModel {
     }
 
     // Data
-    private final ArrayList<String> movingItemNameList = new ArrayList<>();
     private final HashMap<String, Integer> movingItemsMoveCounts = new HashMap<>();
+    private final HashMap<String, int[]> movingItemsPositions = new HashMap<>();
 
-    public int getNumberOfMovesForMovingItemName(String movingItemName) {
+    public void checkMovingItemExistsAndThrowException(String movingItemName) {
         if (!movingItemNameExists(movingItemName)) {
             throw new IllegalArgumentException("A moving item with the name " + movingItemName + " does not exist in the domain model.");
         }
+    }
+
+    public int getNumberOfMovesForMovingItemName(String movingItemName) {
+        checkMovingItemExistsAndThrowException(movingItemName);
 
         return movingItemsMoveCounts.get(movingItemName);
     }
 
+    public int[] getPositionForMovingItemName(String movingItemName) {
+        checkMovingItemExistsAndThrowException(movingItemName);
+
+        return movingItemsPositions.get(movingItemName);
+    }
+
+    public void moveMovingItem(String movingItemName, int[] vector) {
+        movingItemsPositions.replace(
+                movingItemName,
+                Helpers.addArrays(movingItemsPositions.get(movingItemName), vector))
+        ;
+    }
+
+    public String getItemNameForPosition(int[] positionToFind) {
+        Optional<String> foundItemName = movingItemsPositions.entrySet().stream().filter(entry -> Arrays.equals(entry.getValue(), positionToFind))
+                .map(Map.Entry::getKey)
+                .collect(Collectors.toSet())
+                .stream()
+                .findFirst();
+
+        return foundItemName.orElse(null);
+    }
+
     public void incrementNumberOfMovesForMovingItemNameByOne(String movingItemName) {
-        if (!movingItemNameExists(movingItemName)) {
-            throw new IllegalArgumentException("A moving item with the name " + movingItemName + " does not exist in the domain model.");
-        }
+        checkMovingItemExistsAndThrowException(movingItemName);
 
         // https://stackoverflow.com/a/42648785
         movingItemsMoveCounts.merge(movingItemName, 1, Integer::sum);
     }
 
     public boolean movingItemNameExists(String movingItemName) {
-        return movingItemNameList.contains(movingItemName);
+        return movingItemsMoveCounts.containsKey(movingItemName);
     }
 
     public void addMovingItemNameToModel(String movingItemName) {
-        movingItemNameList.add(movingItemName);
         movingItemsMoveCounts.put(movingItemName, 0);
+        movingItemsPositions.put(movingItemName, new int[]{0, 0, 0});
     }
 
     public void removeMovingItemNameFromModel(String movingItemName) {
-        if (!movingItemNameExists(movingItemName)) {
-            throw new IllegalArgumentException("A moving item with the name " + movingItemName + " does not exist in the domain model.");
-        }
+        checkMovingItemExistsAndThrowException(movingItemName);
 
-        movingItemNameList.remove(movingItemName);
         movingItemsMoveCounts.remove(movingItemName);
+        movingItemsPositions.remove(movingItemName);
     }
 }
