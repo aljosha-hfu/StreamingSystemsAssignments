@@ -12,7 +12,6 @@ public class Main {
         Logger logger = LoggerFactory.getLogger(Main.class);
         logger.info("Starting...");
         CommandHandler commandHandlerInstance = CommandHandler.getInstance();
-
         commandHandlerInstance.createItem(new MovingItemImpl("Moving Item 1"));
         commandHandlerInstance.createItem(new MovingItemImpl("Moving Item 2"));
         commandHandlerInstance.createItem(new MovingItemImpl("Moving Item 3"));

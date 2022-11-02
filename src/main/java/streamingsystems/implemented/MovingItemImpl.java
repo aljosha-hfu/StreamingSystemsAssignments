@@ -4,7 +4,6 @@ import streamingsystems.Helpers;
 import streamingsystems.MovingItem;
 
 import java.util.Arrays;
-import java.util.stream.IntStream;
 
 public class MovingItemImpl implements MovingItem {
     private final String name;
