@@ -12,7 +12,7 @@ import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class MainTest {
+class Test_A02 {
     CommandHandler commandHandlerInstance;
     EventStore eventStore;
     QueryModel queryModel;
@@ -28,26 +28,6 @@ class MainTest {
         eventStore = EventStore.getInstance();
         queryModel = QueryModel.getInstance();
         queryHandler = new QueryHandler(queryModel);
-    }
-
-    @Test
-    void createAndDeleteMovingItem() {
-        commandHandlerInstance.createItem(new MovingItemImpl(movingItemTestName1));
-        commandHandlerInstance.deleteItem(movingItemTestName1);
-    }
-
-    @Test
-    void createAndMoveMovingItem() {
-        commandHandlerInstance.createItem(new MovingItemImpl(movingItemTestName1));
-        commandHandlerInstance.moveItem(movingItemTestName1, new int[]{1, 2, 3});
-        commandHandlerInstance.deleteItem(movingItemTestName1);
-    }
-
-    @Test
-    void createMovingItemAndChangeValue() {
-        commandHandlerInstance.createItem(new MovingItemImpl(movingItemTestName1));
-        commandHandlerInstance.changeValue(movingItemTestName1, 42);
-        commandHandlerInstance.deleteItem(movingItemTestName1);
     }
 
     @Test
@@ -80,22 +60,7 @@ class MainTest {
         IntStream
                 .rangeClosed(1, 20)
                 .forEach((i) -> commandHandlerInstance.moveItem(movingItemTestName1, new int[]{i, i, i}));
-        
+
         assertThrows(IllegalArgumentException.class, () -> commandHandlerInstance.deleteItem(movingItemTestName1));
-    }
-
-    @Test
-    void deleteItemThatDoesNotExist() {
-        assertThrows(IllegalArgumentException.class, () -> commandHandlerInstance.deleteItem(movingItemTestName1));
-    }
-
-    @Test
-    void moveItemThatDoesNotExist() {
-        assertThrows(IllegalArgumentException.class, () -> commandHandlerInstance.moveItem(movingItemTestName1, new int[]{1, 2, 3}));
-    }
-
-    @Test
-    void changeValueOfItemThatDoesNotExist() {
-        assertThrows(IllegalArgumentException.class, () -> commandHandlerInstance.changeValue(movingItemTestName1, 420));
     }
 }
