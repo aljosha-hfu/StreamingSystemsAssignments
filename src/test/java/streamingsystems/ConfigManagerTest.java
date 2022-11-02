@@ -1,4 +1,7 @@
+package streamingsystems;
+
 import org.junit.jupiter.api.Test;
+import streamingsystems.ConfigManager;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
