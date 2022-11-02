@@ -7,15 +7,18 @@ public enum ConfigManager {
     INSTANCE;
 
     private String rabbitMqHost;
+
+    private String rabbitMqPort;
     private String rabbitMqUser;
     private String rabbitMqPassword;
 
-    public void loadConfig() {
+    private void loadConfig() {
         Properties properties = new Properties();
         try {
             FileInputStream fileInputStream = new FileInputStream("src/main/resources/app.config");
             properties.load(fileInputStream);
             rabbitMqHost = properties.getProperty("rabbitmq.host");
+            rabbitMqPort = properties.getProperty("rabbitmq.port");
             rabbitMqUser = properties.getProperty("rabbitmq.user");
             rabbitMqPassword = properties.getProperty("rabbitmq.password");
         } catch (IOException e){
@@ -29,6 +32,10 @@ public enum ConfigManager {
 
     public String getRabbitMqHost() {
         return rabbitMqHost;
+    }
+
+    public String getRabbitMqPort() {
+        return rabbitMqPort;
     }
 
     public String getRabbitMqUser() {

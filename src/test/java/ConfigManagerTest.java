@@ -6,6 +6,7 @@ class ConfigManagerTest {
     @Test
     public void testConfigManager(){
         assertNotNull(ConfigManager.INSTANCE.getRabbitMqHost());
+        assertNotNull(ConfigManager.INSTANCE.getRabbitMqPort());
         assertNotNull(ConfigManager.INSTANCE.getRabbitMqUser());
         assertNotNull(ConfigManager.INSTANCE.getRabbitMqPassword());
     }
