@@ -5,10 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="748fb5f5-9b81-4ba5-bba7-f32dab2a35bb" name="Changes" comment="added check if e">
+      <change afterPath="$PROJECT_DIR$/src/main/java/ConfigManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/app-example.config" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/app.config" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/ConfigManagerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/streamingsystems/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/streamingsystems/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/streamingsystems/QueryHandlingModel/QueryModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/streamingsystems/QueryHandlingModel/QueryModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/streamingsystems/MainTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/streamingsystems/MainTest.java" afterDir="false" />
     </list>
     <list id="766454d9-919e-40bb-b89f-6cd1528b4b56" name="Changes by basti" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,8 +25,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -57,13 +60,28 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "last_opened_file_path": "/home/aljosha/Programming/StreamingSystems/src/main/resources",
+    "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.0",
     "run.code.analysis.last.selected.profile": "pProject Default"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.ConfigManagerTest.testConfigManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="streamingsystems.Main" />
       <module name="StreamingSystems" />
@@ -73,6 +91,16 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ConfigManagerTest.testConfigManager" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="StreamingSystems" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="ConfigManagerTest" />
+      <option name="METHOD_NAME" value="testConfigManager" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -94,6 +122,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ConfigManagerTest.testConfigManager" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
