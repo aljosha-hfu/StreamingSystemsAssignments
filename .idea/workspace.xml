@@ -5,12 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="748fb5f5-9b81-4ba5-bba7-f32dab2a35bb" name="Changes" comment="added check if e">
-      <change afterPath="$PROJECT_DIR$/src/main/java/ConfigManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/app-example.config" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/app.config" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/ConfigManagerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/streamingsystems/ConfigManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/streamingsystems/ConfigManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/streamingsystems/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/streamingsystems/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/streamingsystems/ConfigManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/streamingsystems/ConfigManagerTest.java" afterDir="false" />
     </list>
     <list id="766454d9-919e-40bb-b89f-6cd1528b4b56" name="Changes by basti" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -77,6 +75,9 @@
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="streamingsystems" />
+    </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="" />
     </key>
@@ -97,8 +98,8 @@
     </configuration>
     <configuration name="ConfigManagerTest.testConfigManager" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="StreamingSystems" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="ConfigManagerTest" />
+      <option name="PACKAGE_NAME" value="streamingsystems" />
+      <option name="MAIN_CLASS_NAME" value="streamingsystems.ConfigManagerTest" />
       <option name="METHOD_NAME" value="testConfigManager" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
@@ -173,7 +174,28 @@
       <option name="project" value="LOCAL" />
       <updated>1666864519895</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="added config system">
+      <created>1667387025076</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1667387025076</updated>
+    </task>
+    <task id="LOCAL-00007" summary="added rabbitmq port to config">
+      <created>1667388102521</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1667388102521</updated>
+    </task>
+    <task id="LOCAL-00008" summary="moved ConfigManager to right package">
+      <created>1667388909562</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1667388909562</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -196,6 +218,9 @@
     <MESSAGE value="added domain model and event store" />
     <MESSAGE value="added maven" />
     <MESSAGE value="switched to logger" />
-    <option name="LAST_COMMIT_MESSAGE" value="switched to logger" />
+    <MESSAGE value="added config system" />
+    <MESSAGE value="added rabbitmq port to config" />
+    <MESSAGE value="moved ConfigManager to right package" />
+    <option name="LAST_COMMIT_MESSAGE" value="moved ConfigManager to right package" />
   </component>
 </project>
