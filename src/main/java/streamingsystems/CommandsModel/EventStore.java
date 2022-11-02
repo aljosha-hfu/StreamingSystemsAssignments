@@ -18,7 +18,7 @@ public class EventStore {
         System.out.println("Connecting to RabbitMQ...");
         rabbitMQConnectionFactory.setUsername(ConfigManager.INSTANCE.getRabbitMqUser());
         rabbitMQConnectionFactory.setPassword(ConfigManager.INSTANCE.getRabbitMqPassword());
-        rabbitMQConnectionFactory.setVirtualHost("github-pipeline-test");
+        rabbitMQConnectionFactory.setVirtualHost("/");
         rabbitMQConnectionFactory.setHost(ConfigManager.INSTANCE.getRabbitMqHost());
         rabbitMQConnectionFactory.setPort(ConfigManager.INSTANCE.getRabbitMqPort());
 
