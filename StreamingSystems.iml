@@ -22,5 +22,6 @@
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:2.0.3" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-simple:2.0.3" level="project" />
     <orderEntry type="library" name="Maven: javax.jms:javax.jms-api:2.0.1" level="project" />
+    <orderEntry type="library" name="Maven: com.rabbitmq:amqp-client:5.16.0" level="project" />
   </component>
 </module>
