@@ -1,4 +1,9 @@
 version: "3"
+
+networks:
+  app-tier:
+    driver: bridge
+
 services:
   zookeeper:
     image: 'bitnami/zookeeper:latest'
@@ -6,6 +11,8 @@ services:
       - '2181:2181'
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
+    networks:
+      - app-tier
   kafka:
     image: 'bitnami/kafka:latest'
     ports:
@@ -18,3 +25,9 @@ services:
       - ALLOW_PLAINTEXT_LISTENER=yes
     depends_on:
       - zookeeper
+    networks:
+      - app-tier
+  streamingsystems-app:
+    build: .
+    networks:
+      - app-tier
