@@ -12,10 +12,11 @@ import java.util.concurrent.TimeoutException;
 public class EventStore {
     private static final EventStore singletonInstance = new EventStore();
 
-    ConnectionFactory rabbitMQConnectionFactory = new ConnectionFactory();
+    Connection rabbitMQConnection;
 
     private EventStore() {
         System.out.println("Connecting to RabbitMQ...");
+        ConnectionFactory rabbitMQConnectionFactory = new ConnectionFactory();
         rabbitMQConnectionFactory.setUsername(ConfigManager.INSTANCE.getRabbitMqUser());
         rabbitMQConnectionFactory.setPassword(ConfigManager.INSTANCE.getRabbitMqPassword());
         rabbitMQConnectionFactory.setVirtualHost("/");
@@ -23,10 +24,8 @@ public class EventStore {
         rabbitMQConnectionFactory.setPort(ConfigManager.INSTANCE.getRabbitMqPort());
 
         try {
-            Connection conn = rabbitMQConnectionFactory.newConnection();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (TimeoutException e) {
+            rabbitMQConnection = rabbitMQConnectionFactory.newConnection();
+        } catch (IOException | TimeoutException e) {
             throw new RuntimeException(e);
         }
         System.out.println("Connecting to RabbitMQ successful.");
