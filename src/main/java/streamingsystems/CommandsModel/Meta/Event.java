@@ -6,7 +6,6 @@ import streamingsystems.implemented.MovingItemImpl;
 import java.io.Serializable;
 
 public abstract class Event implements Serializable {
-    private final QueryModel queryModel = QueryModel.getInstance();
     protected final String id;
 
     public Event(String id) {
