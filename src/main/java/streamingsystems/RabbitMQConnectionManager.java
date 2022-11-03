@@ -32,6 +32,7 @@ public class RabbitMQConnectionManager {
             rabbitMQConnection = rabbitMQConnectionFactory.newConnection();
             eventStoreChannel = rabbitMQConnection.createChannel();
             eventStoreChannel.queueDeclare(QUEUE_NAME, false, false, false, null);
+            eventStoreChannel.queuePurge(QUEUE_NAME);
         } catch (IOException | TimeoutException e) {
             throw new RuntimeException(e);
         }
