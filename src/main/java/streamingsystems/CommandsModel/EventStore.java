@@ -1,35 +1,17 @@
 package streamingsystems.CommandsModel;
 
-import com.rabbitmq.client.Connection;
-import com.rabbitmq.client.ConnectionFactory;
+import org.apache.commons.lang3.SerializationUtils;
 import streamingsystems.CommandsModel.Meta.Event;
-import streamingsystems.ConfigManager;
+import streamingsystems.RabbitMQConnectionManager;
 
 import java.io.IOException;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.TimeoutException;
+
+import static streamingsystems.RabbitMQConnectionManager.QUEUE_NAME;
 
 public class EventStore {
     private static final EventStore singletonInstance = new EventStore();
 
-    Connection rabbitMQConnection;
-
     private EventStore() {
-        System.out.println("Connecting to RabbitMQ...");
-        ConnectionFactory rabbitMQConnectionFactory = new ConnectionFactory();
-        rabbitMQConnectionFactory.setUsername(ConfigManager.INSTANCE.getRabbitMqUser());
-        rabbitMQConnectionFactory.setPassword(ConfigManager.INSTANCE.getRabbitMqPassword());
-        rabbitMQConnectionFactory.setVirtualHost("/");
-        rabbitMQConnectionFactory.setHost(ConfigManager.INSTANCE.getRabbitMqHost());
-        rabbitMQConnectionFactory.setPort(ConfigManager.INSTANCE.getRabbitMqPort());
-
-        try {
-            rabbitMQConnection = rabbitMQConnectionFactory.newConnection();
-        } catch (IOException | TimeoutException e) {
-            throw new RuntimeException(e);
-        }
-        System.out.println("Connecting to RabbitMQ successful.");
-
         System.out.println("Instantiated EventStore singleton...");
     }
 
@@ -37,14 +19,13 @@ public class EventStore {
         return singletonInstance;
     }
 
-    private final LinkedBlockingQueue<Event> eventQueue = new LinkedBlockingQueue<>();
-
     public void addEvent(Event event) {
-        // TODO add rabbitmq here
-        this.eventQueue.add(event);
+        try {
+            byte[] data = SerializationUtils.serialize(event);
+            RabbitMQConnectionManager.getInstance().getEventStoreChannel().basicPublish("", QUEUE_NAME, null, data);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    public LinkedBlockingQueue<Event> getEventQueue() {
-        return eventQueue;
-    }
 }
