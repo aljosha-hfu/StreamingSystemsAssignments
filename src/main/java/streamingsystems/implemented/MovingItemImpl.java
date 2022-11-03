@@ -3,9 +3,10 @@ package streamingsystems.implemented;
 import streamingsystems.Helpers;
 import streamingsystems.MovingItem;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
-public class MovingItemImpl implements MovingItem {
+public class MovingItemImpl implements MovingItem, Serializable {
     private final String name;
     private int[] location;
     private int numberOfMoves;
