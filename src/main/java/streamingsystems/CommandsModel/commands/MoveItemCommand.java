@@ -8,8 +8,6 @@ import streamingsystems.Helpers;
 import streamingsystems.implemented.events.MovingItemDeletedEvent;
 import streamingsystems.implemented.events.MovingItemMovedEvent;
 
-import java.util.logging.Logger;
-
 public class MoveItemCommand extends Command {
     final String id;
     final int[] vector;
@@ -34,7 +32,6 @@ public class MoveItemCommand extends Command {
             DomainModel.getInstance().removeMovingItemNameFromModel(existingMovingItemAtNewPositionId);
             EventStore.getInstance().addEvent(new MovingItemDeletedEvent(existingMovingItemAtNewPositionId));
         } else {
-            System.out.println("Position is free! " + newMovingItemPosition[0] + newMovingItemPosition[1] + newMovingItemPosition[2]);
             EventStore.getInstance().addEvent(new MovingItemMovedEvent(id, vector));
             DomainModel.getInstance().moveMovingItem(id, vector);
             DomainModel.getInstance().incrementNumberOfMovesForMovingItemNameByOne(id);
