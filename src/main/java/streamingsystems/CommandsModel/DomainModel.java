@@ -2,7 +2,10 @@ package streamingsystems.CommandsModel;
 
 import streamingsystems.Helpers;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class DomainModel {
