@@ -6,6 +6,8 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class DomainModel {
+
+    private int maximumMoves;
     private static final DomainModel singletonInstance = new DomainModel();
 
     private DomainModel() {
@@ -76,5 +78,9 @@ public class DomainModel {
 
         movingItemsMoveCounts.remove(movingItemName);
         movingItemsPositions.remove(movingItemName);
+    }
+
+    public boolean itemHasReachedMaximumMoves(String id){
+        return getNumberOfMovesForMovingItemName(id) >= maximumMoves-1;
     }
 }

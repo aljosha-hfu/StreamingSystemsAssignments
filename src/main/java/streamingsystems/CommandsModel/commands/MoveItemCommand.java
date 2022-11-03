@@ -17,9 +17,8 @@ public class MoveItemCommand extends Command {
 
     @Override
     public void handle() {
-        if (DomainModel.getInstance().getNumberOfMovesForMovingItemName(id) >= 19) {
+        if (DomainModel.getInstance().itemHasReachedMaximumMoves(id)) {
             DomainModel.getInstance().removeMovingItemNameFromModel(id);
-
             EventStore.getInstance().addEvent(new MovingItemDeletedEvent(id));
             return;
         }
