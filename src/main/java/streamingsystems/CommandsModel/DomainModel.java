@@ -14,7 +14,6 @@ import java.util.stream.Stream;
 
 public class DomainModel {
 
-    private int maximumMoves;
     private static final DomainModel singletonInstance = new DomainModel();
     private final Logger logger;
 
