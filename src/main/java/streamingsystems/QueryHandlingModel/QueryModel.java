@@ -1,14 +1,10 @@
 package streamingsystems.QueryHandlingModel;
 
-import com.rabbitmq.client.AMQP;
-import com.rabbitmq.client.Channel;
-import com.rabbitmq.client.GetResponse;
 import org.apache.commons.lang3.SerializationUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import streamingsystems.CommandsModel.EventStore;
 import streamingsystems.CommandsModel.Meta.Event;
-import streamingsystems.RabbitMQConnectionManager;
 import streamingsystems.implemented.MovingItemDTO;
 import streamingsystems.implemented.MovingItemImpl;
 
@@ -42,29 +38,29 @@ public class QueryModel {
 
     public void updateEventStore() {
         System.out.println("Updating event store...");
-        Channel channel = RabbitMQConnectionManager.getInstance().getEventStoreChannel();
+//        Channel channel = RabbitMQConnectionManager.getInstance().getEventStoreChannel();
 
         LinkedList<Event> eventList = new LinkedList<>();
 
 
-        GetResponse response = null;
-        do {
-            try {
-                response = channel.basicGet(RabbitMQConnectionManager.QUEUE_NAME, true);
-                if (response != null) {
-                    AMQP.BasicProperties props = response.getProps();
-                    byte[] body = response.getBody();
-
-                    System.out.println("New event from RabbitMQ:");
-                    System.out.println(Arrays.toString(body));
-
-                    Event deserializedData = SerializationUtils.deserialize(body);
-                    eventList.add(deserializedData);
-                }
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        } while (response != null);
+//        GetResponse response = null;
+//        do {
+//            try {
+//                response = channel.basicGet(RabbitMQConnectionManager.QUEUE_NAME, true);
+//                if (response != null) {
+//                    AMQP.BasicProperties props = response.getProps();
+//                    byte[] body = response.getBody();
+//
+//                    System.out.println("New event from RabbitMQ:");
+//                    System.out.println(Arrays.toString(body));
+//
+//                    Event deserializedData = SerializationUtils.deserialize(body);
+//                    eventList.add(deserializedData);
+//                }
+//            } catch (IOException e) {
+//                throw new RuntimeException(e);
+//            }
+//        } while (response != null);
 
 
         recalculateEventStoreFromEvents(eventList);
