@@ -26,9 +26,11 @@ public class MoveItemCommand extends Command {
 
         int[] newMovingItemPosition = Helpers.addArrays(DomainModel.getInstance().getPositionForMovingItemName(id), vector);
 
-        String existingMovingItemAtNewPositionId = DomainModel.getInstance().getItemNameForPosition(newMovingItemPosition);
-
-        if (existingMovingItemAtNewPositionId == null) {
+        if (DomainModel.getInstance().itemExistsOnPosition(newMovingItemPosition)) {
+            String existingMovingItemAtNewPositionId = DomainModel.getInstance().getItemNameForPosition(newMovingItemPosition);
+            DomainModel.getInstance().removeMovingItemNameFromModel(existingMovingItemAtNewPositionId);
+            EventStore.getInstance().addEvent(new MovingItemDeletedEvent(existingMovingItemAtNewPositionId));
+        } else {
             EventStore.getInstance().addEvent(new MovingItemMovedEvent(id, vector));
 
             DomainModel.getInstance().moveMovingItem(id, vector);
