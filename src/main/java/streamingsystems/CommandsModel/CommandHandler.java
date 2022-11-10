@@ -1,5 +1,7 @@
 package streamingsystems.CommandsModel;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import streamingsystems.CommandsModel.Meta.Command;
 import streamingsystems.CommandsModel.Meta.Predefined.Commands;
 import streamingsystems.CommandsModel.commands.ChangeValueCommand;
@@ -10,9 +12,11 @@ import streamingsystems.implemented.MovingItemImpl;
 
 public class CommandHandler implements Commands {
     private static final CommandHandler singletonInstance = new CommandHandler();
+    private final Logger logger;
 
     private CommandHandler() {
-        System.out.println("CommandHandler Instance created.");
+        logger = LoggerFactory.getLogger(CommandHandler.class);
+        logger.info("CommandHandler Instance created.");
     }
 
     public static CommandHandler getInstance() {
