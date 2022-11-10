@@ -2,7 +2,7 @@
 
 - Considerations: Should we implement the commands directly inside the `CommandsImpl` class or as subclasses of an
   abstract `Command`class with an abstract `handle()` method which executes the command?
-    - We decided on using the latter since it allows for more code segregation and separation of concerns.
+  - We decided on using the latter since it allows for more code segregation and separation of concerns.
 
 ## Questions
 
@@ -17,7 +17,7 @@ The QueryModel does not need to know the logic then.
 ```Java
 public abstract class Event {
   ...
-    abstract public MovingItem apply(MovingItem movingItem);
+  abstract public MovingItem apply(MovingItem movingItem);
 }
 ```
 ```Java
@@ -50,7 +50,3 @@ public class QueryModel {
   }
 }
 ```
-
-## TODO
-
-- Add JUnit für unit tests
