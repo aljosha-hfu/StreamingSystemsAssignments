@@ -3,8 +3,9 @@ package streamingsystems.CommandsModel.Meta;
 import streamingsystems.QueryHandlingModel.QueryModel;
 import streamingsystems.implemented.MovingItemImpl;
 
-public abstract class Event {
-    private final QueryModel queryModel = QueryModel.getInstance();
+import java.io.Serializable;
+
+public abstract class Event implements Serializable {
     protected final String id;
 
     public Event(String id) {
