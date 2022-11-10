@@ -10,8 +10,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class DomainModel {
+
+    private int maximumMoves;
     private static final DomainModel singletonInstance = new DomainModel();
     private final Logger logger;
 
@@ -53,13 +56,18 @@ public class DomainModel {
         ;
     }
 
+    public boolean itemExistsOnPosition(int[] position) {
+        // Using stream and filter instead of HashMap.containsValue() because the values are int[] and they cannot be compared this way
+        long numberOfItemsAtPosition = movingItemsPositions.values().stream().filter(pos -> Arrays.equals(pos, position)).count();
+        return numberOfItemsAtPosition > 0;
+    }
+
     public String getItemNameForPosition(int[] positionToFind) {
         Optional<String> foundItemName = movingItemsPositions.entrySet().stream().filter(entry -> Arrays.equals(entry.getValue(), positionToFind))
                 .map(Map.Entry::getKey)
                 .collect(Collectors.toSet())
                 .stream()
                 .findFirst();
-
         return foundItemName.orElse(null);
     }
 
@@ -76,7 +84,7 @@ public class DomainModel {
 
     public void addMovingItemNameToModel(String movingItemName) {
         movingItemsMoveCounts.put(movingItemName, 0);
-        movingItemsPositions.put(movingItemName, new int[]{0, 0, 0});
+        movingItemsPositions.put(movingItemName, new int[] {0, 0, 0});
     }
 
     public void removeMovingItemNameFromModel(String movingItemName) {
@@ -84,5 +92,11 @@ public class DomainModel {
 
         movingItemsMoveCounts.remove(movingItemName);
         movingItemsPositions.remove(movingItemName);
+    }
+
+    private final int maximumMoves = 20;
+
+    public boolean itemHasReachedMaximumMoves(String id) {
+        return getNumberOfMovesForMovingItemName(id) >= maximumMoves - 1;
     }
 }
