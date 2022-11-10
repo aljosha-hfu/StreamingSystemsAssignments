@@ -1,33 +1,37 @@
-version: "3"
-
-networks:
-  app-tier:
-    driver: bridge
+version: '3'
 
 services:
   zookeeper:
-    image: 'bitnami/zookeeper:latest'
+    image: bitnami/zookeeper
     ports:
-      - '2181:2181'
+      - 2181:2181
+    volumes:
+      - zookeeper_data:/bitnami
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
-    networks:
-      - app-tier
+
   kafka:
-    image: 'bitnami/kafka:latest'
+    image: bitnami/kafka
     ports:
-      - '9092:9092'
+      - 9092:9092
+    volumes:
+      - kafka_data:/bitnami
     environment:
-      - KAFKA_BROKER_ID=1
-      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092
-      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://127.0.0.1:9092
       - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
       - ALLOW_PLAINTEXT_LISTENER=yes
     depends_on:
       - zookeeper
-    networks:
-      - app-tier
-  streamingsystems-app:
-    build: .
-    networks:
-      - app-tier
+
+  kafdrop:
+    image: obsidiandynamics/kafdrop
+    ports:
+      - 9100:9000
+    environment:
+      - KAFKA_BROKERCONNECT=kafka:9092
+      - JVM_OPTS=-Xms32M -Xmx64M
+    depends_on:
+      - kafka
+
+volumes:
+  zookeeper_data:
+  kafka_data:
