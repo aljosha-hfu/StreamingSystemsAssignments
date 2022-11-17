@@ -1,27 +1,52 @@
 package streamingsystems.QueryHandlingModel;
 
+import org.apache.commons.lang3.SerializationUtils;
+import org.apache.kafka.clients.consumer.ConsumerConfig;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.apache.kafka.clients.consumer.ConsumerRecords;
+import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.clients.producer.KafkaProducer;
+import org.apache.kafka.clients.producer.ProducerConfig;
+import org.apache.kafka.common.serialization.ByteArrayDeserializer;
+import org.apache.kafka.common.serialization.StringDeserializer;
+import org.apache.kafka.common.serialization.StringSerializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import streamingsystems.CommandsModel.EventStore;
 import streamingsystems.CommandsModel.Meta.Event;
 import streamingsystems.implemented.MovingItemDTO;
 import streamingsystems.implemented.MovingItemImpl;
 
+import java.time.Duration;
 import java.util.*;
 
 public class QueryModel {
 
+    final static String GROUP_ID = "EventStoreClientConsumerGroup";
+    final KafkaConsumer<String, byte[]> kafkaConsumer;
 
-    private static  QueryModel singletonInstance;
+    private static QueryModel singletonInstance;
 
     private QueryModel() {
+        Properties kafkaConsumerProps = new Properties();
+
+        kafkaConsumerProps.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, EventStore.KAFKA_URL);
+        kafkaConsumerProps.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+        kafkaConsumerProps.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, ByteArrayDeserializer.class.getName());
+        kafkaConsumerProps.put(ConsumerConfig.GROUP_ID_CONFIG, GROUP_ID);
+        kafkaConsumerProps.setProperty(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "true");
+        kafkaConsumerProps.setProperty(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, "1000");
+
+        kafkaConsumer = new KafkaConsumer<>(kafkaConsumerProps);
+        kafkaConsumer.subscribe(List.of(EventStore.TOPIC_NAME));
+
         System.out.println("Instantiated QueryModel singleton...");
     }
 
     public static QueryModel getInstance() {
-        if(singletonInstance == null){
+        if (singletonInstance == null) {
             singletonInstance = new QueryModel();
             singletonInstance.updateEventStore();
-
         }
         return singletonInstance;
     }
@@ -39,26 +64,15 @@ public class QueryModel {
 
         LinkedList<Event> eventList = new LinkedList<>();
 
-
-//        GetResponse response = null;
-//        do {
-//            try {
-//                response = channel.basicGet(RabbitMQConnectionManager.QUEUE_NAME, true);
-//                if (response != null) {
-//                    AMQP.BasicProperties props = response.getProps();
-//                    byte[] body = response.getBody();
-//
-//                    System.out.println("New event from RabbitMQ:");
-//                    System.out.println(Arrays.toString(body));
-//
-//                    Event deserializedData = SerializationUtils.deserialize(body);
-//                    eventList.add(deserializedData);
-//                }
-//            } catch (IOException e) {
-//                throw new RuntimeException(e);
-//            }
-//        } while (response != null);
-
+        do {
+            logger.info("Polling for messages...");
+            ConsumerRecords<String, byte[]> consumerRecords = kafkaConsumer.poll(Duration.ofMillis(2500));
+            for (ConsumerRecord<String, byte[]> record : consumerRecords) {
+                logger.info("BYTES EVENT VALUE: " + Arrays.toString(record.value()));
+                Event deserializedData = SerializationUtils.deserialize(record.value());
+                eventList.add(deserializedData);
+            }
+        } while (eventList.isEmpty());
 
         recalculateEventStoreFromEvents(eventList);
         movingItemDTOHashMap = convertToMovingItemDTOMap(movingItemImplHashMap);
