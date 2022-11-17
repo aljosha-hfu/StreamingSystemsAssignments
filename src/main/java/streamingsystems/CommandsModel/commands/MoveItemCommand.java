@@ -6,8 +6,6 @@ import streamingsystems.Helpers;
 import streamingsystems.implemented.events.MovingItemDeletedEvent;
 import streamingsystems.implemented.events.MovingItemMovedEvent;
 
-import java.util.logging.Logger;
-
 public class MoveItemCommand extends Command {
     final String id;
     final int[] vector;

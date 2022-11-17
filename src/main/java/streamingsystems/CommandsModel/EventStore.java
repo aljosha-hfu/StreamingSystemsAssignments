@@ -15,7 +15,7 @@ public class EventStore {
     final static String TOPIC_NAME = "EventStore";
     final static String CLIENT_ID = "EventStoreClient";
     final static String KAFKA_URL = "localhost:9092";
-    KafkaProducer<String, String> kafkaProducer;
+    final KafkaProducer<String, String> kafkaProducer;
 
     private static final EventStore singletonInstance = new EventStore();
     private final Logger logger;
@@ -49,9 +49,7 @@ public class EventStore {
             RecordMetadata metadata = kafkaProducer.send(recordToSend).get();
             System.out.println("Record sent to partition " + metadata.partition() + " with offset " + metadata.offset());
 //            kafkaProducer.flush();
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        } catch (ExecutionException e) {
+        } catch (InterruptedException | ExecutionException e) {
             throw new RuntimeException(e);
         }
     }
