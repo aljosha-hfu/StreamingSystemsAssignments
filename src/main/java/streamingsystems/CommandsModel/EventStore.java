@@ -49,9 +49,7 @@ public class EventStore {
             RecordMetadata metadata = kafkaProducer.send(recordToSend).get();
             System.out.println("Record sent to partition " + metadata.partition() + " with offset " + metadata.offset());
 //            kafkaProducer.flush();
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        } catch (ExecutionException e) {
+        } catch (InterruptedException | ExecutionException e) {
             throw new RuntimeException(e);
         }
     }
