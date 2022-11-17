@@ -16,7 +16,7 @@ class Test_A01 {
     QueryModel queryModel;
     QueryHandler queryHandler;
 
-    String movingItemTestName1 = "Moving Item 1";
+    final String movingItemTestName1 = "Moving Item 1";
     String movingItemTestName2 = "Moving Item 2";
     String movingItemTestName3 = "Moving Item 3";
 

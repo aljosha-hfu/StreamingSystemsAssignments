@@ -1,6 +1,5 @@
 package streamingsystems.CommandsModel.Meta;
 
-import streamingsystems.QueryHandlingModel.QueryModel;
 import streamingsystems.implemented.MovingItemImpl;
 
 import java.io.Serializable;

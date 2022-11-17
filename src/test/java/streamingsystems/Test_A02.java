@@ -18,8 +18,8 @@ class Test_A02 {
     QueryModel queryModel;
     QueryHandler queryHandler;
 
-    String movingItemTestName1 = "Moving Item 1";
-    String movingItemTestName2 = "Moving Item 2";
+    final String movingItemTestName1 = "Moving Item 1";
+    final String movingItemTestName2 = "Moving Item 2";
     String movingItemTestName3 = "Moving Item 3";
 
     @BeforeEach

@@ -1,14 +1,11 @@
 package streamingsystems.QueryHandlingModel;
 
-import org.apache.commons.lang3.SerializationUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import streamingsystems.CommandsModel.EventStore;
 import streamingsystems.CommandsModel.Meta.Event;
 import streamingsystems.implemented.MovingItemDTO;
 import streamingsystems.implemented.MovingItemImpl;
 
-import java.io.IOException;
 import java.util.*;
 
 public class QueryModel {
