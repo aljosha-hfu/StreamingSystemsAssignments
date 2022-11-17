@@ -2,6 +2,7 @@ package streamingsystems.CommandsModel;
 
 import org.apache.commons.lang3.SerializationUtils;
 import org.apache.kafka.clients.producer.*;
+import org.apache.kafka.common.serialization.ByteArraySerializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,10 +13,10 @@ import java.util.Properties;
 import java.util.concurrent.ExecutionException;
 
 public class EventStore {
-    final static String TOPIC_NAME = "EventStore";
-    final static String CLIENT_ID = "EventStoreClient";
-    final static String KAFKA_URL = "localhost:9092";
-    final KafkaProducer<String, String> kafkaProducer;
+    final static public String TOPIC_NAME = "EventStore";
+    final static String CLIENT_ID = "EventStoreClientProducer";
+    final static public String KAFKA_URL = "localhost:9092";
+    final KafkaProducer<String, byte[]> kafkaProducer;
 
     private static final EventStore singletonInstance = new EventStore();
     private final Logger logger;
@@ -28,7 +29,7 @@ public class EventStore {
         kafkaProducerProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, KAFKA_URL);
         kafkaProducerProps.put(ProducerConfig.CLIENT_ID_CONFIG, CLIENT_ID);
         kafkaProducerProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
-        kafkaProducerProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+        kafkaProducerProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, ByteArraySerializer.class.getName());
 
         kafkaProducer = new KafkaProducer<>(kafkaProducerProps);
 
@@ -42,8 +43,7 @@ public class EventStore {
     public void addEvent(Event event) {
         byte[] data = SerializationUtils.serialize(event);
         logger.info("Posting serialized message for event " + event + " into Kafka");
-        String stringData = Arrays.toString(data);
-        ProducerRecord<String, String> recordToSend = new ProducerRecord<>(TOPIC_NAME, stringData);
+        ProducerRecord<String, byte[]> recordToSend = new ProducerRecord<>(TOPIC_NAME, data);
 
         try {
             RecordMetadata metadata = kafkaProducer.send(recordToSend).get();
