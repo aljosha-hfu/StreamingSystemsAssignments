@@ -13,6 +13,11 @@ public enum ConfigManager {
     private String rabbitMqUser;
     private String rabbitMqPassword;
 
+    private String kafkaTopicName;
+
+    private String kafkaClientId;
+    private String kafkaUrl;
+
     private void loadConfig() {
         Properties properties = new Properties();
         try {
@@ -22,6 +27,9 @@ public enum ConfigManager {
             rabbitMqPort = Integer.parseInt(properties.getProperty("rabbitmq.port"));
             rabbitMqUser = properties.getProperty("rabbitmq.user");
             rabbitMqPassword = properties.getProperty("rabbitmq.password");
+            kafkaTopicName = properties.getProperty("kafka.topicname");
+            kafkaClientId = properties.getProperty("kafka.clientid");
+            kafkaUrl = properties.getProperty("kafka.url");
         } catch (IOException e){
             e.printStackTrace();
         }
@@ -45,5 +53,17 @@ public enum ConfigManager {
 
     public String getRabbitMqPassword() {
         return rabbitMqPassword;
+    }
+
+    public String getKafkaTopicName() {
+        return kafkaTopicName;
+    }
+
+    public String getKafkaClientId() {
+        return kafkaClientId;
+    }
+
+    public String getKafkaUrl() {
+        return kafkaUrl;
     }
 }
