@@ -14,8 +14,6 @@ public class DeleteItemCommand extends Command {
 
     @Override
     public void handle() {
-        DomainModel.getInstance().removeMovingItemNameFromModel(this.id);
-
         EventStore.getInstance().addEvent(new MovingItemDeletedEvent(id));
     }
 }

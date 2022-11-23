@@ -19,8 +19,6 @@ public class MoveItemCommand extends Command {
     @Override
     public void handle() {
         if (DomainModel.getInstance().getNumberOfMovesForMovingItemName(id) >= 19) {
-            DomainModel.getInstance().removeMovingItemNameFromModel(id);
-
             EventStore.getInstance().addEvent(new MovingItemDeletedEvent(id));
             return;
         }
@@ -29,13 +27,11 @@ public class MoveItemCommand extends Command {
 
         if (DomainModel.getInstance().itemExistsOnPosition(newMovingItemPosition)) {
             String existingMovingItemAtNewPositionId = DomainModel.getInstance().getItemNameForPosition(newMovingItemPosition);
-            DomainModel.getInstance().removeMovingItemNameFromModel(existingMovingItemAtNewPositionId);
             EventStore.getInstance().addEvent(new MovingItemDeletedEvent(existingMovingItemAtNewPositionId));
         } else {
             System.out.println("Position is free! " + newMovingItemPosition[0] + newMovingItemPosition[1] + newMovingItemPosition[2]);
             EventStore.getInstance().addEvent(new MovingItemMovedEvent(id, vector));
-            DomainModel.getInstance().moveMovingItem(id, vector);
-            DomainModel.getInstance().incrementNumberOfMovesForMovingItemNameByOne(id);
+
         }
     }
 }

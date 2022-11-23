@@ -16,7 +16,6 @@ public class CreateItemCommand extends Command {
 
     @Override
     public void handle() {
-        DomainModel.getInstance().addMovingItemNameToModel(movingItem.getName());
         EventStore.getInstance().addEvent(new MovingItemCreatedEvent(movingItem));
     }
 }
