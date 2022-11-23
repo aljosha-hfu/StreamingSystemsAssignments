@@ -81,7 +81,7 @@ public class DomainModel {
 
     public void addMovingItemNameToModel(String movingItemName) {
         movingItemsMoveCounts.put(movingItemName, 0);
-        movingItemsPositions.put(movingItemName, new int[] {0, 0, 0});
+        movingItemsPositions.put(movingItemName, new int[]{0, 0, 0});
     }
 
     public void removeMovingItemNameFromModel(String movingItemName) {
@@ -89,11 +89,5 @@ public class DomainModel {
 
         movingItemsMoveCounts.remove(movingItemName);
         movingItemsPositions.remove(movingItemName);
-    }
-
-    private final int maximumMoves = 20;
-
-    public boolean itemHasReachedMaximumMoves(String id) {
-        return getNumberOfMovesForMovingItemName(id) >= maximumMoves - 1;
     }
 }
