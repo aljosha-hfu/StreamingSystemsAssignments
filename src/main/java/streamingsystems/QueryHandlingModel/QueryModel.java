@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import streamingsystems.CommandsModel.EventStore;
 import streamingsystems.CommandsModel.Meta.Event;
+import streamingsystems.MovingItemListGenerator;
 import streamingsystems.implemented.MovingItemDTO;
 import streamingsystems.implemented.MovingItemImpl;
 
@@ -33,7 +34,6 @@ public class QueryModel {
         kafkaConsumerProps.put(ConsumerConfig.GROUP_ID_CONFIG, GROUP_ID);
         kafkaConsumerProps.setProperty(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "true");
         kafkaConsumerProps.setProperty(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, "1000");
-
         kafkaConsumer = new KafkaConsumer<>(kafkaConsumerProps);
         kafkaConsumer.subscribe(List.of(EventStore.TOPIC_NAME));
 
@@ -52,7 +52,7 @@ public class QueryModel {
     final Logger logger = LoggerFactory.getLogger(QueryModel.class);
 
     private HashMap<String, MovingItemDTO> movingItemDTOHashMap = new HashMap<>();
-    private final HashMap<String, MovingItemImpl> movingItemImplHashMap = new HashMap<>();
+    private HashMap<String, MovingItemImpl> movingItemImplHashMap = new HashMap<>();
 
 
     public void updateEventStore() {
@@ -71,7 +71,7 @@ public class QueryModel {
             }
         } while (eventList.isEmpty());
 
-        recalculateEventStoreFromEvents(eventList);
+        movingItemImplHashMap = MovingItemListGenerator.getSingletonInstance().createMovingItemList(eventList);
         movingItemDTOHashMap = convertToMovingItemDTOMap(movingItemImplHashMap);
     }
 
@@ -79,21 +79,6 @@ public class QueryModel {
         HashMap<String, MovingItemDTO> movingItemDTOHashMap = new HashMap<>();
         movingItemImplHashMap.forEach((k, v) -> movingItemDTOHashMap.put(k, new MovingItemDTO(v)));
         return movingItemDTOHashMap;
-    }
-
-
-    private void recalculateEventStoreFromEvents(LinkedList<Event> eventLinkedList) {
-        logger.info("Recalculating EventStore ...");
-        eventLinkedList.forEach(event -> {
-            logger.info("Event: " + event.getClass().getName() + ": " + event.getId());
-            MovingItemImpl applyReturnValue = event.apply();
-            if (applyReturnValue != null) {
-                movingItemImplHashMap.put(event.getId(), applyReturnValue);
-            } else {
-                movingItemImplHashMap.remove(event.getId());
-            }
-        });
-        movingItemImplHashMap.forEach((k, v) -> logger.info(k + " " + v));
     }
 
 
