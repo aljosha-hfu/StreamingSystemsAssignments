@@ -30,7 +30,7 @@ public enum ConfigManager {
             kafkaTopicName = properties.getProperty("kafka.topicname");
             kafkaClientId = properties.getProperty("kafka.clientid");
             kafkaUrl = properties.getProperty("kafka.url");
-        } catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

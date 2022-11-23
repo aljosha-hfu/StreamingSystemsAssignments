@@ -1,7 +1,10 @@
 package streamingsystems.CommandsModel;
 
 import org.apache.commons.lang3.SerializationUtils;
-import org.apache.kafka.clients.producer.*;
+import org.apache.kafka.clients.producer.KafkaProducer;
+import org.apache.kafka.clients.producer.ProducerConfig;
+import org.apache.kafka.clients.producer.ProducerRecord;
+import org.apache.kafka.clients.producer.RecordMetadata;
 import org.apache.kafka.common.serialization.ByteArraySerializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.slf4j.Logger;
@@ -9,7 +12,6 @@ import org.slf4j.LoggerFactory;
 import streamingsystems.CommandsModel.Meta.Event;
 import streamingsystems.ConfigManager;
 
-import java.util.Arrays;
 import java.util.Properties;
 import java.util.concurrent.ExecutionException;
 

@@ -1,4 +1,5 @@
 package streamingsystems.CommandsModel.commands;
+
 import streamingsystems.CommandsModel.DomainModel;
 import streamingsystems.CommandsModel.EventStore;
 import streamingsystems.CommandsModel.Meta.Command;

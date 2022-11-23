@@ -19,7 +19,7 @@ public class MovingItemValueChangedEvent extends Event {
 
     @Override
     public MovingItemImpl apply() {
-        MovingItemImpl movingItem =  QueryModel.getInstance().getMovingItemImplByName(id);
+        MovingItemImpl movingItem = QueryModel.getInstance().getMovingItemImplByName(id);
         movingItem.setValue(newValue);
         return movingItem;
     }
