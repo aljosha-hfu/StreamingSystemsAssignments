@@ -7,15 +7,17 @@ import org.apache.kafka.common.serialization.StringSerializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import streamingsystems.CommandsModel.Meta.Event;
+import streamingsystems.ConfigManager;
 
 import java.util.Arrays;
 import java.util.Properties;
 import java.util.concurrent.ExecutionException;
 
 public class EventStore {
-    final static public String TOPIC_NAME = "EventStore";
-    final static String CLIENT_ID = "EventStoreClientProducer";
-    final static public String KAFKA_URL = "localhost:9092";
+    // Cache settings
+    final static public String TOPIC_NAME = ConfigManager.INSTANCE.getKafkaTopicName();
+    final static String CLIENT_ID = ConfigManager.INSTANCE.getKafkaClientId();
+    final static public String KAFKA_URL = ConfigManager.INSTANCE.getKafkaUrl();
     final KafkaProducer<String, byte[]> kafkaProducer;
 
     private static final EventStore singletonInstance = new EventStore();
