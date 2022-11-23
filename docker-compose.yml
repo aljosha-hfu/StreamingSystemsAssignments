@@ -4,7 +4,7 @@ services:
   zookeeper:
     image: bitnami/zookeeper
     ports:
-      - 2181:2181
+      - "2181:2181"
     volumes:
       - zookeeper_data:/bitnami
     environment:
@@ -13,7 +13,7 @@ services:
   kafka:
     image: bitnami/kafka
     ports:
-      - 9092:9092
+      - "9092:9092"
     volumes:
       - kafka_data:/bitnami
     environment:
@@ -30,7 +30,7 @@ services:
   kafdrop:
     image: obsidiandynamics/kafdrop
     ports:
-      - 9100:9000
+      - "9100:9000"
     environment:
       - KAFKA_BROKERCONNECT=kafka:9094
       - JVM_OPTS=-Xms32M -Xmx64M
