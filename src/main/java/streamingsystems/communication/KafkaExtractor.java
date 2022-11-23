@@ -13,7 +13,6 @@ import streamingsystems.CommandsModel.EventStore;
 import streamingsystems.CommandsModel.Meta.Event;
 import streamingsystems.MovingItemListGenerator;
 
-import java.lang.reflect.Array;
 import java.time.Duration;
 import java.util.*;
 
@@ -21,30 +20,35 @@ import java.util.*;
  * This class should provide a method to extract all events from kafka
  */
 public class KafkaExtractor {
-    private final String topic;
-    private final KafkaConsumer<String, byte[]> kafkaConsumer;
+    private static final KafkaExtractor singletonInstance = new KafkaExtractor();
+
     final static String GROUP_ID = "EventStoreClientConsumerGroup";
     private final Logger logger;
+    Properties kafkaConsumerProperties;
 
 
-    public KafkaExtractor(String topic) {
-        this.topic = topic;
+    private KafkaExtractor() {
         logger = LoggerFactory.getLogger(KafkaExtractor.class);
-        kafkaConsumer = new KafkaConsumer<>(generateProperties());
+        kafkaConsumerProperties = generateProperties();
     }
 
+    public static KafkaExtractor getSingletonInstance() {
+        return singletonInstance;
+    }
 
     private Properties generateProperties() {
-        Properties kafkaConsumerProps = new Properties();
-        kafkaConsumerProps.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, EventStore.KAFKA_URL);
-        kafkaConsumerProps.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
-        kafkaConsumerProps.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, ByteArrayDeserializer.class.getName());
-        kafkaConsumerProps.put(ConsumerConfig.GROUP_ID_CONFIG, GROUP_ID);
-        kafkaConsumerProps.setProperty(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "true");
-        kafkaConsumerProps.setProperty(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, "1000");
-        return kafkaConsumerProps;
+        Properties properties = new Properties();
+        properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, EventStore.KAFKA_URL);
+        properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+        properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, ByteArrayDeserializer.class.getName());
+        properties.put(ConsumerConfig.GROUP_ID_CONFIG, GROUP_ID);
+        properties.setProperty(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "true");
+        properties.setProperty(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, "1000");
+        return properties;
     }
-    public LinkedList<Event> getEvents() {
+
+    public LinkedList<Event> getEvents(String topic) {
+        KafkaConsumer<String, byte[]> kafkaConsumer = new KafkaConsumer<>(kafkaConsumerProperties);
         kafkaConsumer.subscribe(List.of(topic));
         LinkedList<Event> eventList = new LinkedList<>();
         do {
