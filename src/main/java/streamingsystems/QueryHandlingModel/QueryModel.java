@@ -27,7 +27,6 @@ public class QueryModel {
     public static QueryModel getInstance() {
         if (singletonInstance == null) {
             singletonInstance = new QueryModel();
-            singletonInstance.updateEventStore();
         }
         return singletonInstance;
     }

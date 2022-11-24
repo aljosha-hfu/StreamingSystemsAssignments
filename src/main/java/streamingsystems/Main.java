@@ -20,7 +20,11 @@ public class Main {
         commandHandlerInstance.changeValue("Moving Item 3", 4711);
         commandHandlerInstance.moveItem("Moving Item 1", new int[]{1, 2, 3});
         commandHandlerInstance.deleteItem("Moving Item 1");
+
+        logger.info("Creating Query model");
         QueryModel queryModel = QueryModel.getInstance();
+        queryModel.updateEventStore();
+        logger.info("Finished creating Query model");
         QueryHandler queryHandler = new QueryHandler(queryModel);
 //        queryModel.updateEventStore();
 
