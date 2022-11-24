@@ -24,7 +24,7 @@ public class MovingItemListTools {
         logger.info("Recalculating EventStore ...");
         eventLinkedList.forEach(event -> {
             logger.info("Event: " + event.getClass().getName() + ": " + event.getId());
-            MovingItemImpl applyReturnValue = event.apply();
+            MovingItemImpl applyReturnValue = event.apply(movingItemImplHashMap);
             if (applyReturnValue != null) {
                 movingItemImplHashMap.put(event.getId(), applyReturnValue);
             } else {

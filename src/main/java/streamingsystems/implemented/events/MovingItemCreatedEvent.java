@@ -3,6 +3,8 @@ package streamingsystems.implemented.events;
 import streamingsystems.CommandsModel.Meta.Event;
 import streamingsystems.implemented.MovingItemImpl;
 
+import java.util.HashMap;
+
 public class MovingItemCreatedEvent extends Event {
 
     private final MovingItemImpl movingItemImpl;
@@ -14,7 +16,8 @@ public class MovingItemCreatedEvent extends Event {
 
 
     @Override
-    public MovingItemImpl apply() {
+    public MovingItemImpl apply(HashMap<String, MovingItemImpl> movingItemImplHashMap) {
         return movingItemImpl;
     }
+
 }
