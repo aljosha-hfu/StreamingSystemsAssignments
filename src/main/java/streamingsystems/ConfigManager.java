@@ -2,6 +2,8 @@ package streamingsystems;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Properties;
 
 public enum ConfigManager {
@@ -27,7 +29,7 @@ public enum ConfigManager {
             rabbitMqPort = Integer.parseInt(properties.getProperty("rabbitmq.port"));
             rabbitMqUser = properties.getProperty("rabbitmq.user");
             rabbitMqPassword = properties.getProperty("rabbitmq.password");
-            kafkaTopicName = properties.getProperty("kafka.topicname");
+            kafkaTopicName = properties.getProperty("kafka.topicname") + new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
             kafkaClientId = properties.getProperty("kafka.clientid");
             kafkaUrl = properties.getProperty("kafka.url");
         } catch (IOException e) {
