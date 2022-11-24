@@ -22,6 +22,8 @@ import java.util.Properties;
  * This class should provide a method to extract all events from kafka
  */
 public class KafkaExtractor {
+
+    private final int POLL_FREQUENCY_MILLIS = 1000;
     private static final KafkaExtractor singletonInstance = new KafkaExtractor();
 
     final static String GROUP_ID = "EventStoreClientConsumerGroup";
