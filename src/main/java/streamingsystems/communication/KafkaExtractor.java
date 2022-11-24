@@ -11,10 +11,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import streamingsystems.CommandsModel.EventStore;
 import streamingsystems.CommandsModel.Meta.Event;
-import streamingsystems.MovingItemListGenerator;
 
 import java.time.Duration;
-import java.util.*;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Properties;
 
 /**
  * This class should provide a method to extract all events from kafka
@@ -50,16 +52,16 @@ public class KafkaExtractor {
     public LinkedList<Event> getEvents(String topic) {
         KafkaConsumer<String, byte[]> kafkaConsumer = new KafkaConsumer<>(kafkaConsumerProperties);
         kafkaConsumer.subscribe(List.of(topic));
+        kafkaConsumer.seekToBeginning(kafkaConsumer.assignment());
         LinkedList<Event> eventList = new LinkedList<>();
-        do {
-            logger.info("Polling for messages...");
-            ConsumerRecords<String, byte[]> consumerRecords = kafkaConsumer.poll(Duration.ofMillis(2500));
-            for (ConsumerRecord<String, byte[]> record : consumerRecords) {
-                logger.info("BYTES EVENT VALUE: " + Arrays.toString(record.value()));
-                Event deserializedData = SerializationUtils.deserialize(record.value());
-                eventList.add(deserializedData);
-            }
-        } while (eventList.isEmpty());
+
+        logger.info("Polling for messages...");
+        ConsumerRecords<String, byte[]> consumerRecords = kafkaConsumer.poll(Duration.ofMillis(POLL_FREQUENCY_MILLIS));
+        for (ConsumerRecord<String, byte[]> record : consumerRecords) {
+            logger.info("BYTES EVENT VALUE: " + Arrays.toString(record.value()));
+            Event deserializedData = SerializationUtils.deserialize(record.value());
+            eventList.add(deserializedData);
+        }
 
         return eventList;
     }
