@@ -36,7 +36,7 @@ public class QueryModel {
     final Logger logger = LoggerFactory.getLogger(QueryModel.class);
 
     private HashMap<String, MovingItemDTO> movingItemDTOHashMap = new HashMap<>();
-    private HashMap<String, MovingItemImpl> movingItemImplHashMap = new HashMap<>();
+    private final HashMap<String, MovingItemImpl> movingItemImplHashMap = new HashMap<>();
 
 
     public void updateEventStore() {
