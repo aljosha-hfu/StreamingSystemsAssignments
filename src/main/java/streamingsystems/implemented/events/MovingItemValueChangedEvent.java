@@ -13,10 +13,6 @@ public class MovingItemValueChangedEvent extends Event {
     }
 
 
-    public int getNewValue() {
-        return newValue;
-    }
-
     @Override
     public MovingItemImpl apply() {
         MovingItemImpl movingItem = QueryModel.getInstance().getMovingItemImplByName(id);

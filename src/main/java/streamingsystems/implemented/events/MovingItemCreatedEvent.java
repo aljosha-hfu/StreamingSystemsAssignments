@@ -12,10 +12,6 @@ public class MovingItemCreatedEvent extends Event {
         this.movingItemImpl = movingItem;
     }
 
-    public MovingItemImpl getMovingItemImpl() {
-        return movingItemImpl;
-    }
-
 
     @Override
     public MovingItemImpl apply() {

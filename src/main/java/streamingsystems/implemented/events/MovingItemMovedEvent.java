@@ -12,10 +12,6 @@ public class MovingItemMovedEvent extends Event {
         this.vector = vector;
     }
 
-    public int[] getVector() {
-        return vector;
-    }
-
     @Override
     public MovingItemImpl apply() {
         MovingItemImpl movingItem = QueryModel.getInstance().getMovingItemImplByName(id);
