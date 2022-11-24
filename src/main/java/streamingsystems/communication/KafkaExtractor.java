@@ -5,6 +5,7 @@ import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.common.TopicPartition;
 import org.apache.kafka.common.serialization.ByteArrayDeserializer;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.slf4j.Logger;
@@ -23,7 +24,7 @@ import java.util.Properties;
  */
 public class KafkaExtractor {
 
-    private final int POLL_FREQUENCY_MILLIS = 1000;
+    private final int POLL_FREQUENCY_MILLIS = 100;
     private static final KafkaExtractor singletonInstance = new KafkaExtractor();
 
     final static String GROUP_ID = "EventStoreClientConsumerGroup";
@@ -53,7 +54,8 @@ public class KafkaExtractor {
 
     public LinkedList<Event> getEvents(String topic) {
         KafkaConsumer<String, byte[]> kafkaConsumer = new KafkaConsumer<>(kafkaConsumerProperties);
-        kafkaConsumer.subscribe(List.of(topic));
+        TopicPartition topicPartition = new TopicPartition(topic, 0);
+        kafkaConsumer.assign(List.of(topicPartition));
         kafkaConsumer.seekToBeginning(kafkaConsumer.assignment());
         LinkedList<Event> eventList = new LinkedList<>();
 
