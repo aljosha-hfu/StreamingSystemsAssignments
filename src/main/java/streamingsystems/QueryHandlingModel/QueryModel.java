@@ -1,42 +1,26 @@
 package streamingsystems.QueryHandlingModel;
 
-import org.apache.commons.lang3.SerializationUtils;
-import org.apache.kafka.clients.consumer.ConsumerConfig;
-import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.apache.kafka.clients.consumer.ConsumerRecords;
-import org.apache.kafka.clients.consumer.KafkaConsumer;
-import org.apache.kafka.common.serialization.ByteArrayDeserializer;
-import org.apache.kafka.common.serialization.StringDeserializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import streamingsystems.CommandsModel.EventStore;
 import streamingsystems.CommandsModel.Meta.Event;
+import streamingsystems.ConfigManager;
 import streamingsystems.MovingItemListGenerator;
+import streamingsystems.communication.KafkaExtractor;
 import streamingsystems.implemented.MovingItemDTO;
 import streamingsystems.implemented.MovingItemImpl;
 
-import java.time.Duration;
-import java.util.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.NoSuchElementException;
 
 public class QueryModel {
 
     final static String GROUP_ID = "EventStoreClientConsumerGroup";
-    final KafkaConsumer<String, byte[]> kafkaConsumer;
 
     private static QueryModel singletonInstance;
 
     private QueryModel() {
-        Properties kafkaConsumerProps = new Properties();
-
-        kafkaConsumerProps.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, EventStore.KAFKA_URL);
-        kafkaConsumerProps.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
-        kafkaConsumerProps.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, ByteArrayDeserializer.class.getName());
-        kafkaConsumerProps.put(ConsumerConfig.GROUP_ID_CONFIG, GROUP_ID);
-        kafkaConsumerProps.setProperty(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "true");
-        kafkaConsumerProps.setProperty(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, "1000");
-        kafkaConsumer = new KafkaConsumer<>(kafkaConsumerProps);
-        kafkaConsumer.subscribe(List.of(EventStore.TOPIC_NAME));
-
         System.out.println("Instantiated QueryModel singleton...");
     }
 
@@ -59,23 +43,13 @@ public class QueryModel {
         System.out.println("Updating event store...");
 //        Channel channel = RabbitMQConnectionManager.getInstance().getEventStoreChannel();
 
-        LinkedList<Event> eventList = new LinkedList<>();
+        LinkedList<Event> kafkaEvents = KafkaExtractor.getSingletonInstance().getEvents(ConfigManager.INSTANCE.getKafkaTopicName());
+        HashMap<String, MovingItemImpl> movingItems = MovingItemListGenerator.getSingletonInstance().createMovingItemList(kafkaEvents);
 
-        do {
-            logger.info("Polling for messages...");
-            ConsumerRecords<String, byte[]> consumerRecords = kafkaConsumer.poll(Duration.ofMillis(2500));
-            for (ConsumerRecord<String, byte[]> record : consumerRecords) {
-                logger.info("BYTES EVENT VALUE: " + Arrays.toString(record.value()));
-                Event deserializedData = SerializationUtils.deserialize(record.value());
-                eventList.add(deserializedData);
-            }
-        } while (eventList.isEmpty());
-
-        movingItemImplHashMap = MovingItemListGenerator.getSingletonInstance().createMovingItemList(eventList);
-        movingItemDTOHashMap = convertToMovingItemDTOMap(movingItemImplHashMap);
+        movingItemDTOHashMap = convertToMovingItemDTOMap(movingItems);
     }
 
-    private HashMap<String, MovingItemDTO> convertToMovingItemDTOMap(HashMap<String, streamingsystems.implemented.MovingItemImpl> movingItemImplHashMap) {
+    private HashMap<String, MovingItemDTO> convertToMovingItemDTOMap(HashMap<String, MovingItemImpl> movingItemImplHashMap) {
         HashMap<String, MovingItemDTO> movingItemDTOHashMap = new HashMap<>();
         movingItemImplHashMap.forEach((k, v) -> movingItemDTOHashMap.put(k, new MovingItemDTO(v)));
         return movingItemDTOHashMap;
