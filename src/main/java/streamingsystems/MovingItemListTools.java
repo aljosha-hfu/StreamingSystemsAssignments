@@ -8,14 +8,14 @@ import streamingsystems.implemented.MovingItemImpl;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-public class MovingItemListGenerator {
+public class MovingItemListTools {
     private final Logger logger;
-    private static final MovingItemListGenerator singletonInstance = new MovingItemListGenerator();
-    private MovingItemListGenerator(){
-        logger = LoggerFactory.getLogger(MovingItemListGenerator.class);
+    private static final MovingItemListTools singletonInstance = new MovingItemListTools();
+    private MovingItemListTools(){
+        logger = LoggerFactory.getLogger(MovingItemListTools.class);
     }
 
-    public static MovingItemListGenerator getSingletonInstance(){
+    public static MovingItemListTools getSingletonInstance(){
         return singletonInstance;
     }
 
@@ -35,5 +35,11 @@ public class MovingItemListGenerator {
         return movingItemImplHashMap;
     }
 
+    public MovingItemImpl getMovingItemImplByName(String name, HashMap<String, MovingItemImpl> movingItemImplHashMap) {
+        if (!movingItemImplHashMap.containsKey(name)) {
+            throw new IllegalArgumentException("movingItemImplHashMap does not contain key " + name);
+        }
+        return movingItemImplHashMap.get(name);
+    }
 
 }

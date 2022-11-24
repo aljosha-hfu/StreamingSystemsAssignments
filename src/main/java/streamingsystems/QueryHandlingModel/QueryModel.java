@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import streamingsystems.CommandsModel.Meta.Event;
 import streamingsystems.ConfigManager;
-import streamingsystems.MovingItemListGenerator;
+import streamingsystems.MovingItemListTools;
 import streamingsystems.communication.KafkaExtractor;
 import streamingsystems.implemented.MovingItemDTO;
 import streamingsystems.implemented.MovingItemImpl;
@@ -43,7 +43,7 @@ public class QueryModel {
 //        Channel channel = RabbitMQConnectionManager.getInstance().getEventStoreChannel();
 
         LinkedList<Event> kafkaEvents = KafkaExtractor.getSingletonInstance().getEvents(ConfigManager.INSTANCE.getKafkaTopicName());
-        HashMap<String, MovingItemImpl> movingItems = MovingItemListGenerator.getSingletonInstance().createMovingItemList(kafkaEvents);
+        HashMap<String, MovingItemImpl> movingItems = MovingItemListTools.getSingletonInstance().createMovingItemList(kafkaEvents);
 
         movingItemDTOHashMap = convertToMovingItemDTOMap(movingItems);
     }
@@ -60,13 +60,6 @@ public class QueryModel {
             throw new NoSuchElementException("There is no Item with this specific name!");
         }
         return movingItemDTOHashMap.get(name);
-    }
-
-    public MovingItemImpl getMovingItemImplByName(String name) {
-        if (!movingItemImplHashMap.containsKey(name)) {
-            throw new IllegalArgumentException("movingItemImplHashMap does not contain key " + name);
-        }
-        return movingItemImplHashMap.get(name);
     }
 
     public Collection<MovingItemDTO> getAllMovingItems() {
