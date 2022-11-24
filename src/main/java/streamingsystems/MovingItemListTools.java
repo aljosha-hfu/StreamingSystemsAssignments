@@ -7,7 +7,7 @@ import streamingsystems.implemented.MovingItemImpl;
 
 import java.util.HashMap;
 import java.util.LinkedList;
-
+// TODO maybe this utility class could be switched into a special implementation of Hashmap with <String, MovingItemImpl>
 public class MovingItemListTools {
     private final Logger logger;
     private static final MovingItemListTools singletonInstance = new MovingItemListTools();
