@@ -8,4 +8,8 @@ public class GeoCellIndex {
         this.xIndex = xIndex;
         this.yIndex = yIndex;
     }
+
+    public String getStringRepresentation() {
+        return xIndex + "." + yIndex;
+    }
 }
