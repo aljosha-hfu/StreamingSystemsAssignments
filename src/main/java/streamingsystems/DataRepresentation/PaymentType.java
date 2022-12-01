@@ -1,4 +1,4 @@
-package streamingsystems.Helpers;
+package streamingsystems.DataRepresentation;
 
 
 public enum PaymentType {
