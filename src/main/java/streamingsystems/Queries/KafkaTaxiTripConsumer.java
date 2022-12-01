@@ -46,9 +46,9 @@ public class KafkaTaxiTripConsumer {
         return properties;
     }
 
-    public ArrayList<TaxiTrip> getEvents(String topic) {
+    public ArrayList<TaxiTrip> getTop10MostFrequentRoutes() {
         KafkaConsumer<String, byte[]> kafkaConsumer = new KafkaConsumer<>(kafkaConsumerProperties);
-        TopicPartition topicPartition = new TopicPartition(topic, 0);
+        TopicPartition topicPartition = new TopicPartition(ConfigManager.INSTANCE.getKafkaTopicName(), 0);
         kafkaConsumer.assign(List.of(topicPartition));
         kafkaConsumer.seekToBeginning(kafkaConsumer.assignment());
         ArrayList<TaxiTrip> taxiTripList = new ArrayList<>();
