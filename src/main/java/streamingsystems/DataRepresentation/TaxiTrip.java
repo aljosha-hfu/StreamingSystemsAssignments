@@ -1,8 +1,5 @@
 package streamingsystems.DataRepresentation;
 
-import streamingsystems.Helpers.LatLong;
-import streamingsystems.Helpers.PaymentType;
-
 import java.io.Serializable;
 import java.util.Date;
 
