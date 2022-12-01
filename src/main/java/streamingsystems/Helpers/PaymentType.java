@@ -7,7 +7,7 @@ public enum PaymentType {
     CASH("Cash");
 
     public final String name;
-    
+
     PaymentType(String name) {
         this.name = name;
     }
