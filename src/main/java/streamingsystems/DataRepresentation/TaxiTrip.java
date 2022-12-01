@@ -1,6 +1,8 @@
 package streamingsystems.DataRepresentation;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.util.Date;
 
 public record TaxiTrip(
@@ -20,6 +22,33 @@ public record TaxiTrip(
         float tollsAmount,
         float totalAmount
 ) implements Serializable {
+
+    public static TaxiTrip taxiTripFromStringList(String[] strings) {
+        String medallion = strings[0];
+        String hackLicense = strings[1];
+        try {
+            Date pickupDatetime = DateFormat.getInstance().parse(strings[2]);
+            Date dropoffDatetime = DateFormat.getInstance().parse(strings[3]);
+            int tripTimeInSecs = Integer.parseInt(strings[4]);
+            int tripDistanceInMiles = Integer.parseInt(strings[5]);
+            LatLong pickupLocation = new LatLong(Double.parseDouble(strings[6]), Double.parseDouble(strings[7]));
+            LatLong dropoffLocation = new LatLong(Double.parseDouble(strings[8]), Double.parseDouble(strings[9]));
+            PaymentType paymentType = PaymentType.valueOf(strings[10]);
+            float fareAmount = Float.parseFloat(strings[11]);
+            float surcharge = Float.parseFloat(strings[12]);
+            float taxDollars = Float.parseFloat(strings[13]);
+            float tipDollars = Float.parseFloat(strings[14]);
+            float tollsAmount = Float.parseFloat(strings[15]);
+            float totalAmount = Float.parseFloat(strings[16]);
+            return new TaxiTrip(medallion, hackLicense, pickupDatetime, dropoffDatetime,
+                    tripTimeInSecs, tripDistanceInMiles, pickupLocation, dropoffLocation,
+                    paymentType, fareAmount, surcharge, taxDollars, tipDollars,
+                    tollsAmount, totalAmount);
+        } catch (ParseException e) {
+            return null;
+        }
+    }
+
     @Override
     public String toString() {
         return "TaxiTrip{" +
