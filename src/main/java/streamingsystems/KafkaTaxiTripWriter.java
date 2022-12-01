@@ -15,10 +15,9 @@ import java.util.Properties;
 public class KafkaTaxiTripWriter {
     private static final KafkaTaxiTripWriter singletonInstance = new KafkaTaxiTripWriter();
 
-    final static String GROUP_ID = "EventStoreClientConsumerGroup";
     private final Logger logger;
 
-    private final KafkaProducer kafkaProducer;
+    private final KafkaProducer<String, byte[]> kafkaProducer;
 
     private final String KAFKA_TOPIC_NAME = ConfigManager.INSTANCE.getKafkaTopicName();
     Properties kafkaConsumerProperties;
