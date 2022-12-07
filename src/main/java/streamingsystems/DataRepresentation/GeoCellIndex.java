@@ -18,13 +18,13 @@ public class GeoCellIndex {
     // STATIC
 
     public static int getCellIndexNumberByLatitudeValue(double latitudeValue) {
-        var unroundedCellValue = (latitudeValue - firstCellTopLeftCoords.lat) / latitude500MetersEastDelta;
-        return (int) Math.floor(unroundedCellValue) + 1;
+        var unroundedLatCellIndex = (latitudeValue - firstCellTopLeftCoords.lat) / latitude500MetersEastDelta;
+        return (int) Math.floor(unroundedLatCellIndex) + 1;
     }
 
     public static int getCellIndexNumberByLongitudeValue(double longitudeValue) {
-        var unroundedCellValue = (longitudeValue - firstCellTopLeftCoords.lng) / longitude500MetersSouthDelta;
-        return (int) Math.floor(unroundedCellValue) + 1;
+        var unroundedLngCellIndex = (longitudeValue - firstCellTopLeftCoords.lng) / longitude500MetersSouthDelta;
+        return (int) Math.floor(unroundedLngCellIndex) + 1;
     }
 
     // FIELDS
