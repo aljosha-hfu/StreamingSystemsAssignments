@@ -14,6 +14,8 @@ public enum ConfigManager {
     private String kafkaClientId;
     private String kafkaUrl;
 
+    private String sampleDataPath;
+
     private void loadConfig() {
         Properties properties = new Properties();
         try {
@@ -22,6 +24,7 @@ public enum ConfigManager {
             kafkaTopicName = properties.getProperty("kafka.topicname") + new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
             kafkaClientId = properties.getProperty("kafka.clientid");
             kafkaUrl = properties.getProperty("kafka.url");
+            sampleDataPath = properties.getProperty("sampledatapath");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -41,5 +44,9 @@ public enum ConfigManager {
 
     public String getKafkaUrl() {
         return kafkaUrl;
+    }
+
+    public String getSampleDataPath() {
+        return sampleDataPath;
     }
 }
