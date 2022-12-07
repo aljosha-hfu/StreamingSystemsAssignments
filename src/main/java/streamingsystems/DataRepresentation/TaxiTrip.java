@@ -45,6 +45,7 @@ public record TaxiTrip(
                     paymentType, fareAmount, surcharge, taxDollars, tipDollars,
                     tollsAmount, totalAmount);
         } catch (ParseException e) {
+            e.printStackTrace();
             return null;
         }
     }
