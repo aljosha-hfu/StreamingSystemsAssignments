@@ -12,8 +12,8 @@ public record TaxiTrip(
         Date dropoffDatetime,
         int tripTimeInSecs,
         int tripDistanceInMiles,
-        LatLong pickupLocation,
-        LatLong dropoffLocation,
+        GeoCellIndex pickupLocation,
+        GeoCellIndex dropoffLocation,
         PaymentType paymentType,
         float fareAmount,
         float surcharge,
@@ -31,8 +31,8 @@ public record TaxiTrip(
             Date dropoffDatetime = DateFormat.getInstance().parse(strings[3]);
             int tripTimeInSecs = Integer.parseInt(strings[4]);
             int tripDistanceInMiles = Integer.parseInt(strings[5]);
-            LatLong pickupLocation = new LatLong(Double.parseDouble(strings[6]), Double.parseDouble(strings[7]));
-            LatLong dropoffLocation = new LatLong(Double.parseDouble(strings[8]), Double.parseDouble(strings[9]));
+            GeoCellIndex pickupLocation = new GeoCellIndex(new LatLong(Double.parseDouble(strings[6]), Double.parseDouble(strings[7])));
+            GeoCellIndex dropoffLocation = new GeoCellIndex(new LatLong(Double.parseDouble(strings[8]), Double.parseDouble(strings[9])));
             PaymentType paymentType = PaymentType.valueOf(strings[10]);
             float fareAmount = Float.parseFloat(strings[11]);
             float surcharge = Float.parseFloat(strings[12]);
