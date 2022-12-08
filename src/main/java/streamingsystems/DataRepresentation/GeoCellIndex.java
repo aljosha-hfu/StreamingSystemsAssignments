@@ -12,7 +12,9 @@ public class GeoCellIndex implements Serializable {
     public static final double longitude500MetersSouthDelta = 0.004491556;
 
     public static final LatLong firstCellCenterCoords = new LatLong(41.474937, -74.913585);
-    public static final LatLong firstCellTopLeftCoords = new LatLong(firstCellCenterCoords.lat - latitude500MetersEastDelta / 2, firstCellCenterCoords.lng - longitude500MetersSouthDelta / 2);
+    public static final LatLong firstCellTopLeftCoords =
+            new LatLong(firstCellCenterCoords.lat() - latitude500MetersEastDelta / 2,
+                    firstCellCenterCoords.lng() - longitude500MetersSouthDelta / 2);
 
     public static final int cellWidthMeters = 500;
     public static final int cellHeightMeters = 500;
@@ -20,12 +22,14 @@ public class GeoCellIndex implements Serializable {
     // STATIC
 
     public static int getCellIndexNumberByLatitudeValue(double latitudeValue) {
-        var unroundedLatCellIndex = (latitudeValue - firstCellTopLeftCoords.lat) / latitude500MetersEastDelta;
+        var unroundedLatCellIndex =
+                (latitudeValue - firstCellTopLeftCoords.lat()) / latitude500MetersEastDelta;
         return (int) Math.floor(unroundedLatCellIndex) + 1;
     }
 
     public static int getCellIndexNumberByLongitudeValue(double longitudeValue) {
-        var unroundedLngCellIndex = (longitudeValue - firstCellTopLeftCoords.lng) / longitude500MetersSouthDelta;
+        var unroundedLngCellIndex =
+                (longitudeValue - firstCellTopLeftCoords.lng()) / longitude500MetersSouthDelta;
         return (int) Math.floor(unroundedLngCellIndex) + 1;
     }
 
@@ -39,8 +43,8 @@ public class GeoCellIndex implements Serializable {
     }
 
     public GeoCellIndex(LatLong latLongInput) {
-        this.xIndex = getCellIndexNumberByLatitudeValue(latLongInput.lat);
-        this.yIndex = getCellIndexNumberByLongitudeValue(latLongInput.lng);
+        this.xIndex = getCellIndexNumberByLatitudeValue(latLongInput.lat());
+        this.yIndex = getCellIndexNumberByLongitudeValue(latLongInput.lng());
     }
 
     public String toString() {
