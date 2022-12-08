@@ -19,16 +19,14 @@ public class TaxiDataReader {
             if (split.length == 17) {
                 TaxiTrip taxiTrip = TaxiTrip.taxiTripFromStringList(split);
                 if (taxiTrip != null) {
-                    logger.info(
-                            "---- Adding TaxiTrip with pickUp time: " + taxiTrip.pickupDatetime());
+                    logger.info("---- Adding TaxiTrip with pickUp time: " + taxiTrip.pickupDatetime());
                     KafkaTaxiTripWriter.getSingletonInstance().writeTaxiTripToKafka(taxiTrip);
                 } else {
                     logger.info("TaxiTrip read is null. Ignoring it");
 
                 }
             } else {
-                logger.info(
-                        "Read line is not valid! Expected a line with 17 entries, got " + split.length);
+                logger.info("Read line is not valid! Expected a line with 17 entries, got " + split.length);
             }
         });
     }
