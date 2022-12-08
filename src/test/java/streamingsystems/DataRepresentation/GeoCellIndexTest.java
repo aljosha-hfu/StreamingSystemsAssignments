@@ -66,6 +66,12 @@ class GeoCellIndexTest {
     }
 
     @Test
+    void getCellIndexNumberByLongitudeValueIndex298() {
+        assertEquals(298, GeoCellIndex.getCellIndexNumberByLongitudeValue(
+                GeoCellIndex.firstCellCenterCoords.lng() + 298.9 * GeoCellIndex.longitude500MetersSouthDelta));
+    }
+
+    @Test
     void getCellIndexNumberByLongitudeValueIndex420ShouldHaveException() {
         assertThrows(IllegalArgumentException.class, () -> {
             GeoCellIndex.getCellIndexNumberByLongitudeValue(

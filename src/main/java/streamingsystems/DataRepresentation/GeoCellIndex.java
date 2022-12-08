@@ -38,12 +38,12 @@ public class GeoCellIndex implements Serializable {
 
     public static int getCellIndexNumberByLatitudeValue(double latitudeValue) {
 
-        if (latitudeValue < firstCellTopLeftCoords.lat() ||
-                latitudeValue > firstCellTopLeftCoords.lat() + 301 * latitude500MetersEastDelta) {
+        if (latitudeValue > firstCellTopLeftCoords.lat() ||
+                latitudeValue < firstCellTopLeftCoords.lat() - 301 * latitude500MetersEastDelta) {
             throw new IllegalArgumentException("Latitude value is out of range");
         }
 
-        var unroundedLatCellIndex = (latitudeValue - firstCellTopLeftCoords.lat()) / latitude500MetersEastDelta;
+        var unroundedLatCellIndex = Math.abs(latitudeValue - firstCellTopLeftCoords.lat()) / latitude500MetersEastDelta;
         return (int) Math.floor(unroundedLatCellIndex);
     }
 
