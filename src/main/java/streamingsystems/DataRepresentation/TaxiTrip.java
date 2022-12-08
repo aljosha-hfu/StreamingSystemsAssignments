@@ -11,7 +11,7 @@ public record TaxiTrip(
         Date pickupDatetime,
         Date dropoffDatetime,
         int tripTimeInSecs,
-        int tripDistanceInMiles,
+        double tripDistanceInMiles,
         GeoCellIndex pickupLocation,
         GeoCellIndex dropoffLocation,
         PaymentType paymentType,
@@ -30,7 +30,7 @@ public record TaxiTrip(
             Date pickupDatetime = DateFormat.getInstance().parse(strings[2]);
             Date dropoffDatetime = DateFormat.getInstance().parse(strings[3]);
             int tripTimeInSecs = Integer.parseInt(strings[4]);
-            int tripDistanceInMiles = Integer.parseInt(strings[5]);
+            double tripDistanceInMiles = Double.parseDouble(strings[5]);
             GeoCellIndex pickupLocation = new GeoCellIndex(new LatLong(Double.parseDouble(strings[6]), Double.parseDouble(strings[7])));
             GeoCellIndex dropoffLocation = new GeoCellIndex(new LatLong(Double.parseDouble(strings[8]), Double.parseDouble(strings[9])));
             PaymentType paymentType = PaymentType.valueOf(strings[10]);
