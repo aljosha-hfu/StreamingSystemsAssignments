@@ -49,6 +49,10 @@ public record TaxiTrip(String medallion, String hackLicense, Date pickupDatetime
         }
     }
 
+    public Route getRoute() {
+        return new Route(pickupLocation, dropoffLocation);
+    }
+
     @Override
     public String toString() {
         return "TaxiTrip{" + "medallion='" + medallion + '\'' + ", hackLicense='" + hackLicense + '\'' +
