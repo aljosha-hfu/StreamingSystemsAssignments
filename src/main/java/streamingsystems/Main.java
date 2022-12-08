@@ -12,9 +12,6 @@ public class Main {
     public static void main(String[] args) {
         Logger logger = LoggerFactory.getLogger(Main.class);
         logger.info("Starting...");
-
-        // TODO parse file into Kafka
-
         try {
             TaxiDataReader.readTaxiTripListFromFile(ConfigManager.INSTANCE.getSampleDataPath());
         } catch (FileNotFoundException e) {
