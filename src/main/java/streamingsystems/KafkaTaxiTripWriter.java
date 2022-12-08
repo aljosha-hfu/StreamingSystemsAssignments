@@ -40,7 +40,7 @@ public class KafkaTaxiTripWriter {
 
     public Boolean writeTaxiTripToKafka(TaxiTrip taxiTrip) {
         byte[] taxiTripByteData = SerializationUtils.serialize(taxiTrip);
-        logger.info("Posting serialized message for event " + taxiTrip + " into Kafka");
+//        logger.info("Posting serialized message for event " + taxiTrip + " into Kafka");
         ProducerRecord<String, byte[]> recordToSend = new ProducerRecord<>(KAFKA_TOPIC_NAME, taxiTripByteData);
 
         kafkaProducer.send(recordToSend);
