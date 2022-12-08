@@ -15,7 +15,7 @@ public class GeoCellIndex implements Serializable {
 
     public static final LatLong firstCellCenterCoords = new LatLong(41.474937, -74.913585);
     public static final LatLong firstCellTopLeftCoords =
-            new LatLong(firstCellCenterCoords.lat() + latitude500MetersEastDelta / 2,
+            new LatLong(firstCellCenterCoords.lat() - latitude500MetersEastDelta / 2,
                     firstCellCenterCoords.lng() - longitude500MetersSouthDelta / 2);
 
     public static final int cellWidthMeters = 500;
@@ -38,13 +38,13 @@ public class GeoCellIndex implements Serializable {
 
     public static int getCellIndexNumberByLatitudeValue(double latitudeValue) {
 
-        if (latitudeValue > firstCellTopLeftCoords.lat() ||
-                latitudeValue < firstCellTopLeftCoords.lat() - 301 * latitude500MetersEastDelta) {
+        if (latitudeValue < firstCellTopLeftCoords.lat() ||
+                latitudeValue > firstCellTopLeftCoords.lat() + 301 * latitude500MetersEastDelta) {
             throw new IllegalArgumentException("Latitude value is out of range");
         }
 
-        var unroundedLatCellIndex = Math.abs(latitudeValue - firstCellTopLeftCoords.lat()) / latitude500MetersEastDelta;
-        return (int) Math.floor(unroundedLatCellIndex);
+        var unroundedLatCellIndex = (latitudeValue - firstCellTopLeftCoords.lat()) / latitude500MetersEastDelta;
+        return (int) Math.floor(unroundedLatCellIndex) + 1;
     }
 
     public static int getCellIndexNumberByLongitudeValue(double longitudeValue) {
@@ -55,7 +55,7 @@ public class GeoCellIndex implements Serializable {
         }
 
         var unroundedLngCellIndex = (longitudeValue - firstCellTopLeftCoords.lng()) / longitude500MetersSouthDelta;
-        return (int) Math.floor(unroundedLngCellIndex);
+        return (int) Math.floor(unroundedLngCellIndex) + 1;
     }
 
     public String toString() {
