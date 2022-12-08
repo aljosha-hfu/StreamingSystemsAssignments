@@ -23,6 +23,7 @@ public class Main {
         System.out.println("Top 10 trips:");
         System.out.println(topTripList);
 
+
         logger.info("Terminating...");
     }
 }

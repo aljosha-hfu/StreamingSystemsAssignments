@@ -16,6 +16,7 @@ import streamingsystems.DataRepresentation.TaxiTrip;
 
 import java.time.Duration;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class KafkaTaxiTripConsumer {
     final static String GROUP_ID = "EventStoreClientConsumerGroup";
@@ -73,8 +74,7 @@ public class KafkaTaxiTripConsumer {
             for (Map.Entry<Route, Long> entry : list) {
                 sortedRouteMap.put(entry.getKey(), entry.getValue());
             }
-
-            return (ArrayList<Route>)sortedRouteMap.entrySet().stream().limit(10).map(Map.Entry::getKey).toList();
+            return list.stream().map(Map.Entry::getKey).limit(10).collect(Collectors.toCollection(ArrayList::new));
         }
     }
 }
