@@ -35,3 +35,7 @@ public enum PaymentType {
 }
 
 ````
+
+## TODO
+
+- How to get the last 30 mins of Taxi Trips from Kafka?
