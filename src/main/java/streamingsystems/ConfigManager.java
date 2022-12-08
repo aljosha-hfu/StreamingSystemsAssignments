@@ -29,7 +29,7 @@ public enum ConfigManager {
             kafkaTopicName = properties.getProperty("kafka.topicname") + new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
             kafkaClientId = properties.getProperty("kafka.clientid");
             kafkaUrl = properties.getProperty("kafka.url");
-            sampleDataPath = properties.getProperty("smapledatapath");
+            sampleDataPath = properties.getProperty("sampledatapath");
             logger.info("Kafka topic name: " + kafkaTopicName);
             logger.info("Kafka client id: " + kafkaClientId);
             logger.info("Kafka url: " + kafkaUrl);
