@@ -44,7 +44,6 @@ public record TaxiTrip(String medallion, String hackLicense, Date pickupDatetime
                     tripDistanceInMiles, pickupLocation, dropoffLocation, paymentType, fareAmount, surcharge,
                     taxDollars, tipDollars, tollsAmount, totalAmount);
         } catch (ParseException | IllegalArgumentException e) {
-            e.printStackTrace();
             return null;
         }
     }
