@@ -14,19 +14,13 @@ import java.util.Properties;
 
 public class KafkaTaxiTripWriter {
     private static final KafkaTaxiTripWriter singletonInstance = new KafkaTaxiTripWriter();
-
     private final Logger logger;
-
     private final KafkaProducer<String, byte[]> kafkaProducer;
-
     private final String KAFKA_TOPIC_NAME = ConfigManager.INSTANCE.getKafkaTopicName();
-    private final Properties kafkaConsumerProperties;
-
 
     private KafkaTaxiTripWriter() {
         logger = LoggerFactory.getLogger(KafkaTaxiTripWriter.class);
         kafkaProducer = new KafkaProducer<>(generateProperties());
-        kafkaConsumerProperties = generateProperties();
     }
 
     public static KafkaTaxiTripWriter getSingletonInstance() {
