@@ -28,6 +28,7 @@ public enum PaymentType {
     UNK("UNKNOWN");
 
     public final String name;
+
     PaymentType(String name) {
         this.name = name;
     }

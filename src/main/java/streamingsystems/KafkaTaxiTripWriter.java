@@ -30,14 +30,10 @@ public class KafkaTaxiTripWriter {
     private Properties generateProperties() {
         Properties kafkaProducerProps = new Properties();
 
-        kafkaProducerProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,
-                ConfigManager.INSTANCE.getKafkaUrl());
-        kafkaProducerProps.put(ProducerConfig.CLIENT_ID_CONFIG,
-                ConfigManager.INSTANCE.getKafkaClientId());
-        kafkaProducerProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,
-                StringSerializer.class.getName());
-        kafkaProducerProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,
-                ByteArraySerializer.class.getName());
+        kafkaProducerProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, ConfigManager.INSTANCE.getKafkaUrl());
+        kafkaProducerProps.put(ProducerConfig.CLIENT_ID_CONFIG, ConfigManager.INSTANCE.getKafkaClientId());
+        kafkaProducerProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+        kafkaProducerProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, ByteArraySerializer.class.getName());
 
         return kafkaProducerProps;
     }
@@ -45,8 +41,7 @@ public class KafkaTaxiTripWriter {
     public Boolean writeTaxiTripToKafka(TaxiTrip taxiTrip) {
         byte[] taxiTripByteData = SerializationUtils.serialize(taxiTrip);
         logger.info("Posting serialized message for event " + taxiTrip + " into Kafka");
-        ProducerRecord<String, byte[]> recordToSend =
-                new ProducerRecord<>(KAFKA_TOPIC_NAME, taxiTripByteData);
+        ProducerRecord<String, byte[]> recordToSend = new ProducerRecord<>(KAFKA_TOPIC_NAME, taxiTripByteData);
 
         kafkaProducer.send(recordToSend);
         kafkaProducer.flush();

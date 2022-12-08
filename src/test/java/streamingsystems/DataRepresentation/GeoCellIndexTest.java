@@ -3,6 +3,7 @@ package streamingsystems.DataRepresentation;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class GeoCellIndexTest {
 
@@ -23,6 +24,14 @@ class GeoCellIndexTest {
     void testCellIndexNumberByLatitudeValueIndex255() {
         assertEquals(255, GeoCellIndex.getCellIndexNumberByLatitudeValue(
                 GeoCellIndex.firstCellCenterCoords.lat() - 255.8 * GeoCellIndex.latitude500MetersEastDelta));
+    }
+
+    @Test
+    void testCellIndexNumberByLatitudeValueIndex420ShouldHaveException() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            GeoCellIndex.getCellIndexNumberByLatitudeValue(
+                    GeoCellIndex.firstCellCenterCoords.lat() - 420.8 * GeoCellIndex.latitude500MetersEastDelta);
+        });
     }
 
     @Test
@@ -54,5 +63,13 @@ class GeoCellIndexTest {
     void getCellIndexNumberByLongitudeValueIndex300() {
         assertEquals(300, GeoCellIndex.getCellIndexNumberByLongitudeValue(
                 GeoCellIndex.firstCellCenterCoords.lng() + 300.2 * GeoCellIndex.longitude500MetersSouthDelta));
+    }
+
+    @Test
+    void getCellIndexNumberByLongitudeValueIndex420ShouldHaveException() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            GeoCellIndex.getCellIndexNumberByLongitudeValue(
+                    GeoCellIndex.firstCellCenterCoords.lng() + 420.2 * GeoCellIndex.longitude500MetersSouthDelta);
+        });
     }
 }

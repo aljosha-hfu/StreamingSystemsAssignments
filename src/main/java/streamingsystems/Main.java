@@ -17,8 +17,7 @@ public class Main {
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
-        ArrayList<TaxiTrip> topTripList =
-                KafkaTaxiTripConsumer.getSingletonInstance().getTop10MostFrequentRoutes();
+        ArrayList<TaxiTrip> topTripList = KafkaTaxiTripConsumer.getSingletonInstance().getTop10MostFrequentRoutes();
 
         System.out.println("Top 10 trips:");
         System.out.println(topTripList);
