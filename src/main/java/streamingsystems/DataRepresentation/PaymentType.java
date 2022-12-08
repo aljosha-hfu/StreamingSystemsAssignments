@@ -3,8 +3,8 @@ package streamingsystems.DataRepresentation;
 
 public enum PaymentType {
 
-    CREDIT_CARD("CRD"),
-    CASH("CSH");
+    CRD("CREDIT_CARD"),
+    CSH("CASH");
 
     public final String name;
 
