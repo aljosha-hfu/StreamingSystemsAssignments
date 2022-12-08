@@ -11,6 +11,11 @@ public record TaxiTrip(String medallion, String hackLicense, Date pickupDatetime
                        float taxDollars, float tipDollars, float tollsAmount, float totalAmount)
         implements Serializable {
 
+    public static TaxiTrip taxiTripFromString(String inputString) {
+        String[] inputStringArray = inputString.split(",");
+        return taxiTripFromStringList(inputStringArray);
+    }
+
     public static TaxiTrip taxiTripFromStringList(String[] strings) {
         String medallion = strings[0];
         String hackLicense = strings[1];
