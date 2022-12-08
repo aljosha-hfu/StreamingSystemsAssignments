@@ -11,12 +11,11 @@ import org.apache.kafka.common.serialization.StringDeserializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import streamingsystems.ConfigManager;
+import streamingsystems.DataRepresentation.Route;
 import streamingsystems.DataRepresentation.TaxiTrip;
 
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
 
 public class KafkaTaxiTripConsumer {
     final static String GROUP_ID = "EventStoreClientConsumerGroup";
@@ -45,7 +44,7 @@ public class KafkaTaxiTripConsumer {
         return properties;
     }
 
-    public ArrayList<TaxiTrip> getTop10MostFrequentRoutes() {
+    public ArrayList<Route> getTop10MostFrequentRoutes() {
         try (KafkaConsumer<String, byte[]> kafkaConsumer = new KafkaConsumer<>(kafkaConsumerProperties)) {
             TopicPartition topicPartition = new TopicPartition(ConfigManager.INSTANCE.getKafkaTopicName(), 0);
             kafkaConsumer.assign(List.of(topicPartition));
@@ -61,7 +60,21 @@ public class KafkaTaxiTripConsumer {
                 taxiTripList.add(deserializedData);
             }
 
-            return taxiTripList;
+            HashMap<Route, Long> routeCountMap = new HashMap<>();
+
+            taxiTripList.forEach((TaxiTrip eachTrip) -> {
+                routeCountMap.merge(eachTrip.getRoute(), 1L, Long::sum);
+            });
+
+            List<Map.Entry<Route, Long>> list = new ArrayList<>(routeCountMap.entrySet());
+            list.sort(Map.Entry.comparingByValue());
+
+            Map<Route, Long> sortedRouteMap = new LinkedHashMap<>();
+            for (Map.Entry<Route, Long> entry : list) {
+                sortedRouteMap.put(entry.getKey(), entry.getValue());
+            }
+
+            return (ArrayList<Route>)sortedRouteMap.entrySet().stream().limit(10).map(Map.Entry::getKey).toList();
         }
     }
 }
