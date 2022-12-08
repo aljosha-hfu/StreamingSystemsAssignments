@@ -3,6 +3,7 @@ package streamingsystems;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import streamingsystems.DataRepresentation.Route;
+import streamingsystems.DataRepresentation.TaxiTrip;
 import streamingsystems.Queries.KafkaTaxiTripConsumer;
 
 import java.io.FileNotFoundException;
