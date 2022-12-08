@@ -3,6 +3,7 @@ package streamingsystems.DataRepresentation;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public record TaxiTrip(
@@ -27,8 +28,9 @@ public record TaxiTrip(
         String medallion = strings[0];
         String hackLicense = strings[1];
         try {
-            Date pickupDatetime = DateFormat.getInstance().parse(strings[2]);
-            Date dropoffDatetime = DateFormat.getInstance().parse(strings[3]);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyy-MM-dd HH:mm:ss");
+            Date pickupDatetime = dateFormat.parse(strings[2]);
+            Date dropoffDatetime = dateFormat.parse(strings[3]);
             int tripTimeInSecs = Integer.parseInt(strings[4]);
             double tripDistanceInMiles = Double.parseDouble(strings[5]);
             GeoCellIndex pickupLocation = new GeoCellIndex(new LatLong(Double.parseDouble(strings[6]), Double.parseDouble(strings[7])));
