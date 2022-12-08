@@ -26,11 +26,12 @@ public record TaxiTrip(String medallion, String hackLicense, Date pickupDatetime
             int tripTimeInSecs = Integer.parseInt(strings[4]);
             double tripDistanceInMiles = Double.parseDouble(strings[5]);
 
+            // The order in the line string is long -> lat instead of lat -> long
             GeoCellIndex pickupLocation =
-                    new GeoCellIndex(new LatLong(Double.parseDouble(strings[6]), Double.parseDouble(strings[7])));
+                    new GeoCellIndex(new LatLong(Double.parseDouble(strings[7]), Double.parseDouble(strings[6])));
             ;
             GeoCellIndex dropoffLocation =
-                    new GeoCellIndex(new LatLong(Double.parseDouble(strings[8]), Double.parseDouble(strings[9])));
+                    new GeoCellIndex(new LatLong(Double.parseDouble(strings[9]), Double.parseDouble(strings[8])));
 
             PaymentType paymentType = PaymentType.valueOf(strings[10]);
             float fareAmount = Float.parseFloat(strings[11]);
