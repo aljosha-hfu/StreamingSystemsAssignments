@@ -2,6 +2,7 @@ package streamingsystems;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import streamingsystems.DataRepresentation.Route;
 import streamingsystems.DataRepresentation.TaxiTrip;
 import streamingsystems.Queries.KafkaTaxiTripConsumer;
 
@@ -17,7 +18,7 @@ public class Main {
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
-        ArrayList<TaxiTrip> topTripList = KafkaTaxiTripConsumer.getSingletonInstance().getTop10MostFrequentRoutes();
+        ArrayList<Route> topTripList = KafkaTaxiTripConsumer.getSingletonInstance().getTop10MostFrequentRoutes();
 
         System.out.println("Top 10 trips:");
         System.out.println(topTripList);
