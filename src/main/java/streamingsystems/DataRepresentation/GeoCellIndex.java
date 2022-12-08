@@ -45,7 +45,7 @@ public class GeoCellIndex implements Serializable {
 
         var unroundedLatCellIndex =
                 Math.abs(latitudeValue - firstCellTopLeftCoords.lat()) / longitude500MetersSouthDelta;
-        return (int) Math.floor(unroundedLatCellIndex) + 1;
+        return (int)Math.floor(unroundedLatCellIndex) + 1;
     }
 
     public static int getCellIndexNumberByLongitudeValue(double longitudeValue) throws IllegalArgumentException {
@@ -56,7 +56,7 @@ public class GeoCellIndex implements Serializable {
         }
 
         var unroundedLngCellIndex = (longitudeValue - firstCellTopLeftCoords.lng()) / latitude500MetersEastDelta;
-        return (int) Math.floor(unroundedLngCellIndex) + 1;
+        return (int)Math.floor(unroundedLngCellIndex) + 1;
     }
 
     public String toString() {
