@@ -7,9 +7,6 @@ import streamingsystems.DataRepresentation.TaxiTrip;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
-import java.text.ParseException;
-import java.util.ArrayList;
 
 //TODO change to singleton (for consistence)!
 public class TaxiDataReader {

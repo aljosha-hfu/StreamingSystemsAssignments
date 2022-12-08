@@ -20,7 +20,7 @@ public class KafkaTaxiTripWriter {
     private final KafkaProducer<String, byte[]> kafkaProducer;
 
     private final String KAFKA_TOPIC_NAME = ConfigManager.INSTANCE.getKafkaTopicName();
-    Properties kafkaConsumerProperties;
+    private final Properties kafkaConsumerProperties;
 
 
     private KafkaTaxiTripWriter() {

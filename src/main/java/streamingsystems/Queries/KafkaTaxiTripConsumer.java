@@ -23,7 +23,7 @@ public class KafkaTaxiTripConsumer {
 
     final static String GROUP_ID = "EventStoreClientConsumerGroup";
     private final Logger logger;
-    Properties kafkaConsumerProperties;
+    private final Properties kafkaConsumerProperties;
 
 
     private KafkaTaxiTripConsumer() {
