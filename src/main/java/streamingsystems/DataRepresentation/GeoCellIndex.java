@@ -1,6 +1,8 @@
 package streamingsystems.DataRepresentation;
 
-public class GeoCellIndex {
+import java.io.Serializable;
+
+public class GeoCellIndex implements Serializable {
     // CONSTANT
     public static final GeoCellIndex firstCellIndex = new GeoCellIndex(1, 1);
     public static final GeoCellIndex lastCellIndex = new GeoCellIndex(300, 300);
