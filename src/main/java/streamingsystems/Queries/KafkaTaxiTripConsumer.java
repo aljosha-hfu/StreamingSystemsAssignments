@@ -47,20 +47,21 @@ public class KafkaTaxiTripConsumer {
     }
 
     public ArrayList<TaxiTrip> getTop10MostFrequentRoutes() {
-        KafkaConsumer<String, byte[]> kafkaConsumer = new KafkaConsumer<>(kafkaConsumerProperties);
-        TopicPartition topicPartition = new TopicPartition(ConfigManager.INSTANCE.getKafkaTopicName(), 0);
-        kafkaConsumer.assign(List.of(topicPartition));
-        kafkaConsumer.seekToBeginning(kafkaConsumer.assignment());
-        ArrayList<TaxiTrip> taxiTripList = new ArrayList<>();
+        try (KafkaConsumer<String, byte[]> kafkaConsumer = new KafkaConsumer<>(kafkaConsumerProperties)) {
+            TopicPartition topicPartition = new TopicPartition(ConfigManager.INSTANCE.getKafkaTopicName(), 0);
+            kafkaConsumer.assign(List.of(topicPartition));
+            kafkaConsumer.seekToBeginning(kafkaConsumer.assignment());
+            ArrayList<TaxiTrip> taxiTripList = new ArrayList<>();
 
-        logger.info("Polling for messages...");
-        final int POLL_FREQUENCY_MILLIS = 250;
-        ConsumerRecords<String, byte[]> consumerRecords = kafkaConsumer.poll(Duration.ofMillis(POLL_FREQUENCY_MILLIS));
-        for (ConsumerRecord<String, byte[]> record : consumerRecords) {
-            TaxiTrip deserializedData = SerializationUtils.deserialize(record.value());
-            taxiTripList.add(deserializedData);
+            logger.info("Polling for messages...");
+            final int POLL_FREQUENCY_MILLIS = 250;
+            ConsumerRecords<String, byte[]> consumerRecords = kafkaConsumer.poll(Duration.ofMillis(POLL_FREQUENCY_MILLIS));
+            for (ConsumerRecord<String, byte[]> record : consumerRecords) {
+                TaxiTrip deserializedData = SerializationUtils.deserialize(record.value());
+                taxiTripList.add(deserializedData);
+            }
+
+            return taxiTripList;
         }
-
-        return taxiTripList;
     }
 }
