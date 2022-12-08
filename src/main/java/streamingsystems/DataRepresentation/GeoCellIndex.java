@@ -60,6 +60,7 @@ public class GeoCellIndex implements Serializable {
     }
 
     public String toString() {
-        return "[" + xIndex + "." + yIndex + "]";
+        return xIndex + "." + yIndex;
     }
+
 }
