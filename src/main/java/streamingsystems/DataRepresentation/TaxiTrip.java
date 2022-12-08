@@ -11,6 +11,11 @@ public record TaxiTrip(String medallion, String hackLicense, Date pickupDatetime
                        float taxDollars, float tipDollars, float tollsAmount, float totalAmount)
         implements Serializable {
 
+    public static TaxiTrip taxiTripFromString(String inputString) {
+        String[] inputStringArray = inputString.split(",");
+        return taxiTripFromStringList(inputStringArray);
+    }
+
     public static TaxiTrip taxiTripFromStringList(String[] strings) {
         String medallion = strings[0];
         String hackLicense = strings[1];
@@ -20,10 +25,14 @@ public record TaxiTrip(String medallion, String hackLicense, Date pickupDatetime
             Date dropoffDatetime = dateFormat.parse(strings[3]);
             int tripTimeInSecs = Integer.parseInt(strings[4]);
             double tripDistanceInMiles = Double.parseDouble(strings[5]);
+
+            // The order in the line string is long -> lat instead of lat -> long
             GeoCellIndex pickupLocation =
-                    new GeoCellIndex(new LatLong(Double.parseDouble(strings[6]), Double.parseDouble(strings[7])));
+                    new GeoCellIndex(new LatLong(Double.parseDouble(strings[7]), Double.parseDouble(strings[6])));
+            ;
             GeoCellIndex dropoffLocation =
-                    new GeoCellIndex(new LatLong(Double.parseDouble(strings[8]), Double.parseDouble(strings[9])));
+                    new GeoCellIndex(new LatLong(Double.parseDouble(strings[9]), Double.parseDouble(strings[8])));
+
             PaymentType paymentType = PaymentType.valueOf(strings[10]);
             float fareAmount = Float.parseFloat(strings[11]);
             float surcharge = Float.parseFloat(strings[12]);
@@ -34,10 +43,14 @@ public record TaxiTrip(String medallion, String hackLicense, Date pickupDatetime
             return new TaxiTrip(medallion, hackLicense, pickupDatetime, dropoffDatetime, tripTimeInSecs,
                     tripDistanceInMiles, pickupLocation, dropoffLocation, paymentType, fareAmount, surcharge,
                     taxDollars, tipDollars, tollsAmount, totalAmount);
-        } catch (ParseException e) {
+        } catch (ParseException | IllegalArgumentException e) {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public Route getRoute() {
+        return new Route(pickupLocation, dropoffLocation);
     }
 
     @Override
