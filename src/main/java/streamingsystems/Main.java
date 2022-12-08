@@ -3,7 +3,6 @@ package streamingsystems;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import streamingsystems.DataRepresentation.Route;
-import streamingsystems.DataRepresentation.TaxiTrip;
 import streamingsystems.Queries.KafkaTaxiTripConsumer;
 
 import java.io.FileNotFoundException;
@@ -22,7 +21,6 @@ public class Main {
 
         System.out.println("Top 10 trips:");
         System.out.println(topTripList);
-
 
         logger.info("Terminating...");
     }
