@@ -20,6 +20,18 @@ public class GeoCellIndex implements Serializable {
     public static final int cellHeightMeters = 500;
 
     // STATIC
+    // FIELDS
+    public final int xIndex;
+    public final int yIndex;
+
+    public GeoCellIndex(int xIndex, int yIndex) {
+        this.xIndex = xIndex;
+        this.yIndex = yIndex;
+    }
+    public GeoCellIndex(LatLong latLongInput) {
+        this.xIndex = getCellIndexNumberByLatitudeValue(latLongInput.lat());
+        this.yIndex = getCellIndexNumberByLongitudeValue(latLongInput.lng());
+    }
 
     public static int getCellIndexNumberByLatitudeValue(double latitudeValue) {
         var unroundedLatCellIndex =
@@ -31,20 +43,6 @@ public class GeoCellIndex implements Serializable {
         var unroundedLngCellIndex =
                 (longitudeValue - firstCellTopLeftCoords.lng()) / longitude500MetersSouthDelta;
         return (int) Math.floor(unroundedLngCellIndex) + 1;
-    }
-
-    // FIELDS
-    public final int xIndex;
-    public final int yIndex;
-
-    public GeoCellIndex(int xIndex, int yIndex) {
-        this.xIndex = xIndex;
-        this.yIndex = yIndex;
-    }
-
-    public GeoCellIndex(LatLong latLongInput) {
-        this.xIndex = getCellIndexNumberByLatitudeValue(latLongInput.lat());
-        this.yIndex = getCellIndexNumberByLongitudeValue(latLongInput.lng());
     }
 
     public String toString() {

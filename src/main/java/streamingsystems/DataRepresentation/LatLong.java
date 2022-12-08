@@ -1,3 +1,4 @@
 package streamingsystems.DataRepresentation;
 
-record LatLong(double lat, double lng) {}
+record LatLong(double lat, double lng) {
+}

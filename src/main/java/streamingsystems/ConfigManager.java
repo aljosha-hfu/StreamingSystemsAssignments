@@ -19,6 +19,10 @@ public enum ConfigManager {
 
     private String sampleDataPath;
 
+    ConfigManager() {
+        loadConfig();
+    }
+
     private void loadConfig() {
         Logger logger = LoggerFactory.getLogger(ConfigManager.class.getName());
         logger.info("Loading data from config");
@@ -26,7 +30,8 @@ public enum ConfigManager {
         try {
             FileInputStream fileInputStream = new FileInputStream("src/main/resources/app.config");
             properties.load(fileInputStream);
-            kafkaTopicName = properties.getProperty("kafka.topicname") + new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+            kafkaTopicName = properties.getProperty("kafka.topicname") + new SimpleDateFormat(
+                    "yyyyMMdd_HHmmss").format(new Date());
             kafkaClientId = properties.getProperty("kafka.clientid");
             kafkaUrl = properties.getProperty("kafka.url");
             sampleDataPath = properties.getProperty("sampledatapath");
@@ -37,10 +42,6 @@ public enum ConfigManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    ConfigManager() {
-        loadConfig();
     }
 
     public String getKafkaTopicName() {
