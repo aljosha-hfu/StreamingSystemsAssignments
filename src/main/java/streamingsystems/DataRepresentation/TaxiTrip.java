@@ -25,10 +25,13 @@ public record TaxiTrip(String medallion, String hackLicense, Date pickupDatetime
             Date dropoffDatetime = dateFormat.parse(strings[3]);
             int tripTimeInSecs = Integer.parseInt(strings[4]);
             double tripDistanceInMiles = Double.parseDouble(strings[5]);
+
             GeoCellIndex pickupLocation =
                     new GeoCellIndex(new LatLong(Double.parseDouble(strings[6]), Double.parseDouble(strings[7])));
+            ;
             GeoCellIndex dropoffLocation =
                     new GeoCellIndex(new LatLong(Double.parseDouble(strings[8]), Double.parseDouble(strings[9])));
+
             PaymentType paymentType = PaymentType.valueOf(strings[10]);
             float fareAmount = Float.parseFloat(strings[11]);
             float surcharge = Float.parseFloat(strings[12]);
@@ -39,7 +42,7 @@ public record TaxiTrip(String medallion, String hackLicense, Date pickupDatetime
             return new TaxiTrip(medallion, hackLicense, pickupDatetime, dropoffDatetime, tripTimeInSecs,
                     tripDistanceInMiles, pickupLocation, dropoffLocation, paymentType, fareAmount, surcharge,
                     taxDollars, tipDollars, tollsAmount, totalAmount);
-        } catch (ParseException e) {
+        } catch (ParseException | IllegalArgumentException e) {
             e.printStackTrace();
             return null;
         }
