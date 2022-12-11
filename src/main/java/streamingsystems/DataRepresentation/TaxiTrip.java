@@ -40,8 +40,8 @@ public record TaxiTrip(String medallion, String hackLicense, Date pickupDatetime
             float tollsAmount = Float.parseFloat(strings[15]);
             float totalAmount = Float.parseFloat(strings[16]);
             return new TaxiTrip(medallion, hackLicense, pickupDatetime, dropoffDatetime, tripTimeInSecs,
-                    tripDistanceInMiles, pickupLocation, dropoffLocation, paymentType, fareAmount, surcharge,
-                    taxDollars, tipDollars, tollsAmount, totalAmount);
+                                tripDistanceInMiles, pickupLocation, dropoffLocation, paymentType, fareAmount,
+                                surcharge, taxDollars, tipDollars, tollsAmount, totalAmount);
         } catch (ParseException | IllegalArgumentException e) {
             return null;
         }
