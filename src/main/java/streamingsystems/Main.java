@@ -40,8 +40,17 @@ public class Main {
                     }
                 }));
 
+        pcWithTimestamp.apply(ParDo.of(new DoFn<String, Void>() {
+            @DoFn.ProcessElement
+            public void processElement(@Element String input, @Timestamp Instant timestamp) {
+                System.out.println("Element: " + input + " Timestamp: " + timestamp);
+            }
+        }));
+
         // Start the execution
         pipeline.run().waitUntilFinish();
+
+        // print the PCollection
 
         logger.info("Terminating...");
     }
