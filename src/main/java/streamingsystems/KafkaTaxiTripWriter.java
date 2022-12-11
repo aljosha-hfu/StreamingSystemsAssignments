@@ -6,20 +6,16 @@ import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.serialization.ByteArraySerializer;
 import org.apache.kafka.common.serialization.StringSerializer;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import streamingsystems.DataRepresentation.TaxiTrip;
 
 import java.util.Properties;
 
 public class KafkaTaxiTripWriter {
     private static final KafkaTaxiTripWriter singletonInstance = new KafkaTaxiTripWriter();
-    private final Logger logger;
     private final KafkaProducer<String, byte[]> kafkaProducer;
     private final String KAFKA_TOPIC_NAME = ConfigManager.INSTANCE.getKafkaTopicName();
 
     private KafkaTaxiTripWriter() {
-        logger = LoggerFactory.getLogger(KafkaTaxiTripWriter.class);
         kafkaProducer = new KafkaProducer<>(generateProperties());
     }
 
@@ -38,14 +34,12 @@ public class KafkaTaxiTripWriter {
         return kafkaProducerProps;
     }
 
-    public Boolean writeTaxiTripToKafka(TaxiTrip taxiTrip) {
+    public void writeTaxiTripToKafka(TaxiTrip taxiTrip) {
         byte[] taxiTripByteData = SerializationUtils.serialize(taxiTrip);
 //        logger.info("Posting serialized message for event " + taxiTrip + " into Kafka");
         ProducerRecord<String, byte[]> recordToSend = new ProducerRecord<>(KAFKA_TOPIC_NAME, taxiTripByteData);
 
         kafkaProducer.send(recordToSend);
         kafkaProducer.flush();
-
-        return true;
     }
 }

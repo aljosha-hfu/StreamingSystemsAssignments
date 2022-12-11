@@ -29,7 +29,6 @@ public record TaxiTrip(String medallion, String hackLicense, Date pickupDatetime
             // The order in the line string is long -> lat instead of lat -> long
             GeoCellIndex pickupLocation =
                     new GeoCellIndex(new LatLong(Double.parseDouble(strings[7]), Double.parseDouble(strings[6])));
-            ;
             GeoCellIndex dropoffLocation =
                     new GeoCellIndex(new LatLong(Double.parseDouble(strings[9]), Double.parseDouble(strings[8])));
 
