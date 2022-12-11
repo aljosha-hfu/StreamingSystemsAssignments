@@ -1,6 +1,7 @@
 package streamingsystems.DataRepresentation;
 
 
+@SuppressWarnings("unused")
 public enum PaymentType {
     CRD("CREDIT_CARD"),
     CSH("CASH"),

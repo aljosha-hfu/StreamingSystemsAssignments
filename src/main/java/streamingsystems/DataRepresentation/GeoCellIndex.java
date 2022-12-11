@@ -2,6 +2,7 @@ package streamingsystems.DataRepresentation;
 
 import java.io.Serializable;
 
+@SuppressWarnings("unused")
 public class GeoCellIndex implements Serializable {
     // CONSTANT
 

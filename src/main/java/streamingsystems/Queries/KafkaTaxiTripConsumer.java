@@ -63,9 +63,7 @@ public class KafkaTaxiTripConsumer {
 
             HashMap<Route, Long> routeCountMap = new HashMap<>();
 
-            taxiTripList.forEach((TaxiTrip eachTrip) -> {
-                routeCountMap.merge(eachTrip.getRoute(), 1L, Long::sum);
-            });
+            taxiTripList.forEach((TaxiTrip eachTrip) -> routeCountMap.merge(eachTrip.getRoute(), 1L, Long::sum));
 
             List<Map.Entry<Route, Long>> entryMapList = new ArrayList<>(routeCountMap.entrySet());
             entryMapList.sort(Map.Entry.comparingByValue());
