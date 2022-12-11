@@ -17,7 +17,7 @@ public class GeoCellIndex implements Serializable {
     public static final LatLong firstCellCenterCoords = new LatLong(41.474937, -74.913585);
     public static final LatLong firstCellTopLeftCoords =
             new LatLong(firstCellCenterCoords.lat() + longitude500MetersSouthDelta / 2,
-                    firstCellCenterCoords.lng() - latitude500MetersEastDelta / 2);
+                        firstCellCenterCoords.lng() - latitude500MetersEastDelta / 2);
 
     public static final int cellWidthMeters = 500;
     public static final int cellHeightMeters = 500;

@@ -10,8 +10,8 @@ class GeoCellIndexTest {
     // LATITUDE
     @Test
     void cellIndexNumberByLatitudeValueNegativeOutsideGrid() {
-        assertThrows(IllegalArgumentException.class,
-                () -> GeoCellIndex.getCellIndexNumberByLatitudeValue(GeoCellIndex.firstCellCenterCoords.lat() + 2));
+        assertThrows(IllegalArgumentException.class, () -> GeoCellIndex.getCellIndexNumberByLatitudeValue(
+                GeoCellIndex.firstCellCenterCoords.lat() + 2));
     }
 
     @Test
@@ -47,8 +47,8 @@ class GeoCellIndexTest {
     // LONGITUDE
     @Test
     void cellIndexNumberByLongitudeValueNegativeOutsideGrid() {
-        assertThrows(IllegalArgumentException.class,
-                () -> GeoCellIndex.getCellIndexNumberByLongitudeValue(GeoCellIndex.firstCellCenterCoords.lng() - 2));
+        assertThrows(IllegalArgumentException.class, () -> GeoCellIndex.getCellIndexNumberByLongitudeValue(
+                GeoCellIndex.firstCellCenterCoords.lng() - 2));
     }
 
     @Test

@@ -36,7 +36,7 @@ public class TaxiDataReader {
                 }
             } else {
                 logger.info("Read line at index " + lineIndex.get() +
-                        " is not valid! Expected a line with 17 entries, got " + split.length);
+                                    " is not valid! Expected a line with 17 entries, got " + split.length);
             }
 
             lineIndex.getAndIncrement();

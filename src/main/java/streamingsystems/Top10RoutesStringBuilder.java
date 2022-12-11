@@ -7,7 +7,8 @@ import java.util.ArrayList;
 import java.util.StringJoiner;
 
 public class Top10RoutesStringBuilder {
-    public static String buildTop10RoutesString(ArrayList<Route> top10Routes, TaxiTrip triggeringTrip,
+    public static String buildTop10RoutesString(ArrayList<Route> top10Routes,
+                                                TaxiTrip triggeringTrip,
                                                 long triggerTimeInNanoseconds) {
         StringJoiner stringJoiner = new StringJoiner(", ");
         stringJoiner.add(triggeringTrip.pickupDatetime().toString());

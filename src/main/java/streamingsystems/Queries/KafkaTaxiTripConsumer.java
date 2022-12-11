@@ -59,7 +59,8 @@ public class KafkaTaxiTripConsumer {
                     kafkaConsumer.poll(Duration.ofMillis(POLL_FREQUENCY_MILLIS));
 
             // Get date 30 minutes before referenceTrip
-            Date date30MinutesBeforeReferenceTrip = new Date(referenceTrip.dropoffDatetime().getTime() - 30 * 60 * 1000);
+            Date date30MinutesBeforeReferenceTrip =
+                    new Date(referenceTrip.dropoffDatetime().getTime() - 30 * 60 * 1000);
 
             for (ConsumerRecord<String, byte[]> record : consumerRecords) {
                 TaxiTrip deserializedData = SerializationUtils.deserialize(record.value());
