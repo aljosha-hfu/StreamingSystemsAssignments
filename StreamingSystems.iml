@@ -143,7 +143,6 @@
     <orderEntry type="library" name="Maven: org.apache.commons:commons-math3:3.5" level="project" />
     <orderEntry type="library" name="Maven: org.apache.flink:flink-core:1.14.3" level="project" />
     <orderEntry type="library" name="Maven: org.apache.flink:flink-shaded-asm-7:7.1-14.0" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.commons:commons-lang3:3.3.2" level="project" />
     <orderEntry type="library" name="Maven: com.esotericsoftware.kryo:kryo:2.24.0" level="project" />
     <orderEntry type="library" name="Maven: com.esotericsoftware.minlog:minlog:1.2" level="project" />
     <orderEntry type="library" name="Maven: org.objenesis:objenesis:2.1" level="project" />
@@ -160,10 +159,13 @@
     <orderEntry type="library" name="Maven: org.apache.flink:flink-shaded-jackson:2.12.4-14.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.flink:flink-shaded-zookeeper-3:3.4.14-14.0" level="project" />
     <orderEntry type="library" name="Maven: org.javassist:javassist:3.24.0-GA" level="project" />
-    <orderEntry type="library" name="Maven: org.lz4:lz4-java:1.8.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.flink:flink-optimizer:1.14.3" level="project" />
     <orderEntry type="library" name="Maven: org.apache.beam:beam-model-fn-execution:2.43.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.beam:beam-sdks-java-fn-execution:2.43.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.flink:flink-annotations:1.14.3" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.commons:commons-lang3:3.12.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.kafka:kafka-clients:3.3.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: com.github.luben:zstd-jni:1.5.2-1" level="project" />
+    <orderEntry type="library" name="Maven: org.lz4:lz4-java:1.8.0" level="project" />
   </component>
 </module>
