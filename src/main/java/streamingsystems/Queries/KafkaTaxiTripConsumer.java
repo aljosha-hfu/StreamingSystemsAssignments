@@ -46,7 +46,7 @@ public class KafkaTaxiTripConsumer {
         return properties;
     }
 
-    public ArrayList<Route> getTop10MostFrequentRoutes() {
+    public ArrayList<Route> getTop10MostFrequentRoutesForReferenceTrip(TaxiTrip referenceTrip) {
         try (KafkaConsumer<String, byte[]> kafkaConsumer = new KafkaConsumer<>(kafkaConsumerProperties)) {
             TopicPartition topicPartition = new TopicPartition(ConfigManager.INSTANCE.getKafkaTopicName(), 0);
             kafkaConsumer.assign(List.of(topicPartition));
@@ -57,9 +57,17 @@ public class KafkaTaxiTripConsumer {
             final int POLL_FREQUENCY_MILLIS = 250;
             ConsumerRecords<String, byte[]> consumerRecords =
                     kafkaConsumer.poll(Duration.ofMillis(POLL_FREQUENCY_MILLIS));
+
+            // Get date 30 minutes before referenceTrip
+            Date date30MinutesBeforeReferenceTrip = new Date(referenceTrip.pickupDatetime().getTime() - 30 * 60 * 1000);
+
             for (ConsumerRecord<String, byte[]> record : consumerRecords) {
                 TaxiTrip deserializedData = SerializationUtils.deserialize(record.value());
-                taxiTripList.add(deserializedData);
+
+                // Check if the deserialzed trip's pickup time is less than 30 minutes before the reference trip's pickup time
+                if (deserializedData.pickupDatetime().after(date30MinutesBeforeReferenceTrip)) {
+                    taxiTripList.add(deserializedData);
+                }
             }
 
             HashMap<Route, Long> routeCountMap = new HashMap<>();
@@ -79,7 +87,8 @@ public class KafkaTaxiTripConsumer {
 
     public void printTop10MostFrequentRoutesForTriggeringTrip(TaxiTrip triggeringTrip) {
         // Get top 10 trips from Kafka
-        ArrayList<Route> topTripList = KafkaTaxiTripConsumer.getSingletonInstance().getTop10MostFrequentRoutes();
+        ArrayList<Route> topTripList =
+                KafkaTaxiTripConsumer.getSingletonInstance().getTop10MostFrequentRoutesForReferenceTrip(triggeringTrip);
 
         // Print top 10 trips in java format
         logger.info("Top 10 trips Java List:");
