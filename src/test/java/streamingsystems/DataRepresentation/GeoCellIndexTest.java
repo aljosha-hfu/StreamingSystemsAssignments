@@ -10,9 +10,8 @@ class GeoCellIndexTest {
     // LATITUDE
     @Test
     void cellIndexNumberByLatitudeValueNegativeOutsideGrid() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            GeoCellIndex.getCellIndexNumberByLatitudeValue(GeoCellIndex.firstCellCenterCoords.lat() + 2);
-        });
+        assertThrows(IllegalArgumentException.class,
+                () -> GeoCellIndex.getCellIndexNumberByLatitudeValue(GeoCellIndex.firstCellCenterCoords.lat() + 2));
     }
 
     @Test
@@ -35,10 +34,8 @@ class GeoCellIndexTest {
 
     @Test
     void cellIndexNumberByLatitudeValueIndex420ShouldHaveException() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            GeoCellIndex.getCellIndexNumberByLatitudeValue(
-                    GeoCellIndex.firstCellCenterCoords.lat() - 419.3 * GeoCellIndex.longitude500MetersSouthDelta);
-        });
+        assertThrows(IllegalArgumentException.class, () -> GeoCellIndex.getCellIndexNumberByLatitudeValue(
+                GeoCellIndex.firstCellCenterCoords.lat() - 419.3 * GeoCellIndex.longitude500MetersSouthDelta));
     }
 
     @Test
@@ -50,9 +47,8 @@ class GeoCellIndexTest {
     // LONGITUDE
     @Test
     void cellIndexNumberByLongitudeValueNegativeOutsideGrid() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            GeoCellIndex.getCellIndexNumberByLongitudeValue(GeoCellIndex.firstCellCenterCoords.lng() - 2);
-        });
+        assertThrows(IllegalArgumentException.class,
+                () -> GeoCellIndex.getCellIndexNumberByLongitudeValue(GeoCellIndex.firstCellCenterCoords.lng() - 2));
     }
 
     @Test
@@ -87,9 +83,7 @@ class GeoCellIndexTest {
 
     @Test
     void cellIndexNumberByLongitudeValueIndex420ShouldHaveException() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            GeoCellIndex.getCellIndexNumberByLongitudeValue(
-                    GeoCellIndex.firstCellCenterCoords.lng() + 419.3 * GeoCellIndex.latitude500MetersEastDelta);
-        });
+        assertThrows(IllegalArgumentException.class, () -> GeoCellIndex.getCellIndexNumberByLongitudeValue(
+                GeoCellIndex.firstCellCenterCoords.lng() + 419.3 * GeoCellIndex.latitude500MetersEastDelta));
     }
 }

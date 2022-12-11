@@ -67,14 +67,14 @@ public class KafkaTaxiTripConsumer {
                 routeCountMap.merge(eachTrip.getRoute(), 1L, Long::sum);
             });
 
-            List<Map.Entry<Route, Long>> list = new ArrayList<>(routeCountMap.entrySet());
-            list.sort(Map.Entry.comparingByValue());
+            List<Map.Entry<Route, Long>> entryMapList = new ArrayList<>(routeCountMap.entrySet());
+            entryMapList.sort(Map.Entry.comparingByValue());
 
-            Map<Route, Long> sortedRouteMap = new LinkedHashMap<>();
-            for (Map.Entry<Route, Long> entry : list) {
-                sortedRouteMap.put(entry.getKey(), entry.getValue());
-            }
-            return list.stream().map(Map.Entry::getKey).limit(10).collect(Collectors.toCollection(ArrayList::new));
+            return entryMapList
+                    .stream()
+                    .map(Map.Entry::getKey)
+                    .limit(10)
+                    .collect(Collectors.toCollection(ArrayList::new));
         }
     }
 }
