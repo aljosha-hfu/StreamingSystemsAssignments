@@ -1,5 +1,7 @@
 package streamingsystems;
 
+import jdk.incubator.vector.VectorOperators;
+import org.apache.beam.runners.flink.FlinkRunner;
 import org.apache.beam.sdk.Pipeline;
 import org.apache.beam.sdk.coders.StringUtf8Coder;
 import org.apache.beam.sdk.options.PipelineOptions;
@@ -22,10 +24,11 @@ public class Main {
 
         // Create a Java Collection, in this case a list of strings.
         final List<String> cities = Arrays.asList("Furtwangen", "Tuttlingen", "VS-Schwenningen");
-        // Create the pipeline
+
         PipelineOptions options = PipelineOptionsFactory.create();
+//        options.setRunner(FlinkRunner.class);
         Pipeline pipeline = Pipeline.create(options);
-        // Create the PCollection
+
         PCollection<String> pc = pipeline.apply(Create.of(cities)).setCoder(StringUtf8Coder.of());
 
         PCollection<String> pcWithTimestamp = // Note: this examples
