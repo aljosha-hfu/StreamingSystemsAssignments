@@ -3,6 +3,7 @@ package streamingsystems;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import streamingsystems.DataRepresentation.TaxiTrip;
+import streamingsystems.Queries.KafkaTaxiTripConsumer;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -23,8 +24,12 @@ public class TaxiDataReader {
             if (split.length == 17) {
                 TaxiTrip taxiTrip = TaxiTrip.taxiTripFromStringList(split);
                 if (taxiTrip != null) {
-                    //                    logger.info("---- Adding TaxiTrip with pickUp time: " + taxiTrip.pickupDatetime());
+                    logger.info("---- Adding TaxiTrip with pickUp time: " + taxiTrip.pickupDatetime());
                     KafkaTaxiTripWriter.getSingletonInstance().writeTaxiTripToKafka(taxiTrip);
+
+                    KafkaTaxiTripConsumer
+                            .getSingletonInstance()
+                            .printTop10MostFrequentRoutesForTriggeringTrip(taxiTrip);
                 } else {
                     logger.info("TaxiTrip read at line " + lineIndex.get() + " is null. Ignoring it");
 

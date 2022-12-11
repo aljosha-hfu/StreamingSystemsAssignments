@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import streamingsystems.ConfigManager;
 import streamingsystems.DataRepresentation.Route;
 import streamingsystems.DataRepresentation.TaxiTrip;
+import streamingsystems.Top10RoutesStringBuilder;
 
 import java.time.Duration;
 import java.util.*;
@@ -74,5 +75,18 @@ public class KafkaTaxiTripConsumer {
                     .limit(10)
                     .collect(Collectors.toCollection(ArrayList::new));
         }
+    }
+
+    public void printTop10MostFrequentRoutesForTriggeringTrip(TaxiTrip triggeringTrip) {
+        // Get top 10 trips from Kafka
+        ArrayList<Route> topTripList = KafkaTaxiTripConsumer.getSingletonInstance().getTop10MostFrequentRoutes();
+
+        // Print top 10 trips in java format
+        logger.info("Top 10 trips Java List:");
+        logger.info(String.valueOf(topTripList));
+
+        // Print top 10 trips in DEBS string format
+        logger.info("Top 10 DEBS output format:");
+        logger.info(Top10RoutesStringBuilder.buildTop10RoutesString(topTripList, triggeringTrip, System.nanoTime()));
     }
 }
