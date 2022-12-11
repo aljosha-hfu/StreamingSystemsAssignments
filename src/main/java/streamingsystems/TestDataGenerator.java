@@ -7,6 +7,7 @@ import org.apache.kafka.common.serialization.ByteArraySerializer;
 import org.apache.kafka.common.serialization.IntegerSerializer;
 
 import java.util.Properties;
+import java.util.StringJoiner;
 
 public class TestDataGenerator {
 
@@ -45,11 +46,12 @@ public class TestDataGenerator {
             int randomSensorId = (int)(Math.random() * amountOfSensors);
             int randomAmountOfGeneratedSpeedValues = (int)(Math.random() * amountOfSpeedValues);
 
-            StringBuilder speedValueString = new StringBuilder();
+            StringJoiner speedValueString = new StringJoiner(",");
 
-            for (int j = 0; j < randomAmountOfGeneratedSpeedValues; j++) {
+            // Generate random speed values
+            for (int i = 0; i < randomAmountOfGeneratedSpeedValues; i++) {
                 float randomSpeedValue = (float)(Math.random() * (maxSpeed - minSpeed) + minSpeed);
-                speedValueString.append(randomSpeedValue).append(",");
+                speedValueString.add(String.valueOf(randomSpeedValue));
             }
 
             ProducerRecord<Integer, String> recordToSend =
