@@ -44,7 +44,7 @@ public class TestDataGenerator {
         // Next step: generate random speed values with a time skip between m1 and m2
 
         while (true) {
-            int randomSensorId = (int)(Math.random() * amountOfSensors);
+            Integer randomSensorId = (int)(Math.random() * amountOfSensors);
             int randomAmountOfGeneratedSpeedValues = (int)(Math.random() * amountOfSpeedValues);
 
             StringJoiner speedValueStringBuilder = new StringJoiner(",");
@@ -59,7 +59,7 @@ public class TestDataGenerator {
                     new ProducerRecord<>(KAFKA_TOPIC_NAME, randomSensorId, speedValueStringBuilder.toString());
             kafkaProducer.send(recordToSend);
 
-            System.out.println("Sent record: " + speedValueStringBuilder);
+            System.out.println("Sent record: " + recordToSend);
 
             Thread.sleep((long)(Math.random() * (m2 - m1) + m1));
         }
