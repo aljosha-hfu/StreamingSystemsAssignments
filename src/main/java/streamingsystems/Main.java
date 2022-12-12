@@ -1,7 +1,5 @@
 package streamingsystems;
 
-import jdk.incubator.vector.VectorOperators;
-import org.apache.beam.runners.flink.FlinkRunner;
 import org.apache.beam.sdk.Pipeline;
 import org.apache.beam.sdk.coders.StringUtf8Coder;
 import org.apache.beam.sdk.options.PipelineOptions;
