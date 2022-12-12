@@ -1,14 +1,15 @@
 package streamingsystems;
 
 import org.apache.beam.sdk.Pipeline;
-import org.apache.beam.sdk.coders.StringUtf8Coder;
+import org.apache.beam.sdk.io.kafka.KafkaIO;
+import org.apache.beam.sdk.io.kafka.KafkaRecord;
 import org.apache.beam.sdk.options.PipelineOptions;
 import org.apache.beam.sdk.options.PipelineOptionsFactory;
-import org.apache.beam.sdk.transforms.Create;
 import org.apache.beam.sdk.transforms.DoFn;
 import org.apache.beam.sdk.transforms.ParDo;
 import org.apache.beam.sdk.values.PCollection;
-import org.joda.time.Instant;
+import org.apache.kafka.common.serialization.IntegerDeserializer;
+import org.apache.kafka.common.serialization.StringDeserializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,27 +25,19 @@ public class Main {
         final List<String> cities = Arrays.asList("Furtwangen", "Tuttlingen", "VS-Schwenningen");
 
         PipelineOptions options = PipelineOptionsFactory.create();
-//        options.setRunner(FlinkRunner.class);
+        //        options.setRunner(FlinkRunner.class);
         Pipeline pipeline = Pipeline.create(options);
 
-        PCollection<String> pc = pipeline.apply(Create.of(cities)).setCoder(StringUtf8Coder.of());
+        PCollection<KafkaRecord<Integer, String>> kafkaRecords = pipeline.apply(KafkaIO.<Integer, String>read().withBootstrapServers(
+                ConfigManager.INSTANCE.getKafkaUrl()).withTopic(ConfigManager.INSTANCE.getKafkaTopicName()).withKeyDeserializer(
+                IntegerDeserializer.class).withValueDeserializer(StringDeserializer.class));
 
-        PCollection<String> pcWithTimestamp = // Note: this examples
-                pc.apply(ParDo.of(new DoFn<String, String>() { // uses an anonymous
-                    @DoFn.ProcessElement // class
-                    public void processElement(@Element String input, OutputReceiver<String> output) {
-                        // Get current time with type org.joda.time.Instant
-                        Instant i = Instant.now();
-                        // The input element gets a new timestamp with the current time
-                        // and is passed to the output PCollection.
-                        output.outputWithTimestamp(input, i);
-                    }
-                }));
-
-        pcWithTimestamp.apply(ParDo.of(new DoFn<String, Void>() {
-            @DoFn.ProcessElement
-            public void processElement(@Element String input, @Timestamp Instant timestamp) {
-                System.out.println("Element: " + input + " Timestamp: " + timestamp);
+        // Print the collection
+        kafkaRecords.apply(ParDo.of(new DoFn<KafkaRecord<Integer, String>, Void>() {
+            @ProcessElement
+            public void processElement(ProcessContext c) {
+                KafkaRecord<Integer, String> kafkaRecord = c.element();
+                logger.info("Key: " + kafkaRecord.getKV().getKey() + ", Value: " + kafkaRecord.getKV().getValue() + ", Timestamp: " + kafkaRecord.getTimestamp());
             }
         }));
 
