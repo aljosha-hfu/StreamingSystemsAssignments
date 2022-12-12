@@ -3,7 +3,6 @@ package streamingsystems;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
-import org.apache.kafka.common.serialization.ByteArraySerializer;
 import org.apache.kafka.common.serialization.IntegerSerializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 
@@ -44,14 +43,14 @@ public class TestDataGenerator {
         // Next step: generate random speed values with a time skip between m1 and m2
 
         while (true) {
-            Integer randomSensorId = (int)(Math.random() * amountOfSensors);
-            int randomAmountOfGeneratedSpeedValues = (int)(Math.random() * amountOfSpeedValues);
+            Integer randomSensorId = (int) (Math.random() * amountOfSensors);
+            int randomAmountOfGeneratedSpeedValues = (int) (Math.random() * amountOfSpeedValues);
 
             StringJoiner speedValueStringBuilder = new StringJoiner(",");
 
             // Generate random speed values
             for (int i = 0; i < randomAmountOfGeneratedSpeedValues; i++) {
-                float randomSpeedValue = (float)(Math.random() * (maxSpeed - minSpeed) + minSpeed);
+                float randomSpeedValue = (float) (Math.random() * (maxSpeed - minSpeed) + minSpeed);
                 speedValueStringBuilder.add(String.valueOf(randomSpeedValue));
             }
 
@@ -61,7 +60,8 @@ public class TestDataGenerator {
 
             System.out.println("Sent record: " + recordToSend);
 
-            Thread.sleep((long)(Math.random() * (m2 - m1) + m1));
+            long timeToSleep = (long) (Math.random() * (m2 - m1) + m1);
+            Thread.sleep(timeToSleep);
         }
     }
 }
