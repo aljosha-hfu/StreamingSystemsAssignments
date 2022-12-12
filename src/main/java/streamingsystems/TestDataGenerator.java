@@ -5,6 +5,7 @@ import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.serialization.ByteArraySerializer;
 import org.apache.kafka.common.serialization.IntegerSerializer;
+import org.apache.kafka.common.serialization.StringSerializer;
 
 import java.util.Properties;
 import java.util.StringJoiner;
@@ -30,7 +31,7 @@ public class TestDataGenerator {
         kafkaProducerProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, ConfigManager.INSTANCE.getKafkaUrl());
         kafkaProducerProps.put(ProducerConfig.CLIENT_ID_CONFIG, ConfigManager.INSTANCE.getKafkaClientId());
         kafkaProducerProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, IntegerSerializer.class.getName());
-        kafkaProducerProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, ByteArraySerializer.class.getName());
+        kafkaProducerProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
 
         return kafkaProducerProps;
     }
@@ -46,17 +47,19 @@ public class TestDataGenerator {
             int randomSensorId = (int)(Math.random() * amountOfSensors);
             int randomAmountOfGeneratedSpeedValues = (int)(Math.random() * amountOfSpeedValues);
 
-            StringJoiner speedValueString = new StringJoiner(",");
+            StringJoiner speedValueStringBuilder = new StringJoiner(",");
 
             // Generate random speed values
             for (int i = 0; i < randomAmountOfGeneratedSpeedValues; i++) {
                 float randomSpeedValue = (float)(Math.random() * (maxSpeed - minSpeed) + minSpeed);
-                speedValueString.add(String.valueOf(randomSpeedValue));
+                speedValueStringBuilder.add(String.valueOf(randomSpeedValue));
             }
 
             ProducerRecord<Integer, String> recordToSend =
-                    new ProducerRecord<>(KAFKA_TOPIC_NAME, randomSensorId, speedValueString.toString());
+                    new ProducerRecord<>(KAFKA_TOPIC_NAME, randomSensorId, speedValueStringBuilder.toString());
             kafkaProducer.send(recordToSend);
+
+            System.out.println("Sent record: " + speedValueStringBuilder);
 
             Thread.sleep((long)(Math.random() * (m2 - m1) + m1));
         }
