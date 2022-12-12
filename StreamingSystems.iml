@@ -49,9 +49,6 @@
     <orderEntry type="library" name="Maven: io.github.classgraph:classgraph:4.8.104" level="project" />
     <orderEntry type="library" name="Maven: org.apache.beam:beam-runners-java-fn-execution:2.43.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.beam:beam-runners-java-job-service:2.43.0" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.beam:beam-sdks-java-expansion-service:2.43.0" level="project" />
-    <orderEntry type="library" name="Maven: com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.13.3" level="project" />
-    <orderEntry type="library" name="Maven: org.yaml:snakeyaml:1.30" level="project" />
     <orderEntry type="library" name="Maven: org.apache.beam:beam-sdks-java-extensions-google-cloud-platform-core:2.43.0" level="project" />
     <orderEntry type="library" name="Maven: com.google.http-client:google-http-client-jackson2:1.42.2" level="project" />
     <orderEntry type="library" name="Maven: com.google.auth:google-auth-library-oauth2-http:1.11.0" level="project" />
@@ -167,5 +164,17 @@
     <orderEntry type="library" name="Maven: org.apache.kafka:kafka-clients:3.3.1" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: com.github.luben:zstd-jni:1.5.2-1" level="project" />
     <orderEntry type="library" name="Maven: org.lz4:lz4-java:1.8.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.beam:beam-sdks-java-io-kafka:2.43.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.beam:beam-sdks-java-expansion-service:2.43.0" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.13.3" level="project" />
+    <orderEntry type="library" name="Maven: org.yaml:snakeyaml:1.30" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-expression:5.3.18" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-core:5.3.18" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-jcl:5.3.18" level="project" />
+    <orderEntry type="library" name="Maven: io.confluent:kafka-avro-serializer:5.3.2" level="project" />
+    <orderEntry type="library" name="Maven: io.confluent:common-config:5.3.2" level="project" />
+    <orderEntry type="library" name="Maven: io.confluent:common-utils:5.3.2" level="project" />
+    <orderEntry type="library" name="Maven: com.101tec:zkclient:0.10" level="project" />
+    <orderEntry type="library" name="Maven: io.confluent:kafka-schema-registry-client:5.3.2" level="project" />
   </component>
 </module>
