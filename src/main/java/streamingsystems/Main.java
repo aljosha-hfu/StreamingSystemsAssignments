@@ -13,31 +13,36 @@ import org.apache.kafka.common.serialization.StringDeserializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Arrays;
-import java.util.List;
-
+/**
+ * Test the main functionality
+ */
 public class Main {
     public static void main(String[] args) {
         Logger logger = LoggerFactory.getLogger(Main.class);
         logger.info("Starting...");
 
-        // Create a Java Collection, in this case a list of strings.
-        final List<String> cities = Arrays.asList("Furtwangen", "Tuttlingen", "VS-Schwenningen");
-
         PipelineOptions options = PipelineOptionsFactory.create();
         //        options.setRunner(FlinkRunner.class);
         Pipeline pipeline = Pipeline.create(options);
 
-        PCollection<KafkaRecord<Integer, String>> kafkaRecords = pipeline.apply(KafkaIO.<Integer, String>read().withBootstrapServers(
-                ConfigManager.INSTANCE.getKafkaUrl()).withTopic(ConfigManager.INSTANCE.getKafkaTopicName()).withKeyDeserializer(
-                IntegerDeserializer.class).withValueDeserializer(StringDeserializer.class));
+        PCollection<KafkaRecord<Integer, String>> kafkaRecords = pipeline.apply(KafkaIO
+                                                                                        .<Integer, String>read()
+                                                                                        .withBootstrapServers(
+                                                                                                ConfigManager.INSTANCE.getKafkaUrl())
+                                                                                        .withTopic(
+                                                                                                ConfigManager.INSTANCE.getKafkaTopicName())
+                                                                                        .withKeyDeserializer(
+                                                                                                IntegerDeserializer.class)
+                                                                                        .withValueDeserializer(
+                                                                                                StringDeserializer.class));
 
         // Print the collection
         kafkaRecords.apply(ParDo.of(new DoFn<KafkaRecord<Integer, String>, Void>() {
             @ProcessElement
             public void processElement(ProcessContext c) {
                 KafkaRecord<Integer, String> kafkaRecord = c.element();
-                logger.info("Key: " + kafkaRecord.getKV().getKey() + ", Value: " + kafkaRecord.getKV().getValue() + ", Timestamp: " + kafkaRecord.getTimestamp());
+                logger.info("Key: " + kafkaRecord.getKV().getKey() + ", Value: " + kafkaRecord.getKV().getValue() +
+                                    ", Timestamp: " + kafkaRecord.getTimestamp());
             }
         }));
 

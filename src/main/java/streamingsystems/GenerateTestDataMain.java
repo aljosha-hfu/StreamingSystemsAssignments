@@ -3,6 +3,9 @@ package streamingsystems;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * A class for starting Kafka test data generation.
+ */
 public class GenerateTestDataMain {
     public static void main(String[] args) throws InterruptedException {
         Logger logger = LoggerFactory.getLogger(GenerateTestDataMain.class);
