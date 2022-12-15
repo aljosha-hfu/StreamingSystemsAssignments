@@ -6,10 +6,6 @@
       <value />
     </option>
     <JavaCodeStyleSettings>
-      <option name="ANNOTATION_PARAMETER_WRAP" value="5" />
-      <option name="ALIGN_MULTILINE_ANNOTATION_PARAMETERS" value="true" />
-      <option name="NEW_LINE_AFTER_LPAREN_IN_ANNOTATION" value="true" />
-      <option name="RPAREN_ON_NEW_LINE_IN_ANNOTATION" value="true" />
       <option name="ALIGN_MULTILINE_TEXT_BLOCKS" value="true" />
       <option name="RECORD_COMPONENTS_WRAP" value="5" />
       <option name="NEW_LINE_AFTER_LPAREN_IN_RECORD_HEADER" value="true" />
@@ -22,11 +18,11 @@
       <option name="KEEP_CONTROL_STATEMENT_IN_ONE_LINE" value="false" />
       <option name="BLANK_LINES_BEFORE_PACKAGE" value="1" />
       <option name="ALIGN_MULTILINE_CHAINED_METHODS" value="true" />
+      <option name="ALIGN_MULTILINE_PARAMETERS" value="false" />
       <option name="ALIGN_MULTILINE_PARAMETERS_IN_CALLS" value="true" />
       <option name="ALIGN_MULTILINE_BINARY_OPERATION" value="true" />
       <option name="ALIGN_MULTILINE_ASSIGNMENT" value="true" />
       <option name="ALIGN_MULTILINE_TERNARY_OPERATION" value="true" />
-      <option name="ALIGN_MULTILINE_METHOD_BRACKETS" value="true" />
       <option name="ALIGN_MULTILINE_PARENTHESIZED_EXPRESSION" value="true" />
       <option name="ALIGN_MULTILINE_ARRAY_INITIALIZER_EXPRESSION" value="true" />
       <option name="SPACE_AFTER_TYPE_CAST" value="false" />
@@ -64,12 +60,9 @@
       <option name="DOWHILE_BRACE_FORCE" value="1" />
       <option name="WHILE_BRACE_FORCE" value="1" />
       <option name="FOR_BRACE_FORCE" value="1" />
-      <option name="WRAP_LONG_LINES" value="true" />
-      <option name="METHOD_ANNOTATION_WRAP" value="5" />
-      <option name="CLASS_ANNOTATION_WRAP" value="5" />
-      <option name="PARAMETER_ANNOTATION_WRAP" value="5" />
-      <option name="VARIABLE_ANNOTATION_WRAP" value="5" />
-      <option name="ENUM_CONSTANTS_WRAP" value="5" />
+      <option name="METHOD_ANNOTATION_WRAP" value="0" />
+      <option name="CLASS_ANNOTATION_WRAP" value="0" />
+      <option name="FIELD_ANNOTATION_WRAP" value="0" />
     </codeStyleSettings>
   </code_scheme>
 </component>
