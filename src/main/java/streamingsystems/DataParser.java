@@ -21,12 +21,9 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
 
-/**
- * Test the main functionality
- */
-public class BeamQueryMain {
-    public static void main(String[] args) {
-        Logger logger = LoggerFactory.getLogger(BeamQueryMain.class);
+public class DataParser {
+    public void parse() {
+        Logger logger = LoggerFactory.getLogger(Main.class.getName());
         logger.info("Starting...");
 
         PipelineOptions options = PipelineOptionsFactory.create();
@@ -56,7 +53,7 @@ public class BeamQueryMain {
                                                OutputReceiver<KV<Integer, Double>> outputRecord) {
                         String[] splitSensorValueStrings = inputRecord.getKV().getValue().split(",");
 
-                        if(inputRecord.getKV().getValue().length() == 0){ // Ignore empty strings
+                        if (inputRecord.getKV().getValue().length() == 0) { // Ignore empty strings
                             return;
                         }
                         Arrays.stream(splitSensorValueStrings).forEach(sensorValueString -> {
