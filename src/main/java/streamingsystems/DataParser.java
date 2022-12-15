@@ -26,6 +26,11 @@ import java.util.Arrays;
  */
 public class DataParser {
     /**
+     * The windows size in seconds.
+     */
+    public static final int WINDOW_SIZE_SECONDS = 30;
+
+    /**
      * The main method for this class.
      */
     public void parse() {
@@ -59,7 +64,7 @@ public class DataParser {
                     @ProcessElement public void processElement(
                             @Element KafkaRecord<Integer, String> inputRecord,
                             OutputReceiver<KV<Integer, Double>> outputRecord
-                                                              ) {
+                    ) {
                         String[] splitSensorValueStrings = inputRecord.getKV().getValue().split(",");
 
                         if (inputRecord.getKV().getValue().length() == 0) { // Ignore empty strings
@@ -76,7 +81,7 @@ public class DataParser {
 
         // Window the last 30 seconds
         PCollection<KV<Integer, Double>> windowedSpeedInLast30Seconds = parsedRecords.apply(Window.into(FixedWindows.of(
-                Duration.standardSeconds(30)))).apply(Mean.perKey());
+                Duration.standardSeconds(WINDOW_SIZE_SECONDS)))).apply(Mean.perKey());
 
         // Print the collection
         windowedSpeedInLast30Seconds.apply(ParDo.of(new DoFn<KV<Integer, Double>, Void>() {
