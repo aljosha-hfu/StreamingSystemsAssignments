@@ -30,6 +30,9 @@ public class TestDataGenerator {
         return singletonInstance;
     }
 
+    /**
+     * @return the properties for the Kafka producer
+     */
     private Properties generateProperties() {
         Properties kafkaProducerProps = new Properties();
 
@@ -51,13 +54,9 @@ public class TestDataGenerator {
      * @param m2                  Maximum time between two speed values in ms
      * @throws InterruptedException Thrown if the thread is interrupted
      */
-    @SuppressWarnings( "InfiniteLoopStatement")
-    public void generateTestData(float minSpeed,
-                                 float maxSpeed,
-                                 int amountOfSensors,
-                                 int amountOfSpeedValues,
-                                 int m1,
-                                 int m2) throws InterruptedException {
+    @SuppressWarnings("InfiniteLoopStatement") public void generateTestData(
+            float minSpeed, float maxSpeed, int amountOfSensors, int amountOfSpeedValues, int m1, int m2
+    ) throws InterruptedException {
         // Negative speed values should be possible
         // Next step: generate random speed values with a time skip between m1 and m2
 
@@ -73,8 +72,10 @@ public class TestDataGenerator {
                 speedValueStringBuilder.add(String.valueOf(randomSpeedValue));
             }
 
-            ProducerRecord<Integer, String> recordToSend = new ProducerRecord<>(KAFKA_TOPIC_NAME, randomSensorId,
-                                                                                speedValueStringBuilder.toString());
+            ProducerRecord<Integer, String> recordToSend = new ProducerRecord<>(KAFKA_TOPIC_NAME,
+                                                                                randomSensorId,
+                                                                                speedValueStringBuilder.toString()
+            );
             kafkaProducer.send(recordToSend);
 
             System.out.println("Sent record: " + recordToSend);

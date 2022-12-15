@@ -21,7 +21,13 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
 
+/**
+ * A class for starting the data processing pipeline.
+ */
 public class DataParser {
+    /**
+     * The main method for this class.
+     */
     public void parse() {
         Logger logger = LoggerFactory.getLogger(Main.class.getName());
         logger.info("Starting...");
