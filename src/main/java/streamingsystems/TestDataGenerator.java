@@ -51,7 +51,7 @@ public class TestDataGenerator {
      * @param m2                  Maximum time between two speed values in ms
      * @throws InterruptedException Thrown if the thread is interrupted
      */
-    @SuppressWarnings("InfiniteLoopStatement")
+    @SuppressWarnings( "InfiniteLoopStatement")
     public void generateTestData(float minSpeed,
                                  float maxSpeed,
                                  int amountOfSensors,
@@ -73,8 +73,8 @@ public class TestDataGenerator {
                 speedValueStringBuilder.add(String.valueOf(randomSpeedValue));
             }
 
-            ProducerRecord<Integer, String> recordToSend =
-                    new ProducerRecord<>(KAFKA_TOPIC_NAME, randomSensorId, speedValueStringBuilder.toString());
+            ProducerRecord<Integer, String> recordToSend = new ProducerRecord<>(KAFKA_TOPIC_NAME, randomSensorId,
+                                                                                speedValueStringBuilder.toString());
             kafkaProducer.send(recordToSend);
 
             System.out.println("Sent record: " + recordToSend);

@@ -5,8 +5,6 @@ import org.slf4j.LoggerFactory;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Properties;
 
 /**
@@ -38,8 +36,7 @@ public enum ConfigManager {
         try {
             FileInputStream fileInputStream = new FileInputStream("src/main/resources/app.config");
             properties.load(fileInputStream);
-            kafkaTopicName = properties.getProperty("kafka.topicname") +
-                    new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+            kafkaTopicName = properties.getProperty("kafka.topicname");
             kafkaClientId = properties.getProperty("kafka.clientid");
             kafkaUrl = properties.getProperty("kafka.url");
             logger.info("Kafka topic name: " + kafkaTopicName);
