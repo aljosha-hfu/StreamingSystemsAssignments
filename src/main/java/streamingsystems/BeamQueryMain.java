@@ -17,9 +17,9 @@ import org.slf4j.LoggerFactory;
 /**
  * Test the main functionality
  */
-public class Main {
+public class BeamQueryMain {
     public static void main(String[] args) {
-        Logger logger = LoggerFactory.getLogger(Main.class);
+        Logger logger = LoggerFactory.getLogger(BeamQueryMain.class);
         logger.info("Starting...");
 
         PipelineOptions options = PipelineOptionsFactory.create();
