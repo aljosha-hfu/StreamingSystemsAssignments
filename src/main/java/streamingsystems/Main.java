@@ -10,6 +10,7 @@ import org.apache.beam.sdk.transforms.ParDo;
 import org.apache.beam.sdk.values.PCollection;
 import org.apache.kafka.common.serialization.IntegerDeserializer;
 import org.apache.kafka.common.serialization.StringDeserializer;
+import org.joda.time.LocalDate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,6 +26,7 @@ public class Main {
         //        options.setRunner(FlinkRunner.class);
         Pipeline pipeline = Pipeline.create(options);
 
+
         PCollection<KafkaRecord<Integer, String>> kafkaRecords = pipeline.apply(KafkaIO
                                                                                         .<Integer, String>read()
                                                                                         .withBootstrapServers(
@@ -34,7 +36,11 @@ public class Main {
                                                                                         .withKeyDeserializer(
                                                                                                 IntegerDeserializer.class)
                                                                                         .withValueDeserializer(
-                                                                                                StringDeserializer.class));
+                                                                                                StringDeserializer.class)
+                                                                                        .withStartReadTime(LocalDate
+                                                                                                                   .parse("1990-01-01")
+                                                                                                                   .toDateTimeAtCurrentTime()
+                                                                                                                   .toInstant()));
 
         // Print the collection
         kafkaRecords.apply(ParDo.of(new DoFn<KafkaRecord<Integer, String>, Void>() {
