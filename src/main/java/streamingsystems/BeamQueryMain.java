@@ -15,6 +15,8 @@ import org.joda.time.LocalDate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Arrays;
+
 /**
  * Test the main functionality
  */
@@ -43,21 +45,18 @@ public class BeamQueryMain {
                                                                                                                    .toDateTimeAtCurrentTime()
                                                                                                                    .toInstant()));
         // pardo into a new PCollection as arrays with keys
-        PCollection<KV<Integer, String[]>> parsedRecords = kafkaRecords.apply(
-                ParDo.of(new DoFn<KafkaRecord<Integer, String>, KV<Integer, String[]>>() {
+        PCollection<KV<Integer, Double>> parsedRecords = kafkaRecords.apply(
+                ParDo.of(new DoFn<KafkaRecord<Integer, String>, KV<Integer, Double>>() {
                     @ProcessElement
                     public void processElement(@Element KafkaRecord<Integer, String> inputRecord,
-                                               OutputReceiver<KV<Integer, String[]>> outputRecord) {
-                        String[] splitSensorValues = inputRecord.getKV().getValue().split(",");
-
-                        //Remove negative values
-                        for (int i = 0; i < splitSensorValues.length; i++) {
-                            if (splitSensorValues[i].startsWith("-")) {
-                                splitSensorValues[i] = splitSensorValues[i].substring(1);
+                                               OutputReceiver<KV<Integer, Double>> outputRecord) {
+                        String[] splitSensorValueStrings = inputRecord.getKV().getValue().split(",");
+                        Arrays.stream(splitSensorValueStrings).forEach(sensorValueString -> {
+                            double splitSensorValue = Double.parseDouble(sensorValueString);
+                            if (splitSensorValue > 0) {
+                                outputRecord.output(KV.of(inputRecord.getKV().getKey(), splitSensorValue));
                             }
-                        }
-
-                        outputRecord.output(KV.of(inputRecord.getKV().getKey(), splitSensorValues));
+                        });
                     }
                 }));
 
