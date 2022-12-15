@@ -55,6 +55,10 @@ public class BeamQueryMain {
                     public void processElement(@Element KafkaRecord<Integer, String> inputRecord,
                                                OutputReceiver<KV<Integer, Double>> outputRecord) {
                         String[] splitSensorValueStrings = inputRecord.getKV().getValue().split(",");
+
+                        if(inputRecord.getKV().getValue().length() == 0){ // Ignore empty strings
+                            return;
+                        }
                         Arrays.stream(splitSensorValueStrings).forEach(sensorValueString -> {
                             double splitSensorValue = Double.parseDouble(sensorValueString);
                             if (splitSensorValue > 0) {
