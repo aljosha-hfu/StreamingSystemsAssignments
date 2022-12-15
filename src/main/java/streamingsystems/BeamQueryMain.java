@@ -6,11 +6,15 @@ import org.apache.beam.sdk.io.kafka.KafkaRecord;
 import org.apache.beam.sdk.options.PipelineOptions;
 import org.apache.beam.sdk.options.PipelineOptionsFactory;
 import org.apache.beam.sdk.transforms.DoFn;
+import org.apache.beam.sdk.transforms.Mean;
 import org.apache.beam.sdk.transforms.ParDo;
+import org.apache.beam.sdk.transforms.windowing.FixedWindows;
+import org.apache.beam.sdk.transforms.windowing.Window;
 import org.apache.beam.sdk.values.KV;
 import org.apache.beam.sdk.values.PCollection;
 import org.apache.kafka.common.serialization.IntegerDeserializer;
 import org.apache.kafka.common.serialization.StringDeserializer;
+import org.joda.time.Duration;
 import org.joda.time.LocalDate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -60,18 +64,16 @@ public class BeamQueryMain {
                     }
                 }));
 
-        // Group messages by key
-        PCollection<KV<Integer, Iterable<String[]>>> groupedSpeedRecords = parsedRecords.apply(
-                org.apache.beam.sdk.transforms.GroupByKey.create());
+        // Window the last 30 seconds
+        PCollection<KV<Integer, Double>> windowedSpeedInLast30Seconds = parsedRecords
+                .apply(Window.into(FixedWindows.of(Duration.standardSeconds(30))))
+                .apply(Mean.perKey());
 
         // Print the collection
-        groupedSpeedRecords.apply(ParDo.of(new DoFn<KV<Integer, Iterable<String[]>>, Void>() {
+        windowedSpeedInLast30Seconds.apply(ParDo.of(new DoFn<KV<Integer, Double>, Void>() {
             @ProcessElement
-            public void processElement(@Element KV<Integer, Iterable<String[]>> record) {
-                System.out.println(record.getKey());
-                for (String[] sensorValues : record.getValue()) {
-                    System.out.println("  " + sensorValues[0] + " " + sensorValues[1] + " " + sensorValues[2]);
-                }
+            public void processElement(@Element KV<Integer, Double> inputRecord) {
+                System.out.println("Key: " + inputRecord.getKey() + " Value: " + inputRecord.getValue());
             }
         }));
 
