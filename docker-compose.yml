@@ -1,30 +1,6 @@
 version: "3.8"
 
 services:
-  # FLINK
-  jobmanager:
-    image: flink:latest
-    ports:
-      - "8081:8081"
-    command: jobmanager
-    environment:
-      - |
-        FLINK_PROPERTIES=
-        jobmanager.rpc.address: jobmanager        
-
-  taskmanager:
-    image: flink:latest
-    depends_on:
-      - jobmanager
-    command: taskmanager
-    deploy:
-      replicas: 1
-    environment:
-      - |
-        FLINK_PROPERTIES=
-        jobmanager.rpc.address: jobmanager
-        taskmanager.numberOfTaskSlots: 2
-
   # KAFKA
   zookeeper:
     image: bitnami/zookeeper
@@ -59,6 +35,17 @@ services:
       - JVM_OPTS=-Xms32M -Xmx64M
     depends_on:
       - kafka
+  kafka-ui:
+    container_name: kafka-ui
+    image: provectuslabs/kafka-ui:latest
+    ports:
+      - "8080"
+    depends_on:
+      - kafka
+    environment:
+      KAFKA_CLUSTERS_0_NAME: local
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka0:29092
+      KAFKA_CLUSTERS_0_METRICS_PORT: 9997
 
 volumes:
   zookeeper_data:
