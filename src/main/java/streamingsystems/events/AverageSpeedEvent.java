@@ -1,8 +1,15 @@
 package streamingsystems.events;
 
-public class AverageSpeedEvent extends BaseEvent{
+public class AverageSpeedEvent extends BaseEvent {
 
-    protected AverageSpeedEvent(int sensorId) {
+    public double getAverageSpeed() {
+        return averageSpeed;
+    }
+
+    private final double averageSpeed;
+
+    protected AverageSpeedEvent(int sensorId, double averageSpeed) {
         super(sensorId);
+        this.averageSpeed = averageSpeed;
     }
 }
