@@ -45,7 +45,7 @@ public enum ConfigManager {
             logger.info("Kafka topic name: " + kafkaTopicName);
             logger.info("Kafka client id: " + kafkaClientId);
             logger.info("Kafka url: " + kafkaUrl);
-            logger.info("MonitorinPeriodInSeconds: " + monitoringWindowInSeconds);
+            logger.info("MonitoringPeriodInSeconds: " + monitoringWindowInSeconds);
         } catch (IOException e) {
             e.printStackTrace();
         }
