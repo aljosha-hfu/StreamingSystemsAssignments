@@ -21,6 +21,8 @@ public enum ConfigManager {
     private String kafkaClientId;
     private String kafkaUrl;
 
+    private int monitoringWindowInSeconds;
+
 
     ConfigManager() {
         loadConfig();
@@ -39,9 +41,11 @@ public enum ConfigManager {
             kafkaTopicName = properties.getProperty("kafka.topicname");
             kafkaClientId = properties.getProperty("kafka.clientid");
             kafkaUrl = properties.getProperty("kafka.url");
+            monitoringWindowInSeconds = Integer.parseInt(properties.getProperty("monitorinPeriodInSeconds"));
             logger.info("Kafka topic name: " + kafkaTopicName);
             logger.info("Kafka client id: " + kafkaClientId);
             logger.info("Kafka url: " + kafkaUrl);
+            logger.info("MonitorinPeriodInSeconds: " + monitoringWindowInSeconds);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -68,4 +72,10 @@ public enum ConfigManager {
         return kafkaUrl;
     }
 
+    /**
+     * @return The time of the monitoring windows in seconds
+     */
+    public int getMonitoringWindowInSeconds() {
+        return monitoringWindowInSeconds;
+    }
 }
