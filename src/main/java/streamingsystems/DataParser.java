@@ -19,12 +19,13 @@ import org.joda.time.LocalDate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
 /**
  * A class for starting the data processing pipeline.
  */
-public class DataParser {
+public class DataParser implements Serializable {
     /**
      * The windows size in seconds.
      */
