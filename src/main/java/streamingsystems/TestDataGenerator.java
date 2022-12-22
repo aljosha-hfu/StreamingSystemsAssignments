@@ -64,8 +64,8 @@ public class TestDataGenerator {
         // Next step: generate random speed values with a time skip between m1 and m2
 
         while (true) {
-            Integer randomSensorId = randomGenerator.nextInt() * amountOfSensors;
-            int randomAmountOfGeneratedSpeedValues = randomGenerator.nextInt() * amountOfSpeedValues;
+            Integer randomSensorId = (int)(randomGenerator.nextDouble() * amountOfSensors);
+            int randomAmountOfGeneratedSpeedValues = (int)(randomGenerator.nextDouble() * amountOfSpeedValues);
 
             StringJoiner speedValueStringBuilder = new StringJoiner(",");
 
@@ -83,7 +83,7 @@ public class TestDataGenerator {
 
             System.out.println("Sent record: " + recordToSend);
 
-            long timeToSleep = randomGenerator.nextLong() * (m2 - m1) + m1;
+            long timeToSleep = (long)(randomGenerator.nextDouble() * (m2 - m1) + m1);
             Thread.sleep(timeToSleep);
         }
     }
