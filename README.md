@@ -21,3 +21,6 @@ Source code for assignments of the course StreamingSystems of the computer scien
 
 ### Task 06
 ![A_06 Branch](https://github.com/AljoshaVieth/StreamingSystemsAssignments/actions/workflows/maven.yml/badge.svg?branch=A_06)
+
+### Task 07
+![A_07 Branch](https://github.com/AljoshaVieth/StreamingSystemsAssignments/actions/workflows/maven.yml/badge.svg?branch=A_07)
