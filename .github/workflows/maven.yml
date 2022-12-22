@@ -14,6 +14,8 @@ jobs:
           java-version: '19'
           distribution: 'adopt'
           cache: maven
+      - name: Copy config file
+        run: cp src/main/resources/app-pipeline.config src/main/resources/app.config
       - name: Start docker compose stack
         run: docker-compose up -d
       - name: Build with Maven
