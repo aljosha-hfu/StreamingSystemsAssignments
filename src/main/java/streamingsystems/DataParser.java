@@ -56,8 +56,8 @@ public class DataParser {
                                                                                                                    .toDateTimeAtCurrentTime()
                                                                                                                    .toInstant()));
 
-        // Pull the Pardo functions into a separate class
-        // pardo into a new PCollection as arrays with keys
+        // TODO: Pull the Pardo functions into a separate class
+        // Pardo into a new PCollection as arrays with keys
         PCollection<KV<Integer, Double>>
                 parsedRecords =
                 kafkaRecords.apply(ParDo.of(new DoFn<KafkaRecord<Integer, String>, KV<Integer, Double>>() {
