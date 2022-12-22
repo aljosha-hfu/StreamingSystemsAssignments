@@ -61,7 +61,7 @@ public class DataParser {
         PCollection<KV<Integer, Double>>
                 parsedRecords =
                 kafkaRecords.apply(ParDo.of(new DoFn<KafkaRecord<Integer, String>, KV<Integer, Double>>() {
-                    @ProcessElement public void processElement(
+                    @ProcessElement public void parseValues(
                             @Element KafkaRecord<Integer, String> inputRecord,
                             OutputReceiver<KV<Integer, Double>> outputRecord
                     ) {
@@ -85,7 +85,7 @@ public class DataParser {
 
         // Print the collection
         windowedSpeedInLast30Seconds.apply(ParDo.of(new DoFn<KV<Integer, Double>, Void>() {
-            @ProcessElement public void processElement(@Element KV<Integer, Double> inputRecord) {
+            @ProcessElement public void printAveragedValues(@Element KV<Integer, Double> inputRecord) {
                 System.out.println("Key: " + inputRecord.getKey() + " Value: " + inputRecord.getValue());
             }
         }));
