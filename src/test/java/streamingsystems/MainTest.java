@@ -6,7 +6,6 @@ import streamingsystems.CommandsModel.CommandHandler;
 import streamingsystems.CommandsModel.EventStore;
 import streamingsystems.QueryHandlingModel.QueryHandler;
 import streamingsystems.QueryHandlingModel.QueryModel;
-import streamingsystems.implemented.MovingItemDTO;
 import streamingsystems.implemented.MovingItemImpl;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -17,6 +16,7 @@ class MainTest {
     QueryModel queryModel;
     QueryHandler queryHandler;
 
+    @BeforeEach
     void setUp() {
         commandHandlerInstance = CommandHandler.getInstance();
         eventStore = EventStore.getInstance();
