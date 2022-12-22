@@ -87,7 +87,7 @@ public class DataParser implements Serializable {
         // Print the collection
         windowedSpeedInLast30Seconds.apply(ParDo.of(new DoFn<KV<Integer, Double>, Void>() {
             @ProcessElement public void printAveragedValues(@Element KV<Integer, Double> inputRecord) {
-               logger.info("Key: " + inputRecord.getKey() + " Value: " + inputRecord.getValue());
+                logger.info("Sensor ID: " + inputRecord.getKey() + "; 30s avg speed: " + inputRecord.getValue());
             }
         }));
 
