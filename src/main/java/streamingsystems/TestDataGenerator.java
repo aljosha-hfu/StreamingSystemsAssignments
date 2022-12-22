@@ -5,6 +5,8 @@ import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.serialization.IntegerSerializer;
 import org.apache.kafka.common.serialization.StringSerializer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Properties;
 import java.util.Random;
@@ -21,9 +23,11 @@ public class TestDataGenerator {
     private final String KAFKA_TOPIC_NAME = ConfigManager.INSTANCE.getKafkaTopicName();
 
     private final Random randomGenerator = new Random(31337101);
+    private final Logger logger;
 
     private TestDataGenerator() {
         kafkaProducer = new KafkaProducer<>(generateProperties());
+        logger = LoggerFactory.getLogger(TestDataGenerator.class.getName());
     }
 
     /**
@@ -80,8 +84,7 @@ public class TestDataGenerator {
                                                                                 speedValueStringBuilder.toString()
             );
             kafkaProducer.send(recordToSend);
-
-            System.out.println("Sent record: " + recordToSend);
+            logger.info("Sent record: " + recordToSend);
 
             long timeToSleep = (long)(randomGenerator.nextDouble() * (m2 - m1) + m1);
             Thread.sleep(timeToSleep);

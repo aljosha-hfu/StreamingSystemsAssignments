@@ -34,7 +34,7 @@ public class DataParser {
      * The main method for this class.
      */
     public void parse() {
-        Logger logger = LoggerFactory.getLogger(Main.class.getName());
+        Logger logger = LoggerFactory.getLogger(DataParser.class.getName());
         logger.info("Starting...");
 
         PipelineOptions options = PipelineOptionsFactory.create();
