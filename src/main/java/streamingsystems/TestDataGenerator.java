@@ -7,6 +7,7 @@ import org.apache.kafka.common.serialization.IntegerSerializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 
 import java.util.Properties;
+import java.util.Random;
 import java.util.StringJoiner;
 
 /**
@@ -18,6 +19,8 @@ public class TestDataGenerator {
     private static final TestDataGenerator singletonInstance = new TestDataGenerator();
     private final KafkaProducer<Integer, String> kafkaProducer;
     private final String KAFKA_TOPIC_NAME = ConfigManager.INSTANCE.getKafkaTopicName();
+
+    private final Random randomGenerator = new Random(31337101);
 
     private TestDataGenerator() {
         kafkaProducer = new KafkaProducer<>(generateProperties());
@@ -61,14 +64,14 @@ public class TestDataGenerator {
         // Next step: generate random speed values with a time skip between m1 and m2
 
         while (true) {
-            Integer randomSensorId = (int)(Math.random() * amountOfSensors);
-            int randomAmountOfGeneratedSpeedValues = (int)(Math.random() * amountOfSpeedValues);
+            Integer randomSensorId = randomGenerator.nextInt() * amountOfSensors;
+            int randomAmountOfGeneratedSpeedValues = randomGenerator.nextInt() * amountOfSpeedValues;
 
             StringJoiner speedValueStringBuilder = new StringJoiner(",");
 
             // Generate random speed values
             for (int i = 0; i < randomAmountOfGeneratedSpeedValues; i++) {
-                float randomSpeedValue = (float)(Math.random() * (maxSpeed - minSpeed) + minSpeed);
+                float randomSpeedValue = randomGenerator.nextFloat() * (maxSpeed - minSpeed) + minSpeed;
                 speedValueStringBuilder.add(String.valueOf(randomSpeedValue));
             }
 
@@ -80,7 +83,7 @@ public class TestDataGenerator {
 
             System.out.println("Sent record: " + recordToSend);
 
-            long timeToSleep = (long)(Math.random() * (m2 - m1) + m1);
+            long timeToSleep = randomGenerator.nextLong() * (m2 - m1) + m1;
             Thread.sleep(timeToSleep);
         }
     }
