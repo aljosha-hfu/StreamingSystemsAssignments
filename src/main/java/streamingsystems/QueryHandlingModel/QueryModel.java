@@ -14,7 +14,7 @@ public class QueryModel {
     private static QueryModel INSTANCE;
 
     public static QueryModel getInstance() {
-        if(INSTANCE == null){
+        if (INSTANCE == null) {
             INSTANCE = new QueryModel();
         }
         return INSTANCE;
@@ -22,29 +22,29 @@ public class QueryModel {
 
 
     private HashMap<String, MovingItemDTO> movingItemDTOHashMap = new HashMap<>();
-       private HashMap<String, MovingItemImpl> movingItemImplHashMap = new HashMap<>();
+    private HashMap<String, MovingItemImpl> movingItemImplHashMap = new HashMap<>();
 
     private QueryModel() {
         updateEventStore();
     }
 
 
-    public void updateEventStore(){
+    public void updateEventStore() {
         recalculateEventStoreFromEvents(EventStore.getInstance().getEventQueue());
-       movingItemDTOHashMap =  convertToMovingItemDTOMap(movingItemImplHashMap);
+        movingItemDTOHashMap = convertToMovingItemDTOMap(movingItemImplHashMap);
     }
 
-    private HashMap<String, MovingItemDTO> convertToMovingItemDTOMap(HashMap<String, streamingsystems.implemented.MovingItemImpl> movingItemImplHashMap){
+    private HashMap<String, MovingItemDTO> convertToMovingItemDTOMap(HashMap<String, streamingsystems.implemented.MovingItemImpl> movingItemImplHashMap) {
         HashMap<String, MovingItemDTO> movingItemDTOHashMap = new HashMap<>();
         movingItemImplHashMap.forEach((k, v) -> movingItemDTOHashMap.put(k, new MovingItemDTO(v)));
         return movingItemDTOHashMap;
     }
 
 
-    public void recalculateEventStoreFromEvents(LinkedBlockingQueue<Event> eventQueue){
+    public void recalculateEventStoreFromEvents(LinkedBlockingQueue<Event> eventQueue) {
         eventQueue.forEach(event -> {
-            if(event.apply() != null){
-            movingItemImplHashMap.put(event.getId(), event.apply());
+            if (event.apply() != null) {
+                movingItemImplHashMap.put(event.getId(), event.apply());
             } else {
                 movingItemImplHashMap.remove(event.getId());
             }
@@ -53,13 +53,13 @@ public class QueryModel {
 
 
     public MovingItemDTO getMovingItemDTOByName(String name) {
-        if(!movingItemDTOHashMap.containsKey(name)){
+        if (!movingItemDTOHashMap.containsKey(name)) {
             throw new NoSuchElementException("There is no Item with this specific name!");
         }
         return movingItemDTOHashMap.get(name);
     }
 
-    public MovingItemImpl getMovingItemImplByName(String name){
+    public MovingItemImpl getMovingItemImplByName(String name) {
         return movingItemImplHashMap.get(name);
     }
 
