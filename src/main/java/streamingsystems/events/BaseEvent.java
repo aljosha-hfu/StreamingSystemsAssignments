@@ -1,13 +1,14 @@
 package streamingsystems.events;
 
 public abstract class BaseEvent {
-    public int getSensorId() {
-        return sensorId;
+
+    final int sensorId;
+
+    protected BaseEvent(int sensorId) {
+        this.sensorId = sensorId;
     }
 
-    int sensorId;
-
-    public BaseEvent(int sensorId) {
-        this.sensorId = sensorId;
+    public int getSensorId() {
+        return sensorId;
     }
 }

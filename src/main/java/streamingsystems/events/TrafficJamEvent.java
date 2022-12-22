@@ -1,4 +1,7 @@
 package streamingsystems.events;
 
-public class TrafficJamEvent {
+public class TrafficJamEvent extends BaseEvent {
+    protected TrafficJamEvent(int sensorId) {
+        super(sensorId);
+    }
 }
