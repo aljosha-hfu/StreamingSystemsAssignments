@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
  * A class for starting Kafka test data generation.
  */
 public class TestDataGeneratorThread extends Thread {
-    Logger logger = LoggerFactory.getLogger(TestDataGeneratorThread.class.getName());
+    private final Logger logger = LoggerFactory.getLogger(TestDataGeneratorThread.class.getName());
 
     public void run() {
         try {
