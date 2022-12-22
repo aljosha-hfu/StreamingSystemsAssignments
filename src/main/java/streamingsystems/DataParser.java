@@ -86,7 +86,7 @@ public class DataParser {
         // Print the collection
         windowedSpeedInLast30Seconds.apply(ParDo.of(new DoFn<KV<Integer, Double>, Void>() {
             @ProcessElement public void printAveragedValues(@Element KV<Integer, Double> inputRecord) {
-                System.out.println("Key: " + inputRecord.getKey() + " Value: " + inputRecord.getValue());
+               logger.info("Key: " + inputRecord.getKey() + " Value: " + inputRecord.getValue());
             }
         }));
 
