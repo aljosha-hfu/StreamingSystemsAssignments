@@ -6,10 +6,7 @@ import com.espertech.esper.compiler.client.CompilerArguments;
 import com.espertech.esper.compiler.client.EPCompileException;
 import com.espertech.esper.compiler.client.EPCompiler;
 import com.espertech.esper.compiler.client.EPCompilerProvider;
-import com.espertech.esper.runtime.client.EPDeployException;
-import com.espertech.esper.runtime.client.EPDeployment;
-import com.espertech.esper.runtime.client.EPRuntime;
-import com.espertech.esper.runtime.client.EPRuntimeProvider;
+import com.espertech.esper.runtime.client.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import streamingsystems.events.AverageSpeedEvent;
@@ -33,21 +30,30 @@ public class DataParser implements Serializable {
         Logger logger = LoggerFactory.getLogger(DataParser.class.getName());
         logger.info("Starting...");
 
-        String q1 = "@name('getSensorsEvents‘) select id, speed from SensorEvent;\n";
-        String q2 = "create context EventsById partition by id from SensorEvent;\n";
-
         Configuration configuration = new Configuration();
         configuration.getCommon().addEventType(AverageSpeedEvent.class);
         configuration.getCommon().addEventType(TrafficJamEvent.class);
 
+        String getSensorEventsStatement = "@name('getSensorsEvents‘) select id, speed from AverageSpeedEvent;\n";
+        String createEventsByIdContextStatement = "create context EventsById partition by id from AverageSpeedEvent;\n";
+
         EPCompiler compiler = EPCompilerProvider.getCompiler();
         CompilerArguments args = new CompilerArguments(configuration);
-        EPCompiled epCompiled = compiler.compile(q1 + q2, args);
+        EPCompiled epCompiled = compiler.compile(getSensorEventsStatement + createEventsByIdContextStatement, args);
 
-        EPRuntime runtime = EPRuntimeProvider.getDefaultRuntime(configuration);
-        runtime.initialize();
-        EPDeployment deployment = runtime.getDeploymentService().deploy(epCompiled);
+        EPRuntime epRuntime = EPRuntimeProvider.getDefaultRuntime(configuration);
+        epRuntime.initialize();
+
+        EPDeployment epDeployment = epRuntime.getDeploymentService().deploy(epCompiled);
+
+        EPStatement epStatement = epRuntime.getDeploymentService().getStatement(epDeployment.getDeploymentId(),
+                                                                                "getSensorsEvents"
+        );
+
+        // Register a listener for the statement
+        epStatement.addListener(new SensorEventListener());
 
         logger.info("Terminating...");
     }
+
 }
