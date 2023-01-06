@@ -58,6 +58,27 @@
             <version>3.3.1</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.espertech/esper-compiler -->
+        <dependency>
+            <groupId>com.espertech</groupId>
+            <artifactId>esper-compiler</artifactId>
+            <version>8.8.0</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.espertech/esper-common -->
+        <dependency>
+            <groupId>com.espertech</groupId>
+            <artifactId>esper-common</artifactId>
+            <version>8.8.0</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.espertech/esper-runtime -->
+        <dependency>
+            <groupId>com.espertech</groupId>
+            <artifactId>esper-runtime</artifactId>
+            <version>8.8.0</version>
+        </dependency>
+
 
     </dependencies>
 </project>
