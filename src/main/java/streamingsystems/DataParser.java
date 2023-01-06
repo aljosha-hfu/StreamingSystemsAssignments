@@ -34,8 +34,16 @@ public class DataParser implements Serializable {
         configuration.getCommon().addEventType(AverageSpeedEvent.class);
         configuration.getCommon().addEventType(TrafficJamEvent.class);
 
-        String getSensorEventsStatement = "@name('getSensorsEvents‘) select id, speed from AverageSpeedEvent;\n";
-        String createEventsByIdContextStatement = "create context EventsById partition by id from AverageSpeedEvent;\n";
+        String getSensorEventsStatement = """
+                                          @name('getSensorsEvents‘)
+                                          select id, speed
+                                          from AverageSpeedEvent;
+                                          """;
+        String createEventsByIdContextStatement = """
+                                                  create context EventsById
+                                                  partition by id
+                                                  from AverageSpeedEvent;
+                                                  """;
 
         EPCompiler compiler = EPCompilerProvider.getCompiler();
         CompilerArguments args = new CompilerArguments(configuration);
