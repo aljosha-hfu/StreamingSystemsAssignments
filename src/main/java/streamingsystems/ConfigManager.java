@@ -41,7 +41,7 @@ public enum ConfigManager {
             kafkaTopicName = properties.getProperty("kafka.topicname");
             kafkaClientId = properties.getProperty("kafka.clientid");
             kafkaUrl = properties.getProperty("kafka.url");
-            monitoringWindowInSeconds = Integer.parseInt(properties.getProperty("monitorinPeriodInSeconds"));
+            monitoringWindowInSeconds = Integer.parseInt(properties.getProperty("monitoringPeriodInSeconds"));
             logger.info("Kafka topic name: " + kafkaTopicName);
             logger.info("Kafka client id: " + kafkaClientId);
             logger.info("Kafka url: " + kafkaUrl);
