@@ -19,6 +19,9 @@ import java.time.Duration;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * Consumes the data from the Kafka topic and calculates the top 10 routes.
+ */
 public class KafkaTaxiTripConsumer {
     final static String GROUP_ID = "EventStoreClientConsumerGroup";
     private static final KafkaTaxiTripConsumer singletonInstance = new KafkaTaxiTripConsumer();
@@ -31,6 +34,9 @@ public class KafkaTaxiTripConsumer {
         kafkaConsumerProperties = generateConsumerProperties();
     }
 
+    /**
+     * @return The singleton instance of the KafkaTaxiTripConsumer.
+     */
     public static KafkaTaxiTripConsumer getSingletonInstance() {
         return singletonInstance;
     }
@@ -46,6 +52,10 @@ public class KafkaTaxiTripConsumer {
         return properties;
     }
 
+    /**
+     * @param referenceTrip The trip to use as a reference for the update timeframe.
+     * @return The list of top 10 routes.
+     */
     public ArrayList<Route> getTop10MostFrequentRoutesForReferenceTrip(TaxiTrip referenceTrip) {
         try (KafkaConsumer<String, byte[]> kafkaConsumer = new KafkaConsumer<>(kafkaConsumerProperties)) {
             TopicPartition topicPartition = new TopicPartition(ConfigManager.INSTANCE.getKafkaTopicName(), 0);
@@ -86,6 +96,9 @@ public class KafkaTaxiTripConsumer {
         }
     }
 
+    /**
+     * @param triggeringTrip The trip to use as a reference for the update timeframe.
+     */
     public void printTop10MostFrequentRoutesForTriggeringTrip(TaxiTrip triggeringTrip) {
         // Get top 10 trips from Kafka
         ArrayList<Route> topTripList =

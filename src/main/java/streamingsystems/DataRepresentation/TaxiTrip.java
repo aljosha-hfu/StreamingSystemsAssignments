@@ -5,17 +5,46 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * @param medallion           The medallion of the taxi.
+ * @param hackLicense         The hack license of the taxi.
+ * @param pickupDatetime      The pickup date and time.
+ * @param dropoffDatetime     The dropoff date and time.
+ * @param tripTimeInSecs      The trip time in seconds.
+ * @param tripDistanceInMiles The trip distance in miles.
+ * @param pickupLocation      The pickup location.
+ * @param dropoffLocation     The dropoff location.
+ * @param paymentType         The payment type.
+ * @param fareAmount          The fare amount.
+ * @param surcharge           The surcharge.
+ * @param taxDollars          The tax dollars.
+ * @param tipDollars          The tip dollars.
+ * @param tollsAmount         The tolls amount.
+ * @param totalAmount         The total amount.
+ */
 public record TaxiTrip(String medallion, String hackLicense, Date pickupDatetime, Date dropoffDatetime,
                        int tripTimeInSecs, double tripDistanceInMiles, GeoCellIndex pickupLocation,
                        GeoCellIndex dropoffLocation, PaymentType paymentType, float fareAmount, float surcharge,
                        float taxDollars, float tipDollars, float tollsAmount, float totalAmount)
         implements Serializable {
 
+    /**
+     * Creates a new TaxiTrip from a string.
+     *
+     * @param inputString The input string.
+     * @return The TaxiTrip.
+     */
     public static TaxiTrip taxiTripFromString(String inputString) {
         String[] inputStringArray = inputString.split(",");
         return taxiTripFromStringList(inputStringArray);
     }
 
+    /**
+     * Creates new TaxiTrips from a string array.
+     *
+     * @param strings The input string array.
+     * @return The TaxiTrip.
+     */
     public static TaxiTrip taxiTripFromStringList(String[] strings) {
         String medallion = strings[0];
         String hackLicense = strings[1];
@@ -47,6 +76,10 @@ public record TaxiTrip(String medallion, String hackLicense, Date pickupDatetime
         }
     }
 
+    /**
+     * Get the route from the TaxiTrip.
+     * @return The route
+     */
     public Route getRoute() {
         return new Route(pickupLocation, dropoffLocation);
     }

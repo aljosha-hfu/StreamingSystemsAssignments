@@ -10,6 +10,9 @@ import streamingsystems.DataRepresentation.TaxiTrip;
 
 import java.util.Properties;
 
+/**
+ * Writes the data to the Kafka topic.
+ */
 public class KafkaTaxiTripWriter {
     private static final KafkaTaxiTripWriter singletonInstance = new KafkaTaxiTripWriter();
     private final KafkaProducer<String, byte[]> kafkaProducer;
@@ -19,6 +22,9 @@ public class KafkaTaxiTripWriter {
         kafkaProducer = new KafkaProducer<>(generateProperties());
     }
 
+    /**
+     * @return The singleton instance of the KafkaTaxiTripWriter.
+     */
     public static KafkaTaxiTripWriter getSingletonInstance() {
         return singletonInstance;
     }
@@ -34,6 +40,11 @@ public class KafkaTaxiTripWriter {
         return kafkaProducerProps;
     }
 
+    /**
+     * Writes a single TaxiTrip to the Kafka topic.
+     *
+     * @param taxiTrip The taxi trip to write to the Kafka topic.
+     */
     public void writeTaxiTripToKafka(TaxiTrip taxiTrip) {
         byte[] taxiTripByteData = SerializationUtils.serialize(taxiTrip);
         //        logger.info("Posting serialized message for event " + taxiTrip + " into Kafka");

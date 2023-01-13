@@ -10,8 +10,15 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.concurrent.atomic.AtomicLong;
 
+/**
+ * Reads the taxi trip data from a file and sends it to the Kafka topic.
+ */
 //TODO change to singleton (for consistence)!
 public class TaxiDataReader {
+    /**
+     * @param filePath The path to the file containing the taxi trip data.
+     * @throws FileNotFoundException If the file is not found.
+     */
     public static void readTaxiTripListFromFile(String filePath) throws FileNotFoundException {
         Logger logger = LoggerFactory.getLogger(TaxiDataReader.class.getName());
         logger.info("Reading file " + filePath);
