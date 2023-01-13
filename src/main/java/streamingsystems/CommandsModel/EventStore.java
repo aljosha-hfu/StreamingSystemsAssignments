@@ -10,6 +10,9 @@ import java.io.IOException;
 
 import static streamingsystems.RabbitMQConnectionManager.QUEUE_NAME;
 
+/**
+ * The event store that stores all events.
+ */
 public class EventStore {
     private static final EventStore singletonInstance = new EventStore();
     private final Logger logger;
@@ -26,6 +29,10 @@ public class EventStore {
         return singletonInstance;
     }
 
+    /**
+     * Adds an event to the event store.
+     * @param event The event to be stored.
+     */
     public void addEvent(Event event) {
         try {
             byte[] data = SerializationUtils.serialize(event);

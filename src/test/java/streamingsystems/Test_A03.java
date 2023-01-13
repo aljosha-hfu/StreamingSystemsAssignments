@@ -12,7 +12,7 @@ import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class Test_A02 {
+class Test_A03 {
     CommandHandler commandHandlerInstance;
     EventStore eventStore;
     QueryModel queryModel;

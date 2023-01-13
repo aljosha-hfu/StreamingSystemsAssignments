@@ -25,7 +25,7 @@ public class Main {
         commandHandlerInstance.deleteItem("Moving Item 1");
         QueryModel queryModel = QueryModel.getInstance();
         QueryHandler queryHandler = new QueryHandler(queryModel);
-        queryModel.updateEventStore();
+        queryModel.updateQueryModel();
 
         queryModel.getAllMovingItems().forEach(x -> logger.info(x.toString()));
         logger.info(queryHandler.getMovingItemByName("Moving Item 2").toString());

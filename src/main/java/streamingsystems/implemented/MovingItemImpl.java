@@ -6,6 +6,10 @@ import streamingsystems.MovingItem;
 import java.io.Serializable;
 import java.util.Arrays;
 
+/**
+ * The implementation of a moving item used in the domain model, commands and
+ * events.
+ */
 public class MovingItemImpl implements MovingItem, Serializable {
     private final String name;
     private int[] location;
@@ -26,6 +30,9 @@ public class MovingItemImpl implements MovingItem, Serializable {
         this.value = value;
     }
 
+    /**
+     * @param movingItem The moving item to use as a template.
+     */
     public MovingItemImpl(MovingItem movingItem) {
         this.name = movingItem.getName();
         this.location = movingItem.getLocation();
@@ -67,11 +74,17 @@ public class MovingItemImpl implements MovingItem, Serializable {
         this.location = location;
     }
 
+    /**
+     * @param location The vector to add to the current location.
+     */
     public void move(int[] location) {
         this.location = Helpers.addArrays(this.location, location);
     }
 
 
+    /**
+     * Increments the number of moves the moving item has made by one.
+     */
     public void addMoveToMoveCounter() {
         this.numberOfMoves++;
     }

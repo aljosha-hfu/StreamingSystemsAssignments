@@ -6,7 +6,6 @@ import com.rabbitmq.client.GetResponse;
 import org.apache.commons.lang3.SerializationUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import streamingsystems.CommandsModel.EventStore;
 import streamingsystems.CommandsModel.Meta.Event;
 import streamingsystems.RabbitMQConnectionManager;
 import streamingsystems.implemented.MovingItemDTO;
@@ -21,16 +20,19 @@ import java.util.*;
 public class QueryModel {
 
 
-    private static  QueryModel singletonInstance;
+    private static QueryModel singletonInstance;
 
     private QueryModel() {
         System.out.println("Instantiated QueryModel singleton...");
     }
 
+    /**
+     * @return The singleton instance of the query model.
+     */
     public static QueryModel getInstance() {
-        if(singletonInstance == null){
+        if (singletonInstance == null) {
             singletonInstance = new QueryModel();
-            singletonInstance.updateEventStore();
+            singletonInstance.updateQueryModel();
 
         }
         return singletonInstance;
@@ -43,9 +45,13 @@ public class QueryModel {
     private final HashMap<String, MovingItemImpl> movingItemImplHashMap = new HashMap<>();
 
 
-    public void updateEventStore() {
+    /**
+     * Updates the query model with the latest events from the event store.
+     */
+    public void updateQueryModel() {
         System.out.println("Updating event store...");
-        Channel channel = RabbitMQConnectionManager.getInstance().getEventStoreChannel();
+        Channel channel = RabbitMQConnectionManager.getInstance()
+                .getEventStoreChannel();
 
         LinkedList<Event> eventList = new LinkedList<>();
 
@@ -53,7 +59,8 @@ public class QueryModel {
         GetResponse response = null;
         do {
             try {
-                response = channel.basicGet(RabbitMQConnectionManager.QUEUE_NAME, true);
+                response = channel.basicGet(
+                        RabbitMQConnectionManager.QUEUE_NAME, true);
                 if (response != null) {
                     AMQP.BasicProperties props = response.getProps();
                     byte[] body = response.getBody();
@@ -61,7 +68,8 @@ public class QueryModel {
                     System.out.println("New event from RabbitMQ:");
                     System.out.println(Arrays.toString(body));
 
-                    Event deserializedData = SerializationUtils.deserialize(body);
+                    Event deserializedData = SerializationUtils.deserialize(
+                            body);
                     eventList.add(deserializedData);
                 }
             } catch (IOException e) {
@@ -74,7 +82,8 @@ public class QueryModel {
         movingItemDTOHashMap = convertToMovingItemDTOMap(movingItemImplHashMap);
     }
 
-    private HashMap<String, MovingItemDTO> convertToMovingItemDTOMap(HashMap<String, streamingsystems.implemented.MovingItemImpl> movingItemImplHashMap) {
+    private HashMap<String, MovingItemDTO> convertToMovingItemDTOMap(
+            HashMap<String, streamingsystems.implemented.MovingItemImpl> movingItemImplHashMap) {
         HashMap<String, MovingItemDTO> movingItemDTOHashMap = new HashMap<>();
         movingItemImplHashMap.forEach(
                 (k, v) -> movingItemDTOHashMap.put(k, new MovingItemDTO(v)));
@@ -82,10 +91,12 @@ public class QueryModel {
     }
 
 
-    private void recalculateEventStoreFromEvents(LinkedList<Event> eventLinkedList) {
+    private void recalculateEventStoreFromEvents(
+            LinkedList<Event> eventLinkedList) {
         logger.info("Recalculating EventStore ...");
         eventLinkedList.forEach(event -> {
-            logger.info("Event: " + event.getClass().getName() + ": " + event.getId());
+            logger.info("Event: " + event.getClass()
+                    .getName() + ": " + event.getId());
             MovingItemImpl applyReturnValue = event.apply();
             if (applyReturnValue != null) {
                 movingItemImplHashMap.put(event.getId(), applyReturnValue);
@@ -105,14 +116,20 @@ public class QueryModel {
      */
     public MovingItemDTO getMovingItemDTOByName(String name) {
         if (!movingItemDTOHashMap.containsKey(name)) {
-            throw new NoSuchElementException("There is no Item with this specific name!");
+            throw new NoSuchElementException(
+                    "There is no Item with this specific name!");
         }
         return movingItemDTOHashMap.get(name);
     }
 
+    /**
+     * @param name The name of the moving item to check.
+     * @return The moving item impl with the given name.
+     */
     public MovingItemImpl getMovingItemImplByName(String name) {
         if (!movingItemImplHashMap.containsKey(name)) {
-            throw new IllegalArgumentException("movingItemImplHashMap does not contain key " + name);
+            throw new IllegalArgumentException(
+                    "movingItemImplHashMap does not contain key " + name);
         }
         return movingItemImplHashMap.get(name);
     }
