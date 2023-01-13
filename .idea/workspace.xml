@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="748fb5f5-9b81-4ba5-bba7-f32dab2a35bb" name="Changes" comment="added check if e">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/streamingsystems/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/streamingsystems/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/streamingsystems/QueryHandlingModel/QueryModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/streamingsystems/QueryHandlingModel/QueryModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/streamingsystems/MainTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/streamingsystems/MainTest.java" afterDir="false" />
-    </list>
+    <list default="true" id="748fb5f5-9b81-4ba5-bba7-f32dab2a35bb" name="Changes" comment="added check if e" />
     <list id="766454d9-919e-40bb-b89f-6cd1528b4b56" name="Changes by basti" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +40,9 @@
     <option name="version" value="2" />
   </component>
   <component name="ProjectId" id="2FtrfcumfWdslXTX6opJhtsXQHO" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -57,13 +54,14 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "codeWithMe.voiceChat.enabledByDefault": "false",
+    "node.js.selected.package.tslint": "(autodetect)",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.0",
     "run.code.analysis.last.selected.profile": "pProject Default"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="streamingsystems.Main" />
       <module name="StreamingSystems" />
@@ -168,5 +166,9 @@
     <MESSAGE value="added maven" />
     <MESSAGE value="switched to logger" />
     <option name="LAST_COMMIT_MESSAGE" value="switched to logger" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
