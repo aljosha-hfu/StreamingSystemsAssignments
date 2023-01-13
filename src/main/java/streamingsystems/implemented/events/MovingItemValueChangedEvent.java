@@ -10,6 +10,10 @@ import java.util.HashMap;
 public class MovingItemValueChangedEvent extends Event {
     private final int newValue;
 
+    /**
+     * @param id       The id of the moving item.
+     * @param newValue The new value of the moving item.
+     */
     public MovingItemValueChangedEvent(String id, int newValue) {
         super(id);
         this.newValue = newValue;

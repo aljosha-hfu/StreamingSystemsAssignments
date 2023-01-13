@@ -10,6 +10,10 @@ import java.util.HashMap;
 public class MovingItemMovedEvent extends Event {
     private final int[] vector;
 
+    /**
+     * @param id     The id of the moving item.
+     * @param vector The vector to move the moving item with.
+     */
     public MovingItemMovedEvent(String id, int[] vector) {
         super(id);
         this.vector = vector;

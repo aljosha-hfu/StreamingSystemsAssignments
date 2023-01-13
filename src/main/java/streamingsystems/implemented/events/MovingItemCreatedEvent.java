@@ -9,6 +9,9 @@ public class MovingItemCreatedEvent extends Event {
 
     private final MovingItemImpl movingItemImpl;
 
+    /**
+     * @param movingItem The moving item that is created.
+     */
     public MovingItemCreatedEvent(MovingItemImpl movingItem) {
         super(movingItem.getName());
         this.movingItemImpl = movingItem;

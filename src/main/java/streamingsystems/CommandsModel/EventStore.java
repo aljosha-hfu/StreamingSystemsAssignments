@@ -15,6 +15,9 @@ import streamingsystems.ConfigManager;
 import java.util.Properties;
 import java.util.concurrent.ExecutionException;
 
+/**
+ * The component that stores executed events.
+ */
 public class EventStore {
     // Cache settings
     final static public String TOPIC_NAME = ConfigManager.INSTANCE.getKafkaTopicName();
@@ -40,6 +43,9 @@ public class EventStore {
         logger.info("Instantiated EventStore singleton...");
     }
 
+    /**
+     * @return The singleton instance of the event store.
+     */
     public static EventStore getInstance() {
         return singletonInstance;
     }

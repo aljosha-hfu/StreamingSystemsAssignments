@@ -14,6 +14,9 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
 
+/**
+ * The query model that gets generated from the list of events.
+ */
 public class QueryModel {
 
     final static String GROUP_ID = "EventStoreClientConsumerGroup";
@@ -50,7 +53,8 @@ public class QueryModel {
 
     private HashMap<String, MovingItemDTO> convertToMovingItemDTOMap(HashMap<String, MovingItemImpl> movingItemImplHashMap) {
         HashMap<String, MovingItemDTO> movingItemDTOHashMap = new HashMap<>();
-        movingItemImplHashMap.forEach((k, v) -> movingItemDTOHashMap.put(k, new MovingItemDTO(v)));
+        movingItemImplHashMap.forEach(
+                (k, v) -> movingItemDTOHashMap.put(k, new MovingItemDTO(v)));
         return movingItemDTOHashMap;
     }
 
