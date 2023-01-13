@@ -1,6 +1,5 @@
 package streamingsystems.CommandsModel.commands;
 
-import streamingsystems.CommandsModel.DomainModel;
 import streamingsystems.CommandsModel.EventStore;
 import streamingsystems.CommandsModel.Meta.Command;
 import streamingsystems.implemented.MovingItemImpl;
@@ -25,6 +24,7 @@ public class CreateItemCommand extends Command {
      */
     @Override
     public void handle() {
-        EventStore.getInstance().addEvent(new MovingItemCreatedEvent(movingItem));
+        EventStore.getInstance()
+                .addEvent(new MovingItemCreatedEvent(movingItem));
     }
 }

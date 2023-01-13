@@ -24,10 +24,9 @@ import java.util.Properties;
  */
 public class KafkaExtractor {
 
-    private final int POLL_FREQUENCY_MILLIS = 100;
-    private static final KafkaExtractor singletonInstance = new KafkaExtractor();
-
     final static String GROUP_ID = "EventStoreClientConsumerGroup";
+    private static final KafkaExtractor singletonInstance = new KafkaExtractor();
+    private final int POLL_FREQUENCY_MILLIS = 100;
     private final Logger logger;
     Properties kafkaConsumerProperties;
 
@@ -43,27 +42,36 @@ public class KafkaExtractor {
 
     private Properties generateProperties() {
         Properties properties = new Properties();
-        properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, EventStore.KAFKA_URL);
-        properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
-        properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, ByteArrayDeserializer.class.getName());
+        properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,
+                EventStore.KAFKA_URL);
+        properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG,
+                StringDeserializer.class.getName());
+        properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG,
+                ByteArrayDeserializer.class.getName());
         properties.put(ConsumerConfig.GROUP_ID_CONFIG, GROUP_ID);
-        properties.setProperty(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "true");
-        properties.setProperty(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, "1000");
+        properties.setProperty(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG,
+                "true");
+        properties.setProperty(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG,
+                "1000");
         return properties;
     }
 
     public LinkedList<Event> getEvents(String topic) {
-        KafkaConsumer<String, byte[]> kafkaConsumer = new KafkaConsumer<>(kafkaConsumerProperties);
+        KafkaConsumer<String, byte[]> kafkaConsumer = new KafkaConsumer<>(
+                kafkaConsumerProperties);
         TopicPartition topicPartition = new TopicPartition(topic, 0);
         kafkaConsumer.assign(List.of(topicPartition));
         kafkaConsumer.seekToBeginning(kafkaConsumer.assignment());
         LinkedList<Event> eventList = new LinkedList<>();
 
         logger.info("Polling for messages...");
-        ConsumerRecords<String, byte[]> consumerRecords = kafkaConsumer.poll(Duration.ofMillis(POLL_FREQUENCY_MILLIS));
+        ConsumerRecords<String, byte[]> consumerRecords = kafkaConsumer.poll(
+                Duration.ofMillis(POLL_FREQUENCY_MILLIS));
         for (ConsumerRecord<String, byte[]> record : consumerRecords) {
-            logger.info("BYTES EVENT VALUE: " + Arrays.toString(record.value()));
-            Event deserializedData = SerializationUtils.deserialize(record.value());
+            logger.info(
+                    "BYTES EVENT VALUE: " + Arrays.toString(record.value()));
+            Event deserializedData = SerializationUtils.deserialize(
+                    record.value());
             eventList.add(deserializedData);
         }
 

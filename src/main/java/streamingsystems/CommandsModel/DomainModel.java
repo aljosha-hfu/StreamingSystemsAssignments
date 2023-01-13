@@ -13,9 +13,8 @@ import java.util.stream.Collectors;
 
 public class DomainModel {
 
-    private static final DomainModel singletonInstance = new DomainModel();
-
     final static public String TOPIC_NAME = ConfigManager.INSTANCE.getKafkaTopicName();
+    private static final DomainModel singletonInstance = new DomainModel();
     private final Logger logger;
 
     private DomainModel() {
@@ -26,43 +25,55 @@ public class DomainModel {
     public static DomainModel getInstance() {
         return singletonInstance;
     }
+
     public int getNumberOfMovesForMovingItemName(String movingItemName) {
-        LinkedList<Event> kafkaEvents = KafkaExtractor.getSingletonInstance().getEvents(TOPIC_NAME);
-        HashMap<String, MovingItemImpl> movingItems = MovingItemListTools.getSingletonInstance().createMovingItemList(kafkaEvents);
+        LinkedList<Event> kafkaEvents = KafkaExtractor.getSingletonInstance()
+                .getEvents(TOPIC_NAME);
+        HashMap<String, MovingItemImpl> movingItems = MovingItemListTools.getSingletonInstance()
+                .createMovingItemList(kafkaEvents);
 
         return movingItems.get(movingItemName).getNumberOfMoves();
     }
 
     public int[] getPositionForMovingItemName(String movingItemName) {
-        LinkedList<Event> kafkaEvents = KafkaExtractor.getSingletonInstance().getEvents(TOPIC_NAME);
-        HashMap<String, MovingItemImpl> movingItems = MovingItemListTools.getSingletonInstance().createMovingItemList(kafkaEvents);
+        LinkedList<Event> kafkaEvents = KafkaExtractor.getSingletonInstance()
+                .getEvents(TOPIC_NAME);
+        HashMap<String, MovingItemImpl> movingItems = MovingItemListTools.getSingletonInstance()
+                .createMovingItemList(kafkaEvents);
 
         return movingItems.get(movingItemName).getLocation();
     }
 
     public boolean itemExistsOnPosition(int[] position) {
-        LinkedList<Event> kafkaEvents = KafkaExtractor.getSingletonInstance().getEvents(TOPIC_NAME);
-        HashMap<String, MovingItemImpl> movingItems = MovingItemListTools.getSingletonInstance().createMovingItemList(kafkaEvents);
+        LinkedList<Event> kafkaEvents = KafkaExtractor.getSingletonInstance()
+                .getEvents(TOPIC_NAME);
+        HashMap<String, MovingItemImpl> movingItems = MovingItemListTools.getSingletonInstance()
+                .createMovingItemList(kafkaEvents);
 
-        long numberOfItemsAtPosition = movingItems.values().stream().filter(eachItem -> Arrays.equals(eachItem.getLocation(), position)).count();
+        long numberOfItemsAtPosition = movingItems.values().stream()
+                .filter(eachItem -> Arrays.equals(eachItem.getLocation(),
+                        position)).count();
         return numberOfItemsAtPosition > 0;
     }
 
     public String getItemNameForPosition(int[] positionToFind) {
-        LinkedList<Event> kafkaEvents = KafkaExtractor.getSingletonInstance().getEvents(TOPIC_NAME);
-        HashMap<String, MovingItemImpl> movingItems = MovingItemListTools.getSingletonInstance().createMovingItemList(kafkaEvents);
+        LinkedList<Event> kafkaEvents = KafkaExtractor.getSingletonInstance()
+                .getEvents(TOPIC_NAME);
+        HashMap<String, MovingItemImpl> movingItems = MovingItemListTools.getSingletonInstance()
+                .createMovingItemList(kafkaEvents);
 
-        Optional<String> foundItemName = movingItems.entrySet().stream().filter(entry -> Arrays.equals(entry.getValue().getLocation(), positionToFind))
-                .map(Map.Entry::getKey)
-                .collect(Collectors.toSet())
-                .stream()
-                .findFirst();
+        Optional<String> foundItemName = movingItems.entrySet().stream()
+                .filter(entry -> Arrays.equals(entry.getValue().getLocation(),
+                        positionToFind)).map(Map.Entry::getKey)
+                .collect(Collectors.toSet()).stream().findFirst();
         return foundItemName.orElse(null);
     }
 
     public boolean movingItemNameExists(String movingItemName) {
-        LinkedList<Event> kafkaEvents = KafkaExtractor.getSingletonInstance().getEvents(TOPIC_NAME);
-        HashMap<String, MovingItemImpl> movingItems = MovingItemListTools.getSingletonInstance().createMovingItemList(kafkaEvents);
+        LinkedList<Event> kafkaEvents = KafkaExtractor.getSingletonInstance()
+                .getEvents(TOPIC_NAME);
+        HashMap<String, MovingItemImpl> movingItems = MovingItemListTools.getSingletonInstance()
+                .createMovingItemList(kafkaEvents);
 
         return movingItems.containsKey(movingItemName);
     }

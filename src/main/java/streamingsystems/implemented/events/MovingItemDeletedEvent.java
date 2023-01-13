@@ -14,7 +14,8 @@ public class MovingItemDeletedEvent extends Event {
     }
 
     @Override
-    public MovingItemImpl apply(HashMap<String, MovingItemImpl> movingItemImplHashMap) {
+    public MovingItemImpl apply(
+            HashMap<String, MovingItemImpl> movingItemImplHashMap) {
         return null;
     }
 }

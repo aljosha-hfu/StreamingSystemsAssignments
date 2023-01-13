@@ -47,8 +47,9 @@ public class QueryHandler implements Query {
      */
     @Override
     public Enumeration<MovingItemDTO> getMovingItemsAtPosition(int[] position) {
-        Collection<MovingItemDTO> movingItemDTOsAtPosition = getAllMovingItemsAsCollection()
-                .stream().filter((MovingItemDTO eachMovingItem) -> eachMovingItem.getLocation() == position).toList();
+        Collection<MovingItemDTO> movingItemDTOsAtPosition = getAllMovingItemsAsCollection().stream()
+                .filter((MovingItemDTO eachMovingItem) -> eachMovingItem.getLocation() == position)
+                .toList();
 
         return Collections.enumeration(movingItemDTOsAtPosition);
     }

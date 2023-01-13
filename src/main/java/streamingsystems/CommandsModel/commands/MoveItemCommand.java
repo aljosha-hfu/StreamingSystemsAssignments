@@ -35,19 +35,27 @@ public class MoveItemCommand extends Command {
      */
     @Override
     public void handle() {
-        if (DomainModel.getInstance().getNumberOfMovesForMovingItemName(id) >= 19) {
+        if (DomainModel.getInstance()
+                .getNumberOfMovesForMovingItemName(id) >= 19) {
             EventStore.getInstance().addEvent(new MovingItemDeletedEvent(id));
             return;
         }
 
-        int[] newMovingItemPosition = Helpers.addArrays(DomainModel.getInstance().getPositionForMovingItemName(id), vector);
+        int[] newMovingItemPosition = Helpers.addArrays(
+                DomainModel.getInstance().getPositionForMovingItemName(id),
+                vector);
 
-        if (DomainModel.getInstance().itemExistsOnPosition(newMovingItemPosition)) {
-            String existingMovingItemAtNewPositionId = DomainModel.getInstance().getItemNameForPosition(newMovingItemPosition);
-            EventStore.getInstance().addEvent(new MovingItemDeletedEvent(existingMovingItemAtNewPositionId));
+        if (DomainModel.getInstance()
+                .itemExistsOnPosition(newMovingItemPosition)) {
+            String existingMovingItemAtNewPositionId = DomainModel.getInstance()
+                    .getItemNameForPosition(newMovingItemPosition);
+            EventStore.getInstance().addEvent(new MovingItemDeletedEvent(
+                    existingMovingItemAtNewPositionId));
         } else {
-            System.out.println("Position is free! " + newMovingItemPosition[0] + newMovingItemPosition[1] + newMovingItemPosition[2]);
-            EventStore.getInstance().addEvent(new MovingItemMovedEvent(id, vector));
+            System.out.println(
+                    "Position is free! " + newMovingItemPosition[0] + newMovingItemPosition[1] + newMovingItemPosition[2]);
+            EventStore.getInstance()
+                    .addEvent(new MovingItemMovedEvent(id, vector));
 
         }
     }

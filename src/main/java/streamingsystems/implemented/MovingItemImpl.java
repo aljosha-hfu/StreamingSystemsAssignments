@@ -50,6 +50,13 @@ public class MovingItemImpl implements MovingItem, Serializable {
         return location;
     }
 
+    /**
+     * @param location The new location of the moving item.
+     */
+    public void setLocation(int[] location) {
+        this.location = location;
+    }
+
     @Override
     public int getNumberOfMoves() {
         return numberOfMoves;
@@ -61,22 +68,6 @@ public class MovingItemImpl implements MovingItem, Serializable {
     }
 
     /**
-     * @param location The new location of the moving item.
-     */
-    public void setLocation(int[] location) {
-        this.location = location;
-    }
-
-    public void move(int[] location) {
-        this.location = Helpers.addArrays(this.location, location);
-    }
-
-
-    public void addMoveToMoveCounter() {
-        this.numberOfMoves++;
-    }
-
-    /**
      * Set the value of the moving item.
      *
      * @param value The new value of the moving item.
@@ -85,6 +76,13 @@ public class MovingItemImpl implements MovingItem, Serializable {
         this.value = value;
     }
 
+    public void move(int[] location) {
+        this.location = Helpers.addArrays(this.location, location);
+    }
+
+    public void addMoveToMoveCounter() {
+        this.numberOfMoves++;
+    }
 
     @Override
     public String toString() {

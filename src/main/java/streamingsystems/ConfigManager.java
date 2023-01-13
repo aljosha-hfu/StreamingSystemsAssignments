@@ -20,25 +20,29 @@ public enum ConfigManager {
     private String kafkaClientId;
     private String kafkaUrl;
 
+    ConfigManager() {
+        loadConfig();
+    }
+
     private void loadConfig() {
         Properties properties = new Properties();
         try {
-            FileInputStream fileInputStream = new FileInputStream("src/main/resources/app.config");
+            FileInputStream fileInputStream = new FileInputStream(
+                    "src/main/resources/app.config");
             properties.load(fileInputStream);
             rabbitMqHost = properties.getProperty("rabbitmq.host");
-            rabbitMqPort = Integer.parseInt(properties.getProperty("rabbitmq.port"));
+            rabbitMqPort = Integer.parseInt(
+                    properties.getProperty("rabbitmq.port"));
             rabbitMqUser = properties.getProperty("rabbitmq.user");
             rabbitMqPassword = properties.getProperty("rabbitmq.password");
-            kafkaTopicName = properties.getProperty("kafka.topicname") + new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+            kafkaTopicName = properties.getProperty(
+                    "kafka.topicname") + new SimpleDateFormat(
+                    "yyyyMMdd_HHmmss").format(new Date());
             kafkaClientId = properties.getProperty("kafka.clientid");
             kafkaUrl = properties.getProperty("kafka.url");
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    ConfigManager() {
-        loadConfig();
     }
 
     public String getRabbitMqHost() {

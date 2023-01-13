@@ -11,12 +11,11 @@ import streamingsystems.implemented.MovingItemImpl;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class Test_A01 {
+    final String movingItemTestName1 = "Moving Item 1";
     CommandHandler commandHandlerInstance;
     EventStore eventStore;
     QueryModel queryModel;
     QueryHandler queryHandler;
-
-    final String movingItemTestName1 = "Moving Item 1";
     String movingItemTestName2 = "Moving Item 2";
     String movingItemTestName3 = "Moving Item 3";
 
@@ -30,36 +29,45 @@ class Test_A01 {
 
     @Test
     void createAndDeleteMovingItem() {
-        commandHandlerInstance.createItem(new MovingItemImpl(movingItemTestName1));
+        commandHandlerInstance.createItem(
+                new MovingItemImpl(movingItemTestName1));
         commandHandlerInstance.deleteItem(movingItemTestName1);
     }
 
     @Test
     void createAndMoveMovingItem() {
-        commandHandlerInstance.createItem(new MovingItemImpl(movingItemTestName1));
-        commandHandlerInstance.moveItem(movingItemTestName1, new int[]{1, 2, 3});
+        commandHandlerInstance.createItem(
+                new MovingItemImpl(movingItemTestName1));
+        commandHandlerInstance.moveItem(movingItemTestName1,
+                new int[]{1, 2, 3});
         commandHandlerInstance.deleteItem(movingItemTestName1);
     }
 
     @Test
     void createMovingItemAndChangeValue() {
-        commandHandlerInstance.createItem(new MovingItemImpl(movingItemTestName1));
+        commandHandlerInstance.createItem(
+                new MovingItemImpl(movingItemTestName1));
         commandHandlerInstance.changeValue(movingItemTestName1, 42);
         commandHandlerInstance.deleteItem(movingItemTestName1);
     }
 
     @Test
     void deleteItemThatDoesNotExist() {
-        assertThrows(IllegalArgumentException.class, () -> commandHandlerInstance.deleteItem(movingItemTestName1));
+        assertThrows(IllegalArgumentException.class,
+                () -> commandHandlerInstance.deleteItem(movingItemTestName1));
     }
 
     @Test
     void moveItemThatDoesNotExist() {
-        assertThrows(IllegalArgumentException.class, () -> commandHandlerInstance.moveItem(movingItemTestName1, new int[]{1, 2, 3}));
+        assertThrows(IllegalArgumentException.class,
+                () -> commandHandlerInstance.moveItem(movingItemTestName1,
+                        new int[]{1, 2, 3}));
     }
 
     @Test
     void changeValueOfItemThatDoesNotExist() {
-        assertThrows(IllegalArgumentException.class, () -> commandHandlerInstance.changeValue(movingItemTestName1, 420));
+        assertThrows(IllegalArgumentException.class,
+                () -> commandHandlerInstance.changeValue(movingItemTestName1,
+                        420));
     }
 }

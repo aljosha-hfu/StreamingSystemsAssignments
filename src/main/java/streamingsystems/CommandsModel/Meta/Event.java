@@ -22,5 +22,6 @@ public abstract class Event implements Serializable {
         return id;
     }
 
-    public abstract MovingItemImpl apply(HashMap<String, MovingItemImpl> movingItemImplHashMap);
+    public abstract MovingItemImpl apply(
+            HashMap<String, MovingItemImpl> movingItemImplHashMap);
 }

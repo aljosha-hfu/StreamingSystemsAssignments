@@ -29,10 +29,11 @@ public class Main {
         queryModel.updateEventStore();
         logger.info("Finished creating Query model");
         QueryHandler queryHandler = new QueryHandler(queryModel);
-//        queryModel.updateEventStore();
+        //        queryModel.updateEventStore();
 
         queryModel.getAllMovingItems().forEach(x -> logger.info(x.toString()));
-        logger.info(queryHandler.getMovingItemByName("Moving Item 2").toString());
+        logger.info(
+                queryHandler.getMovingItemByName("Moving Item 2").toString());
 
         logger.info("Terminating...");
     }

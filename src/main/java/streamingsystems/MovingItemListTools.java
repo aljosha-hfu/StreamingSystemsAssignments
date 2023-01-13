@@ -7,24 +7,29 @@ import streamingsystems.implemented.MovingItemImpl;
 
 import java.util.HashMap;
 import java.util.LinkedList;
+
 // TODO maybe this utility class could be switched into a special implementation of Hashmap with <String, MovingItemImpl>
 public class MovingItemListTools {
-    private final Logger logger;
     private static final MovingItemListTools singletonInstance = new MovingItemListTools();
-    private MovingItemListTools(){
+    private final Logger logger;
+
+    private MovingItemListTools() {
         logger = LoggerFactory.getLogger(MovingItemListTools.class);
     }
 
-    public static MovingItemListTools getSingletonInstance(){
+    public static MovingItemListTools getSingletonInstance() {
         return singletonInstance;
     }
 
-    public HashMap<String, MovingItemImpl>  createMovingItemList(LinkedList<Event> eventLinkedList) {
+    public HashMap<String, MovingItemImpl> createMovingItemList(
+            LinkedList<Event> eventLinkedList) {
         HashMap<String, MovingItemImpl> movingItemImplHashMap = new HashMap<>();
         logger.info("Recalculating EventStore ...");
         eventLinkedList.forEach(event -> {
-            logger.info("Event: " + event.getClass().getName() + ": " + event.getId());
-            MovingItemImpl applyReturnValue = event.apply(movingItemImplHashMap);
+            logger.info("Event: " + event.getClass()
+                    .getName() + ": " + event.getId());
+            MovingItemImpl applyReturnValue = event.apply(
+                    movingItemImplHashMap);
             if (applyReturnValue != null) {
                 movingItemImplHashMap.put(event.getId(), applyReturnValue);
             } else {
@@ -35,9 +40,11 @@ public class MovingItemListTools {
         return movingItemImplHashMap;
     }
 
-    public MovingItemImpl getMovingItemImplByName(String name, HashMap<String, MovingItemImpl> movingItemImplHashMap) {
+    public MovingItemImpl getMovingItemImplByName(String name,
+                                                  HashMap<String, MovingItemImpl> movingItemImplHashMap) {
         if (!movingItemImplHashMap.containsKey(name)) {
-            throw new IllegalArgumentException("movingItemImplHashMap does not contain key " + name);
+            throw new IllegalArgumentException(
+                    "movingItemImplHashMap does not contain key " + name);
         }
         return movingItemImplHashMap.get(name);
     }

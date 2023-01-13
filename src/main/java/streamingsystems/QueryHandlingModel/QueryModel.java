@@ -22,6 +22,9 @@ public class QueryModel {
     final static String GROUP_ID = "EventStoreClientConsumerGroup";
 
     private static QueryModel singletonInstance;
+    final Logger logger = LoggerFactory.getLogger(QueryModel.class);
+    private final HashMap<String, MovingItemImpl> movingItemImplHashMap = new HashMap<>();
+    private HashMap<String, MovingItemDTO> movingItemDTOHashMap = new HashMap<>();
 
     private QueryModel() {
         System.out.println("Instantiated QueryModel singleton...");
@@ -34,24 +37,20 @@ public class QueryModel {
         return singletonInstance;
     }
 
-
-    final Logger logger = LoggerFactory.getLogger(QueryModel.class);
-
-    private HashMap<String, MovingItemDTO> movingItemDTOHashMap = new HashMap<>();
-    private final HashMap<String, MovingItemImpl> movingItemImplHashMap = new HashMap<>();
-
-
     public void updateEventStore() {
         System.out.println("Updating event store...");
-//        Channel channel = RabbitMQConnectionManager.getInstance().getEventStoreChannel();
+        //        Channel channel = RabbitMQConnectionManager.getInstance().getEventStoreChannel();
 
-        LinkedList<Event> kafkaEvents = KafkaExtractor.getSingletonInstance().getEvents(ConfigManager.INSTANCE.getKafkaTopicName());
-        HashMap<String, MovingItemImpl> movingItems = MovingItemListTools.getSingletonInstance().createMovingItemList(kafkaEvents);
+        LinkedList<Event> kafkaEvents = KafkaExtractor.getSingletonInstance()
+                .getEvents(ConfigManager.INSTANCE.getKafkaTopicName());
+        HashMap<String, MovingItemImpl> movingItems = MovingItemListTools.getSingletonInstance()
+                .createMovingItemList(kafkaEvents);
 
         movingItemDTOHashMap = convertToMovingItemDTOMap(movingItems);
     }
 
-    private HashMap<String, MovingItemDTO> convertToMovingItemDTOMap(HashMap<String, MovingItemImpl> movingItemImplHashMap) {
+    private HashMap<String, MovingItemDTO> convertToMovingItemDTOMap(
+            HashMap<String, MovingItemImpl> movingItemImplHashMap) {
         HashMap<String, MovingItemDTO> movingItemDTOHashMap = new HashMap<>();
         movingItemImplHashMap.forEach(
                 (k, v) -> movingItemDTOHashMap.put(k, new MovingItemDTO(v)));
@@ -61,7 +60,8 @@ public class QueryModel {
 
     public MovingItemDTO getMovingItemDTOByName(String name) {
         if (!movingItemDTOHashMap.containsKey(name)) {
-            throw new NoSuchElementException("There is no Item with this specific name!");
+            throw new NoSuchElementException(
+                    "There is no Item with this specific name!");
         }
         return movingItemDTOHashMap.get(name);
     }
