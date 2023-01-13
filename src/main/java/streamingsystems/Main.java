@@ -3,12 +3,13 @@ package streamingsystems;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import streamingsystems.CommandsModel.CommandHandler;
-import streamingsystems.CommandsModel.EventStore;
 import streamingsystems.QueryHandlingModel.QueryHandler;
 import streamingsystems.QueryHandlingModel.QueryModel;
-import streamingsystems.implemented.MovingItemDTO;
 import streamingsystems.implemented.MovingItemImpl;
 
+/**
+ * The main class of the application.
+ */
 public class Main {
     public static void main(String[] args) {
         Logger logger = LoggerFactory.getLogger(Main.class);
@@ -25,7 +26,7 @@ public class Main {
         commandHandlerInstance.deleteItem("Moving Item 1");
         QueryModel queryModel = QueryModel.getInstance();
         QueryHandler queryHandler = new QueryHandler(queryModel);
-        queryModel.updateEventStore();
+        queryModel.updateQueryModel();
         logger.info(queryHandler.getMovingItemByName("Moving Item 2").toString());
         queryModel.getAllMovingItems().forEach(x -> logger.info(x.toString()));
 

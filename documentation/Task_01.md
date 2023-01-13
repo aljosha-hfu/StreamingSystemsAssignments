@@ -4,10 +4,6 @@
   abstract `Command`class with an abstract `handle()` method which executes the command?
   - We decided on using the latter since it allows for more code segregation and separation of concerns.
 
-## Questions
-
-- Are `id` and `name` the same thing?
-
 ### Alternative way to handle creation of Map of MovingItems in QueryModel
 Instead of always checking each eventtype and then doing the logic in the query model, one could bind the logic to the event, like it´s done in the commands.
 This could be achieved by adding a method to the Event superclass and implement it in every subclass with the corresponding logic.
