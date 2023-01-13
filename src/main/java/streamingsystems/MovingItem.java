@@ -9,10 +9,19 @@ public interface MovingItem {
      */
     String getName();
 
+    /**
+     * @return The location of the moving item.
+     */
     int[] getLocation();
 
+    /**
+     * @return The number of moves of the moving item.
+     */
     int getNumberOfMoves();
 
+    /**
+     * @return The value of the moving item.
+     */
     int getValue();
 
 

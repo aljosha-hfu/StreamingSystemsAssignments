@@ -4,6 +4,9 @@ import streamingsystems.MovingItem;
 
 import java.util.Arrays;
 
+/**
+ * Represents a moving item for use with the query system.
+ */
 public class MovingItemDTO implements MovingItem {
     private final String name;
     private final int[] location;

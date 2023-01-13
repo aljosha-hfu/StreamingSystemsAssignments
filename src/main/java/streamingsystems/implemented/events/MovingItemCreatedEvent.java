@@ -5,6 +5,9 @@ import streamingsystems.implemented.MovingItemImpl;
 
 import java.util.HashMap;
 
+/**
+ * Represents the creation of a moving item.
+ */
 public class MovingItemCreatedEvent extends Event {
 
     private final MovingItemImpl movingItemImpl;

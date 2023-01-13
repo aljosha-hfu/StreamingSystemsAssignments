@@ -13,9 +13,21 @@ public interface Commands {
      */
     void createItem(MovingItemImpl movingItem);
 
+    /**
+     * @param id The id of the moving item to delete.
+     */
     void deleteItem(String id);
+
+    /**
+     * @param id     The id of the moving item.
+     * @param vector The vector to add to the moving item's vector.
+     **/
 
     void moveItem(String id, int[] vector);
 
+    /**
+     * @param id       The id of the moving item.
+     * @param newValue The new value to set.
+     */
     void changeValue(String id, int newValue);
 }

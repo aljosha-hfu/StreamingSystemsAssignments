@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Properties;
 
 /**
- * This class should provide a method to extract all events from kafka
+ * This class provides a method to extract all events from kafka
  */
 public class KafkaExtractor {
 
@@ -36,6 +36,9 @@ public class KafkaExtractor {
         kafkaConsumerProperties = generateProperties();
     }
 
+    /**
+     * @return The singleton instance of the event store.
+     */
     public static KafkaExtractor getSingletonInstance() {
         return singletonInstance;
     }
@@ -56,6 +59,10 @@ public class KafkaExtractor {
         return properties;
     }
 
+    /**
+     * @param topic The topic to extract events from
+     * @return A list of all events in the topic
+     */
     public LinkedList<Event> getEvents(String topic) {
         KafkaConsumer<String, byte[]> kafkaConsumer = new KafkaConsumer<>(
                 kafkaConsumerProperties);

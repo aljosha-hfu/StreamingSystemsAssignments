@@ -17,10 +17,17 @@ public class MovingItemListTools {
         logger = LoggerFactory.getLogger(MovingItemListTools.class);
     }
 
+    /**
+     * @return The singleton instance of this class.
+     */
     public static MovingItemListTools getSingletonInstance() {
         return singletonInstance;
     }
 
+    /**
+     * @param eventLinkedList The list of events to use.
+     * @return A HashMap with all moving items that are in the event list.
+     */
     public HashMap<String, MovingItemImpl> createMovingItemList(
             LinkedList<Event> eventLinkedList) {
         HashMap<String, MovingItemImpl> movingItemImplHashMap = new HashMap<>();
@@ -40,6 +47,11 @@ public class MovingItemListTools {
         return movingItemImplHashMap;
     }
 
+    /**
+     * @param name                  The name of the moving item.
+     * @param movingItemImplHashMap The moving item list to search in.
+     * @return The moving item with the given name as found in the moving item list.
+     */
     public MovingItemImpl getMovingItemImplByName(String name,
                                                   HashMap<String, MovingItemImpl> movingItemImplHashMap) {
         if (!movingItemImplHashMap.containsKey(name)) {

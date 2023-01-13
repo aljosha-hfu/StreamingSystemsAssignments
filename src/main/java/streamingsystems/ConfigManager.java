@@ -6,7 +6,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
 
+/**
+ * Class for managing the configuration of the application.
+ */
 public enum ConfigManager {
+    /**
+     * The singleton instance of the ConfigManager.
+     */
     INSTANCE;
 
     private String rabbitMqHost;
@@ -45,30 +51,23 @@ public enum ConfigManager {
         }
     }
 
-    public String getRabbitMqHost() {
-        return rabbitMqHost;
-    }
-
-    public int getRabbitMqPort() {
-        return rabbitMqPort;
-    }
-
-    public String getRabbitMqUser() {
-        return rabbitMqUser;
-    }
-
-    public String getRabbitMqPassword() {
-        return rabbitMqPassword;
-    }
-
+    /**
+     * @return The Kafka topic name.
+     */
     public String getKafkaTopicName() {
         return kafkaTopicName;
     }
 
+    /**
+     * @return The Kafka client id.
+     */
     public String getKafkaClientId() {
         return kafkaClientId;
     }
 
+    /**
+     * @return The Kafka url.
+     */
     public String getKafkaUrl() {
         return kafkaUrl;
     }

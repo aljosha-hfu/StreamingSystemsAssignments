@@ -19,8 +19,13 @@ import java.util.concurrent.ExecutionException;
  * The component that stores executed events.
  */
 public class EventStore {
-    // Cache settings
+    /**
+     * The topic name to store the events in.
+     */
     final static public String TOPIC_NAME = ConfigManager.INSTANCE.getKafkaTopicName();
+    /**
+     * The Kafka URL to connect to.
+     */
     final static public String KAFKA_URL = ConfigManager.INSTANCE.getKafkaUrl();
     final static String CLIENT_ID = ConfigManager.INSTANCE.getKafkaClientId();
     private static final EventStore singletonInstance = new EventStore();
@@ -52,6 +57,9 @@ public class EventStore {
         return singletonInstance;
     }
 
+    /**
+     * @param event The event to store into Kafka.
+     */
     public void addEvent(Event event) {
         byte[] data = SerializationUtils.serialize(event);
         logger.info(

@@ -7,9 +7,9 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 class ConfigManagerTest {
     @Test
     public void testConfigManager() {
-        assertNotNull(ConfigManager.INSTANCE.getRabbitMqHost());
-        assertNotNull(ConfigManager.INSTANCE.getRabbitMqUser());
-        assertNotNull(ConfigManager.INSTANCE.getRabbitMqPassword());
+        assertNotNull(ConfigManager.INSTANCE.getKafkaTopicName());
+        assertNotNull(ConfigManager.INSTANCE.getKafkaClientId());
+        assertNotNull(ConfigManager.INSTANCE.getKafkaUrl());
     }
 
 }

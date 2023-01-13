@@ -5,6 +5,9 @@ import streamingsystems.implemented.MovingItemImpl;
 
 import java.util.HashMap;
 
+/**
+ * Represents the deletion of a moving item.
+ */
 public class MovingItemDeletedEvent extends Event {
     /**
      * @param id The id of the moving item.

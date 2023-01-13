@@ -6,6 +6,9 @@ import streamingsystems.MovingItem;
 import java.io.Serializable;
 import java.util.Arrays;
 
+/**
+ * Represents a moving item for usage with the domain model, commands and events.
+ */
 public class MovingItemImpl implements MovingItem, Serializable {
     private final String name;
     private int[] location;
@@ -26,6 +29,9 @@ public class MovingItemImpl implements MovingItem, Serializable {
         this.value = value;
     }
 
+    /**
+     * @param movingItem The moving item to create a DTO from.
+     */
     public MovingItemImpl(MovingItem movingItem) {
         this.name = movingItem.getName();
         this.location = movingItem.getLocation();
@@ -76,10 +82,16 @@ public class MovingItemImpl implements MovingItem, Serializable {
         this.value = value;
     }
 
+    /**
+     * @param location The vector to add to the current location.
+     */
     public void move(int[] location) {
         this.location = Helpers.addArrays(this.location, location);
     }
 
+    /**
+     * Increment the number of moves by one.
+     */
     public void addMoveToMoveCounter() {
         this.numberOfMoves++;
     }

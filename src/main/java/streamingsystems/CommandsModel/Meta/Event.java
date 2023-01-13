@@ -5,6 +5,9 @@ import streamingsystems.implemented.MovingItemImpl;
 import java.io.Serializable;
 import java.util.HashMap;
 
+/**
+ * Represents a change of the state of the system.
+ */
 public abstract class Event implements Serializable {
     protected final String id;
 
@@ -22,6 +25,9 @@ public abstract class Event implements Serializable {
         return id;
     }
 
+    /**
+     * @param movingItemImplHashMap The moving item list to apply the event to.
+     */
     public abstract MovingItemImpl apply(
             HashMap<String, MovingItemImpl> movingItemImplHashMap);
 }
