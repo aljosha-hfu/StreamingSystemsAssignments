@@ -12,9 +12,15 @@ import java.util.HashMap;
 import java.util.NoSuchElementException;
 import java.util.concurrent.LinkedBlockingQueue;
 
+/**
+ * The query model that gets generated from the list of events.
+ */
 public class QueryModel {
     private static QueryModel INSTANCE;
 
+    /**
+     * @return The singleton instance of the query model.
+     */
     public static QueryModel getInstance() {
         if (INSTANCE == null) {
             INSTANCE = new QueryModel();
@@ -28,7 +34,7 @@ public class QueryModel {
     private final HashMap<String, MovingItemImpl> movingItemImplHashMap = new HashMap<>();
 
     private QueryModel() {
-        updateEventStore();
+        updateQueryModel();
     }
 
 
@@ -39,7 +45,8 @@ public class QueryModel {
 
     private HashMap<String, MovingItemDTO> convertToMovingItemDTOMap(HashMap<String, streamingsystems.implemented.MovingItemImpl> movingItemImplHashMap) {
         HashMap<String, MovingItemDTO> movingItemDTOHashMap = new HashMap<>();
-        movingItemImplHashMap.forEach((k, v) -> movingItemDTOHashMap.put(k, new MovingItemDTO(v)));
+        movingItemImplHashMap.forEach(
+                (k, v) -> movingItemDTOHashMap.put(k, new MovingItemDTO(v)));
         return movingItemDTOHashMap;
     }
 
@@ -58,6 +65,12 @@ public class QueryModel {
     }
 
 
+    /**
+     * Get a moving item DTO by its name.
+     *
+     * @param name The name of the moving item to get.
+     * @return The moving item DTO with the given name.
+     */
     public MovingItemDTO getMovingItemDTOByName(String name) {
         if (!movingItemDTOHashMap.containsKey(name)) {
             throw new NoSuchElementException("There is no Item with this specific name!");
@@ -69,6 +82,11 @@ public class QueryModel {
         return movingItemImplHashMap.get(name);
     }
 
+    /**
+     * Get all moving item DTOs.
+     *
+     * @return The entire moving item DTO hash map.
+     */
     public Collection<MovingItemDTO> getAllMovingItems() {
         return this.movingItemDTOHashMap.values();
     }

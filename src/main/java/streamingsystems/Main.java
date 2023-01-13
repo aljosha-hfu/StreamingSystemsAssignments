@@ -7,6 +7,9 @@ import streamingsystems.QueryHandlingModel.QueryHandler;
 import streamingsystems.QueryHandlingModel.QueryModel;
 import streamingsystems.implemented.MovingItemImpl;
 
+/**
+ * The main class of the application.
+ */
 public class Main {
     public static void main(String[] args) {
         Logger logger = LoggerFactory.getLogger(Main.class);
