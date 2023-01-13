@@ -39,6 +39,9 @@ public class QueryModel {
     }
 
 
+    /**
+     * Update the query model from the event store.
+     */
     public void updateQueryModel() {
         recalculateQueryModelFromEvents(
                 EventStore.getInstance().getEventQueue());
@@ -84,6 +87,10 @@ public class QueryModel {
         return movingItemDTOHashMap.get(name);
     }
 
+    /**
+     * @param name The name of the moving item.
+     * @return The moving item implementation with the given name.
+     */
     public MovingItemImpl getMovingItemImplByName(String name) {
         return movingItemImplHashMap.get(name);
     }

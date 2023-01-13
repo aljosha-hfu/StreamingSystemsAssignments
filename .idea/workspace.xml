@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="ANALYZE_INJECTED_CODE" value="false" />
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="748fb5f5-9b81-4ba5-bba7-f32dab2a35bb" name="Changes" comment="added check if e" />
+    <list default="true" id="748fb5f5-9b81-4ba5-bba7-f32dab2a35bb" name="Changes" comment="added check if e">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/streamingsystems/CommandsModel/DomainModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/streamingsystems/CommandsModel/DomainModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/streamingsystems/Helpers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/streamingsystems/Helpers.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/streamingsystems/QueryHandlingModel/QueryHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/streamingsystems/QueryHandlingModel/QueryHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/streamingsystems/QueryHandlingModel/QueryModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/streamingsystems/QueryHandlingModel/QueryModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/streamingsystems/implemented/MovingItemImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/streamingsystems/implemented/MovingItemImpl.java" afterDir="false" />
+    </list>
     <list id="766454d9-919e-40bb-b89f-6cd1528b4b56" name="Changes by basti" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +68,8 @@
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.0",
-    "run.code.analysis.last.selected.profile": "pProject Default"
+    "run.code.analysis.last.selected.profile": "aDefault",
+    "settings.editor.selected.configurable": "Errors"
   }
 }]]></component>
   <component name="RunManager" selected="Application.Main">

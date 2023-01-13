@@ -72,9 +72,12 @@ public class MovingItemImpl implements MovingItem {
         this.location = location;
     }
 
+    /**
+     * @param location The vector to add to the location of the moving item.
+     */
     public void move(int[] location) {
         this.location = Helpers.addArrays(this.location, location);
-    
+
     }
 
     /**
