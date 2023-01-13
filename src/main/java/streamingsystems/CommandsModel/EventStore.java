@@ -19,6 +19,9 @@ public class EventStore {
         logger.info("Instantiated EventStore singleton...");
     }
 
+    /**
+     * @return The singleton instance of the event store.
+     */
     public static EventStore getInstance() {
         return singletonInstance;
     }

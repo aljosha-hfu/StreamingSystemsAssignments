@@ -79,11 +79,21 @@ public class DomainModel {
         return movingItemsMoveCounts.containsKey(movingItemName);
     }
 
+    /**
+     * Add a moving item name to the domain model.
+     *
+     * @param movingItemName The name of the moving item to add.
+     */
     public void addMovingItemNameToModel(String movingItemName) {
         movingItemsMoveCounts.put(movingItemName, 0);
         movingItemsPositions.put(movingItemName, new int[] {0, 0, 0});
     }
 
+    /**
+     * Remove a moving item name from the domain model.
+     *
+     * @param movingItemName The name of the moving item to remove.
+     */
     public void removeMovingItemNameFromModel(String movingItemName) {
         checkMovingItemExistsAndThrowException(movingItemName);
 

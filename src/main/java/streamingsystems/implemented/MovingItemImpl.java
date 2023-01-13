@@ -12,7 +12,14 @@ public class MovingItemImpl implements MovingItem, Serializable {
     private int numberOfMoves;
     private int value;
 
-    public MovingItemImpl(String name, int[] location, int numberOfMoves, int value) {
+    /**
+     * @param name          The name of the moving item.
+     * @param location      The location of the moving item.
+     * @param numberOfMoves The number of moves the moving item has made.
+     * @param value         The value of the moving item.
+     */
+    public MovingItemImpl(String name, int[] location, int numberOfMoves,
+                          int value) {
         this.name = name;
         this.location = location;
         this.numberOfMoves = numberOfMoves;
@@ -26,6 +33,9 @@ public class MovingItemImpl implements MovingItem, Serializable {
         this.value = movingItem.getNumberOfMoves();
     }
 
+    /**
+     * @param name The name of the moving item.
+     */
     public MovingItemImpl(String name) {
         this(name, new int[]{0, 0, 0}, 0, 0);
     }
@@ -50,6 +60,9 @@ public class MovingItemImpl implements MovingItem, Serializable {
         return value;
     }
 
+    /**
+     * @param location The new location of the moving item.
+     */
     public void setLocation(int[] location) {
         this.location = location;
     }
@@ -63,6 +76,11 @@ public class MovingItemImpl implements MovingItem, Serializable {
         this.numberOfMoves++;
     }
 
+    /**
+     * Set the value of the moving item.
+     *
+     * @param value The new value of the moving item.
+     */
     public void setValue(int value) {
         this.value = value;
     }
@@ -70,11 +88,7 @@ public class MovingItemImpl implements MovingItem, Serializable {
 
     @Override
     public String toString() {
-        return "MovingItemDTO{" +
-                "name='" + name + '\'' +
-                ", location=" + Arrays.toString(location) +
-                ", numberOfMoves=" + numberOfMoves +
-                ", value=" + value +
-                '}';
+        return "MovingItemDTO{" + "name='" + name + '\'' + ", location=" + Arrays.toString(
+                location) + ", numberOfMoves=" + numberOfMoves + ", value=" + value + '}';
     }
 }
