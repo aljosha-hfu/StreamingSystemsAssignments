@@ -1,4 +1,4 @@
-package streamingsystems;
+package streamingsystems.eventlisteners;
 
 import com.espertech.esper.common.client.EventBean;
 import com.espertech.esper.runtime.client.EPRuntime;
