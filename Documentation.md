@@ -17,6 +17,20 @@ The class `ConfigManager` is used to access the values. The config values and th
 Even though we're using this class as a Singleton (which means its values should not be able to change), we're still
 caching the config Strings in the Producer and Consumer classes to ensure they stay the same during runtime.
 
+### `docker-compose`
+
+We're using `docker-compose` to start all our services (Kafka, RabbitMQ, etc.) and to connect them to each other.
+The `docker-compose.yml` file is located in the root directory of each of the branches the project.
+
+#### Port mappings
+
+For each service we're mapping the ports to the host machine to make it easier to access the services from the Java program.
+For eaxmple, the Kafka service is mapped to port `9092` on the host machine, so we can connect to it with `localhost:9092` from Java.
+
+#### Additional configs
+
+We're also using the `docker-compose.yml` file to configure the services. For example, we're setting the `KAFKA_CFG_ADVERTISED_LISTENERS` environment variable for the Kafka service to make set this setting in the Kafka server.
+
 ## Task 01
 
 - Considerations: Should we implement the commands directly inside the `CommandsImpl` class or as subclasses of an abstract `Command`class with an abstract `handle()` method which executes the command?
@@ -172,7 +186,7 @@ This makes cross-platform development easier as each developer can start a Kafka
 The `EventStore` class sends the events into Kafka with a producer, whereas the `QueryModel` class consumes those
 messages with a KafkaConsumer.
 
-## `DomainModel` & `QueryModel` Tradeoff
+## `DomainModel` & `QueryModel` tradeoff
 
 Our `DomainModel` and `QueryModel` classes use the same codebase to deserialize Lists of Events into a List of
 MovingItems with their current states.
