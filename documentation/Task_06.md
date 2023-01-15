@@ -40,3 +40,7 @@ Example output:
 [direct-runner-worker] INFO streamingsystems.DataParser - Sensor ID: 4; 30s avg speed: 79.550183942172
 [direct-runner-worker] INFO streamingsystems.DataParser - Sensor ID: 2; 30s avg speed: 81.06412492735669
 ```
+
+## TODO
+
+- [ ] Add test cases for the `DataParser` class
