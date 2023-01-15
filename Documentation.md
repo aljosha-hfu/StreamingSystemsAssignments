@@ -1,9 +1,25 @@
 # Documentation Streaming Systems Tasks
 
+# General Task Remarks
+
+## Design decisions
+
+- Test-Driven Design (TDD) for automatic feedback on any changes
+  - Tests implemented with JUnit
+- GitHub Actions pipeline automatically verifies Maven build with automatic JUnit testing
+- We're using IntelliJ IDEA as our IDE
+  - Code Analysis is performed by IntelliJ IDEAs built-in code analysis tool
+
+## Config file
+
+We're storing our application configuration of all tasks inside `src/main/resources/app.config`.
+The class `ConfigManager` is used to access the values. The config values and therby also the `ConfigManager` change from task to task.
+Even though we're using this class as a Singleton (which means its values should not be able to change), we're still
+caching the config Strings in the Producer and Consumer classes to ensure they stay the same during runtime.
+
 ## Task 01
 
-- Considerations: Should we implement the commands directly inside the `CommandsImpl` class or as subclasses of an
-  abstract `Command`class with an abstract `handle()` method which executes the command?
+- Considerations: Should we implement the commands directly inside the `CommandsImpl` class or as subclasses of an abstract `Command`class with an abstract `handle()` method which executes the command?
   - We decided on using the latter since it allows for more code segregation and separation of concerns.
 
 ### Alternative way to handle creation of Map of MovingItems in QueryModel
@@ -57,7 +73,8 @@ public class QueryModel {
 
 ### Remove MovingItem after n (= 20) moves
 
-To achieve this behavior, we implemented a method in the domain model to check if the item has already moved n-1 times before. Then the apply() method of the MoveItemCommand class checks whether the number uses this method to determine if the item should be processed or deleted.
+To achieve this behavior, we implemented a method in the domain model to check if the item has already moved n-1 times before.
+Then the apply() method of the MoveItemCommand class checks whether the number uses this method to determine if the item should be processed or deleted.
 
 **DomainModel:**
 
@@ -146,6 +163,26 @@ We considered using Apache ActiveMQ, but since there was no ready-made Docker im
 ### RabbitMQ config
 
 ## Task 04
+
+## Apache Kafka
+
+We are starting Kafka in docker with a custom `docker-compose.yml` file.
+This makes cross-platform development easier as each developer can start a Kafka setup at whim.
+
+The `EventStore` class sends the events into Kafka with a producer, whereas the `QueryModel` class consumes those
+messages with a KafkaConsumer.
+
+## `DomainModel` & `QueryModel` Tradeoff
+
+Our `DomainModel` and `QueryModel` classes use the same codebase to deserialize Lists of Events into a List of
+MovingItems with their current states.
+As it stands, this solution doesn't scale very well, but guarantees consistency among the order of events.
+Another approach to this would be to split up the events into different partitions or even into different topics.
+This would improve scalability by a lot, but negates the consistency advantage of our implementation.
+
+The `KafkaExtractor` class gets a list of `Event` data from Kafka and parses them into a List of `Event`s.
+The `MovingItemListGenerator` class takes this list of `Event`s and generates a "current state" list of `MovingItem`s to
+work with in the `DomainModel` and `QueryModel`.
 
 ### Adding a List of events to the apply method of each event
 
