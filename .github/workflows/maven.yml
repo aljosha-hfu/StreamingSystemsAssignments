@@ -14,14 +14,10 @@ jobs:
           java-version: '19'
           distribution: 'adopt'
           cache: maven
-      - name: Start RabbitMQ
-        uses: namoshek/rabbitmq-github-action@v1
-        with:
-          version: '3.8.9'
-          ports: '5672:5672'
-          container-name: 'rabbitmq'
       - name: Copy config file
         run: cp src/main/resources/app-pipeline.config src/main/resources/app.config
+      - name: Start docker compose stack
+        run: docker-compose up -d
       - name: Build with Maven
         run: mvn --batch-mode --update-snapshots package
       - name: Publish Test Report
