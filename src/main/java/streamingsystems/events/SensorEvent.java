@@ -7,7 +7,6 @@ public class SensorEvent extends BaseEvent {
 
     public SensorEvent(int sensorId, double speed) {
         super(sensorId);
-        this.sensorId = sensorId;
         this.speed = speed;
     }
 
