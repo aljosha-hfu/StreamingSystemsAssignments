@@ -268,10 +268,6 @@ public enum PaymentType {
 
 ````
 
-### TODO
-
-- How to get the last 30 mins of Taxi Trips from Kafka?
-
 ## Task 06
 
 ### Steps
@@ -302,7 +298,7 @@ of `WINDOW_SIZE_SECONDS` (30s in our case, as described in the task) seconds.
 ### Verification of solution correctness
 
 The solution is verified by comparing the results of the `Mean.perKey()` operation with the expected results.
-Since we use a fixed random seed, the results are reproducible.
+Since we use a _fixed random seed_, the results are reproducible.
 Therefore, we can compare the results with the expected results.
 
 Example output:
