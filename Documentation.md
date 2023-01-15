@@ -10,12 +10,23 @@
 - We're using IntelliJ IDEA as our IDE
   - Code Analysis is performed by IntelliJ IDEAs built-in code analysis tool
 
-### Config file
+### Config files
 
 We're storing our application configuration of all tasks inside `src/main/resources/app.config`.
 The class `ConfigManager` is used to access the values. The config values and therby also the `ConfigManager` change from task to task.
 Even though we're using this class as a Singleton (which means its values should not be able to change), we're still
 caching the config Strings in the Producer and Consumer classes to ensure they stay the same during runtime.
+
+#### Development
+
+We're using the baseline file `app-example.config` file to configure the application environment variables for development.
+It contains values that correspond to the default values of the services we're using (Kafka, RabbitMQ, etc.) that are defined in the `docker-compose.yml` files.
+
+#### GitHub Actions
+
+We're using the `app-pipeline.config` file to configure the application environment variables for usage with GitHub Actions pipelines.
+That file also contains values that correspond to the default values of the services we're using that are defined in the `docker-compose.yml` files.
+For now, the two files `app-example.config` and `app-pipeline.config` are (mostly) identical, but keeping them separate is a good idea in case we need to change the values specifically for pipelines or development in the future.
 
 ### `docker-compose`
 
