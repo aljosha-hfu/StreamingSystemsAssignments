@@ -279,10 +279,12 @@ public enum PaymentType {
 
 ### Steps
 
-#### Test data generator
+#### TestDataGenerator
 
-Our test data generator uses a Java `Random` class with a given random seed so that the results are reproducible.
-The test data is generated using the given parameters described in the task description.
+Our `TestDataGenerator` class uses a Java `Random` class.
+It can be used with a given random seed so that the results can be reproducible if needed.
+
+The test data is generated using the parameters described in the task description.
 The generated data points are then written to Kafka.
 
 #### Kafka consumer / Data Parser
