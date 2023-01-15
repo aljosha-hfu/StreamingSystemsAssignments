@@ -181,9 +181,10 @@ if (DomainModel.getInstance().itemExistsOnPosition(newMovingItemPosition)) {
 
 ## Task 03
 
-### Which Message Queue to use?
+### Which Message Queueing system to use?
 
 We considered using Apache ActiveMQ, but since there was no ready-made Docker image in sight, we decided on using RabbitMQ instead, since we already used it in Mr. Betermieux's lectures.
+RabbitMQ has an official [Docker image](https://hub.docker.com/_/rabbitmq) and is easy to set up.
 
 ### RabbitMQ config
 
