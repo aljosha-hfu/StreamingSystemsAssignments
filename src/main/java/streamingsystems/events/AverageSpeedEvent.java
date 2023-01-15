@@ -12,12 +12,4 @@ public class AverageSpeedEvent extends BaseEvent {
         super(sensorId);
         this.averageSpeed = averageSpeed;
     }
-
-    public String getEsperInsertIntoStatement() {
-        return """
-               insert into AverageSpeedEvent
-               select id, avg(speed) as averageSpeed from SensorEvent.win:time(30 sec)
-               group by id
-               """;
-    }
 }
