@@ -24,16 +24,6 @@ public class EsperClient {
         configuration.getCommon().addEventType(TrafficJamEvent.class);
         EPRuntime epRuntime = EPRuntimeProvider.getDefaultRuntime(configuration);
 
-        String getSensorEventsStatement = """
-                                          @name('getSensorsEvents')
-                                          select sensorId, speed
-                                          from SensorEvent;
-                                          """;
-        String createEventsByIdContextStatement = """
-                                                  create context EventsById
-                                                  partition by sensorId
-                                                  from SensorEvent;
-                                                  """;
         EPCompiler compiler = EPCompilerProvider.getCompiler();
         CompilerArguments args = new CompilerArguments(configuration);
         epRuntime.initialize();
@@ -56,19 +46,12 @@ public class EsperClient {
      * @return string representation of the needed esper statements.
      */
     public static String getEsperStatementString() {
-        String getSensorEventsStatement = """
-                                          @name('getSensorsEvents')
-                                          select sensorId, speed
-                                          from SensorEvent;
-                                          """;
-
-        String createEventsByIdContextStatement = """
-                                                  create context EventsById
-                                                  partition by sensorId
-                                                  from SensorEvent;
-                                                  """;
-
-        return getSensorEventsStatement + createEventsByIdContextStatement;
+        return """
+               // Event: getSensorsEvents
+               @name('getSensorsEvents')
+               select sensorId, speed
+               from SensorEvent;
+               """;
     }
 
 
