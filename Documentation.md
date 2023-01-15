@@ -287,7 +287,7 @@ It can be used with a given random seed so that the results can be reproducible 
 The test data is generated using the parameters described in the task description.
 The generated data points are then written to Kafka.
 
-#### Kafka consumer / Data Parser
+#### DataParser
 
 The `DataParser` class reads the data points from Kafka using a `KafkaIO` adapter.
 The `KafkaIO` adapter uses the `IntegerDeserializer` and `StringDeserializer` classes to deserialize the data points.
@@ -303,6 +303,11 @@ formatted into a `String`) of the data point.
 We then use `.apply(Window.into(FixedWindows.of(Duration.standardSeconds(WINDOW_SIZE_SECONDS))))`
 and `.apply(Mean.perKey())` to calculate the mean value of the sensor values for each sensor ID in a window
 of `WINDOW_SIZE_SECONDS` (30s in our case, as described in the task) seconds.
+
+#### Starting both classes
+
+The `TestDataGeneratorThread` class starts the `TestDataGenerator` class in a separate thread so that it can run in parallel with the `DataParser` class.
+The `Main` class first starts this thread and then starts the `DataParser` class afterwards.
 
 ### Verification of solution correctness
 
@@ -333,15 +338,19 @@ The test data generator (similar to the last task) and the data parser (using Es
 
 #### Test data generator
 
-We're using the same test data generator as in Task 06.
+We're using a test data generator similar to the one used in Task 06 as a basis for Task 07.
 However, we added a feature where, after a fixed time, a traffic jam is simulated by lowering the speeds of all sensors of a random sensor ID.
+To insert the data points into Esper, we use the `getEventService()` method of the `EPRuntime` class and then use the `getEventSender()` method to get a `EventSender` object.
+This method yields a `EventSender` object, which we can use to send events to Esper.
+As opposed to task 06, we're not generating a string of comma-separated values, but instead single key-value pairs that are inserted into Esper using the `sendEvent()` method of the `EventSender` class.
 
 #### Data Parser
 
-The data parser uses Esper to parse the data points.
-To insert the data points into Esper, we use the `getEventSender()` method of the `EPRuntime` class.
-This method yields a `EventSender` object, which we can use to send events to Esper.
-Actually sending the events is done using the `sendEvent()` method of that `EventSender` class.
+The `DataParser` class uses Esper to parse the data points.
+
+#### Esper queries
+
+The Esper queries are defined in the `EsperClient` class, as well.
 
 ### TODO
 
