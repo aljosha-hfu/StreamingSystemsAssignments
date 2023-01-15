@@ -8,7 +8,7 @@ public class AverageSpeedEvent extends BaseEvent {
 
     private final double averageSpeed;
 
-    protected AverageSpeedEvent(int sensorId, double averageSpeed) {
+    public AverageSpeedEvent(int sensorId, double averageSpeed) {
         super(sensorId);
         this.averageSpeed = averageSpeed;
     }
