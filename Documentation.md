@@ -16,10 +16,13 @@
 
 ### Config files
 
-We're storing our application configuration of all tasks inside `src/main/resources/app.config`.
-The class `ConfigManager` is used to access the values. The config values and therby also the `ConfigManager` change from task to task.
-Even though we're using this class as a Singleton (which means its values should not be able to change), we're still
-caching the config Strings in the Producer and Consumer classes to ensure they stay the same during runtime.
+For some tasks, we're storing the application's configuration inside `src/main/resources/app.config`.
+The `ConfigManager` class is used to access these values.
+The config values and thereby also the `ConfigManager` change from task to task.
+
+Even though we're using this class as a Singleton (which means its values should not be able to change), we're still caching the config values in the classes they're used in to ensure they stay the same during runtime.
+
+This approach also allows us to test for non-null configuration values in JUnit tests.
 
 #### Development
 
