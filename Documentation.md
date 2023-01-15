@@ -46,6 +46,14 @@ For now, the two files `app-example.config` and `app-pipeline.config` are (mostl
 We're using `docker-compose` to start all our services (Kafka, RabbitMQ, etc.) and to connect them to each other.
 The `docker-compose.yml` file is located in the root directory of each of the branches the project.
 
+### GitHub Actions
+
+We're using GitHub Actions to automatically build and test the different tasks.
+We're using branches to separate the different tasks.
+This makes it easier to keep the different tasks separate, keep the code clean and define different pipelines for each task.
+
+On the project [main page](https://github.com/AljoshaVieth/StreamingSystemsAssignments), you can see the status of the different pipelines.
+
 #### Port mappings
 
 For each service we're mapping the ports to the host machine to make it easier to access the services from the Java program.
