@@ -1,6 +1,3 @@
-Documentation Streaming Systems Tasks
-===
-
 # Documentation Streaming Systems Tasks
 
 ## Task 01
