@@ -187,6 +187,12 @@ We considered using Apache ActiveMQ, but since there was no ready-made Docker im
 
 ### RabbitMQ config
 
+We are starting RabbitMQ in docker with a custom `docker-compose.yml` file.
+The class `RabbitMQConnectionManager` handles the connection to RabbitMQ and the `EventStore` class publishes the events into a RabbitMQ channel with its `addEvent()` method.
+The `QueryModel` class consumes those messages from the channel using the `basicGet()` method.
+
+<!-- TODO -->
+
 ## Task 04
 
 ## Apache Kafka
