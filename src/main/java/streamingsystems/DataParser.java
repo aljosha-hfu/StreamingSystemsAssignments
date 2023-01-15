@@ -9,6 +9,7 @@ import com.espertech.esper.compiler.client.EPCompilerProvider;
 import com.espertech.esper.runtime.client.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import streamingsystems.eventlisteners.SensorEventListener;
 import streamingsystems.events.AverageSpeedEvent;
 import streamingsystems.events.TrafficJamEvent;
 
