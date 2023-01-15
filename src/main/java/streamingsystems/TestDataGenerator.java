@@ -46,14 +46,19 @@ public class TestDataGenerator {
         // Next step: generate random speed values with a time skip between m1 and m2
 
         while (true) {
+            // Random values
             Integer randomSensorId = (int)(randomGenerator.nextDouble() * amountOfSensors);
             int randomAmountOfGeneratedSpeedValues = (int)(randomGenerator.nextDouble() * amountOfSpeedValues);
+
             // Generate random speed values
             for (int i = 0; i < randomAmountOfGeneratedSpeedValues; i++) {
                 float randomSpeedValue = randomGenerator.nextFloat() * (maxSpeed - minSpeed) + minSpeed;
                 SensorEvent sensorEvent = new SensorEvent(randomSensorId, randomSpeedValue);
                 EsperClient.getINSTANCE().getSensorEventSender().sendEvent(sensorEvent);
-                logger.info("Sent record: " + sensorEvent);
+                logger.info("Sent record with sensor id "
+                            + sensorEvent.getSensorId()
+                            + " and speed "
+                            + sensorEvent.getSpeed());
             }
             long timeToSleep = (long)(randomGenerator.nextDouble() * (m2 - m1) + m1);
             Thread.sleep(timeToSleep);
