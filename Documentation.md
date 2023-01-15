@@ -1,7 +1,13 @@
 <!-- Disable multiple same headings warning -->
 <!-- markdownlint-disable MD024 -->
 
-# Documentation Streaming Systems Tasks
+# Documentation of _Streaming Systems_ Tasks
+
+✅ Tasks by Bastian Hodapp and Aljosha Vieth
+
+📅 Wintersemester 2022/2023
+
+🏫 HFU Furtwangen University
 
 ## General Task Remarks
 
