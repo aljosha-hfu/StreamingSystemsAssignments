@@ -321,12 +321,22 @@ Example output:
 
 ## Task 07
 
+This task didn't need a `docker-compose.yml` file, because we didn't need to run any services.
+The test data generator (similar to the last task) and the data parser (using Esper) were run locally.
+
 ### Steps
 
 #### Test data generator
 
 We're using the same test data generator as in Task 06.
 However, we added a feature where, after a fixed time, a traffic jam is simulated by lowering the speeds of all sensors of a random sensor ID.
+
+#### Data Parser
+
+The data parser uses Esper to parse the data points.
+To insert the data points into Esper, we use the `getEventSender()` method of the `EPRuntime` class.
+This method yields a `EventSender` object, which we can use to send events to Esper.
+Actually sending the events is done using the `sendEvent()` method of that `EventSender` class.
 
 ### TODO
 
