@@ -13,7 +13,6 @@ public class Main {
      */
     public static void main(String[] args) throws EPDeployException, EPCompileException {
         new TestDataGeneratorThread().start();
-        //new DataParser().parse();
     }
 
 }
