@@ -358,6 +358,22 @@ The `DataParser` class uses Esper to parse the data points.
 
 The Esper queries are defined in the `EsperClient` class, as well.
 
+To keep the lines of code needed to define the queries short, we used the following syntax:
+
+```java
+public static String getEsperStatementString() {
+    return """
+            // Event: getSensorsEvents
+            @name('getSensorsEvents')
+            select sensorId, speed
+            from SensorEvent;
+            """;
+}
+```
+
+The `getEsperStatementString()` method returns a string that contains the Esper query.
+We can use `//` to [add comments to the query](https://esper.espertech.com/release-6.0.1/esper-reference/html/epl_clauses.html#epl-syntax-comments).
+
 ### TODO
 
 - [ ] Test cases
