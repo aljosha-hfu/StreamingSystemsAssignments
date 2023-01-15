@@ -1,8 +1,8 @@
 # Documentation Streaming Systems Tasks
 
-# General Task Remarks
+## General Task Remarks
 
-## Design decisions
+### Design decisions
 
 - Test-Driven Design (TDD) for automatic feedback on any changes
   - Tests implemented with JUnit
@@ -10,7 +10,7 @@
 - We're using IntelliJ IDEA as our IDE
   - Code Analysis is performed by IntelliJ IDEAs built-in code analysis tool
 
-## Config file
+### Config file
 
 We're storing our application configuration of all tasks inside `src/main/resources/app.config`.
 The class `ConfigManager` is used to access the values. The config values and therby also the `ConfigManager` change from task to task.
