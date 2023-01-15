@@ -1,7 +1,5 @@
 package streamingsystems.events;
 
-import org.codehaus.jackson.map.Serializers;
-
 public class SensorEvent extends BaseEvent {
     private int sensorId;
     private double speed;

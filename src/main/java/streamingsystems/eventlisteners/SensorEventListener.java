@@ -14,6 +14,7 @@ public class SensorEventListener implements UpdateListener {
         // newEvents enthäht die Ereignisinstanzen,
         // die die Anfrage erfüllen
 
-        System.out.println(Arrays.toString(newEvents));
+        //System.out.println(Arrays.toString(newEvents));
+        Arrays.stream(newEvents).forEach(x -> System.out.println(x.get("sensorId") + ": " + x.get("speed")));
     }
 }

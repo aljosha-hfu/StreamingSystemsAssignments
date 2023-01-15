@@ -1,32 +1,24 @@
 package streamingsystems;
 
-import org.apache.kafka.clients.producer.KafkaProducer;
-import org.apache.kafka.clients.producer.ProducerConfig;
-import org.apache.kafka.clients.producer.ProducerRecord;
-import org.apache.kafka.common.serialization.IntegerSerializer;
-import org.apache.kafka.common.serialization.StringSerializer;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import streamingsystems.events.SensorEvent;
 
-import java.util.Properties;
 import java.util.Random;
-import java.util.StringJoiner;
 
 /**
- * This class generates test data of virtual sensors for the Kafka topic.
+ * This class generates test data of virtual sensors and sends them to esper.
  */
 public class TestDataGenerator {
 
 
     private static final TestDataGenerator singletonInstance = new TestDataGenerator();
-    private final KafkaProducer<Integer, String> kafkaProducer;
-    private final String KAFKA_TOPIC_NAME = ConfigManager.INSTANCE.getKafkaTopicName();
 
     private final Random randomGenerator = new Random(31337101);
     private final Logger logger;
 
     private TestDataGenerator() {
-        kafkaProducer = new KafkaProducer<>(generateProperties());
         logger = LoggerFactory.getLogger(TestDataGenerator.class.getName());
     }
 
@@ -35,20 +27,6 @@ public class TestDataGenerator {
      */
     public static TestDataGenerator getSingletonInstance() {
         return singletonInstance;
-    }
-
-    /**
-     * @return the properties for the Kafka producer
-     */
-    private Properties generateProperties() {
-        Properties kafkaProducerProps = new Properties();
-
-        kafkaProducerProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, ConfigManager.INSTANCE.getKafkaUrl());
-        kafkaProducerProps.put(ProducerConfig.CLIENT_ID_CONFIG, ConfigManager.INSTANCE.getKafkaClientId());
-        kafkaProducerProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, IntegerSerializer.class.getName());
-        kafkaProducerProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
-
-        return kafkaProducerProps;
     }
 
 
@@ -70,22 +48,13 @@ public class TestDataGenerator {
         while (true) {
             Integer randomSensorId = (int)(randomGenerator.nextDouble() * amountOfSensors);
             int randomAmountOfGeneratedSpeedValues = (int)(randomGenerator.nextDouble() * amountOfSpeedValues);
-
-            StringJoiner speedValueStringBuilder = new StringJoiner(",");
-
             // Generate random speed values
             for (int i = 0; i < randomAmountOfGeneratedSpeedValues; i++) {
                 float randomSpeedValue = randomGenerator.nextFloat() * (maxSpeed - minSpeed) + minSpeed;
-                speedValueStringBuilder.add(String.valueOf(randomSpeedValue));
+                SensorEvent sensorEvent = new SensorEvent(randomSensorId, randomSpeedValue);
+                EsperClient.getINSTANCE().getSensorEventSender().sendEvent(sensorEvent);
+                logger.info("Sent record: " + sensorEvent);
             }
-
-            ProducerRecord<Integer, String> recordToSend = new ProducerRecord<>(KAFKA_TOPIC_NAME,
-                                                                                randomSensorId,
-                                                                                speedValueStringBuilder.toString()
-            );
-            kafkaProducer.send(recordToSend);
-            logger.info("Sent record: " + recordToSend);
-
             long timeToSleep = (long)(randomGenerator.nextDouble() * (m2 - m1) + m1);
             Thread.sleep(timeToSleep);
         }
