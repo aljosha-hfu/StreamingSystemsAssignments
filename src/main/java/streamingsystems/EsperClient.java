@@ -39,7 +39,7 @@ public class EsperClient {
         epRuntime.initialize();
         EPDeployment epDeployment = null;
         try {
-            EPCompiled epCompiled = compiler.compile(getSensorEventsStatement + createEventsByIdContextStatement, args);
+            EPCompiled epCompiled = compiler.compile(getEsperStatementString(), args);
             epDeployment = epRuntime.getDeploymentService().deploy(epCompiled);
         } catch (EPCompileException | EPDeployException e) {
             throw new RuntimeException(e);
@@ -50,6 +50,25 @@ public class EsperClient {
         );
         epStatement.addListener(new SensorEventListener());
         sensorEventSender = epRuntime.getEventService().getEventSender("SensorEvent");
+    }
+
+    /**
+     * @return string representation of the needed esper statements.
+     */
+    public static String getEsperStatementString() {
+        String getSensorEventsStatement = """
+                                          @name('getSensorsEvents')
+                                          select sensorId, speed
+                                          from SensorEvent;
+                                          """;
+
+        String createEventsByIdContextStatement = """
+                                                  create context EventsById
+                                                  partition by sensorId
+                                                  from SensorEvent;
+                                                  """;
+
+        return getSensorEventsStatement + createEventsByIdContextStatement;
     }
 
 
