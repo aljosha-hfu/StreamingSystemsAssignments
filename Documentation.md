@@ -192,8 +192,6 @@ We are starting RabbitMQ in docker with a custom `docker-compose.yml` file.
 The class `RabbitMQConnectionManager` handles the connection to RabbitMQ and the `EventStore` class publishes the events into a RabbitMQ channel with its `addEvent()` method.
 The `QueryModel` class consumes those messages from the channel using the `basicGet()` method.
 
-<!-- TODO -->
-
 ## Task 04
 
 ## Apache Kafka
@@ -220,16 +218,16 @@ work with in the `DomainModel` and `QueryModel`.
 
 In prior tasks, the events apply methods did not need any arguments.
 However, some events need information about the history of their moving item.
-In the past, this information got simply accessed by accessing the global list of all events, stored in the QueryModel.
-(The QueryModel is a singleton)
-Now, that we are using Apache Kafka, there is a separation between the QueryModel and the data from Kafka.
+In the past, this information got simply accessed by accessing the global list of all events, stored in the `QueryModel`.
+(The `QueryModel` is a singleton)
+Now, that we are using Apache Kafka, there is a separation between the `QueryModel` and the data from Kafka.
 To disconnect these two parts and make the events work without the Query model, each event now takes
 a `HashMap<String, MovingItemImpl> movingItemImplHashMap`, hence they now have access to the history of events.
 
 #### Inheritance
 
 Actually, only the `MovingItemMovedEvent` and the `MovingItemValueChangedEvent` need the event history. However, all
-events inherit from the base event interface, hence the other events also have the list in their apply method.
+events inherit from the base event interface, hence the other events also have a reference to the list in their `apply()` method.
 
 ## Task 05
 
@@ -240,11 +238,12 @@ It takes Lat and Long parameters and then returns.
 
 ### PaymentTypes
 
-We created an Enum to store the different payment types.
-In the documentation, they say, that the payment type is either Cash (CSH) or CreditCard (CRD).
+We created an Enum `PaymentType` to store the different payment types.
+In the documentation, it is stated, that the payment type is either Cash (CSH) or CreditCard (CRD).
 
 However, there are also entries that list UNK as PaymentType, so we created a third option, Unknown (UNK).
-Examples for the usage of UNK are line 74 and 516 of sample_data.csv.
+
+Examples for the usage of UNK are line 74 and 516 of sample_data.csv:
 
 line 74 of sample_data.csv:
 
