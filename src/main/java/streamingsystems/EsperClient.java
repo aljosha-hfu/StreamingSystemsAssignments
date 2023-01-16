@@ -61,7 +61,7 @@ public class EsperClient {
      * @return string representation of the needed esper statements.
      */
     public static String getEsperStatementString() {
-        int windowSeconds = 10;
+        int windowSeconds = 15;
         return String.format("""
                              // Event: getSensorsEvents
                              @name('getSensorsEvents')
