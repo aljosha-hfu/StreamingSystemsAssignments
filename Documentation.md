@@ -385,3 +385,4 @@ We can use `//` to [add comments to the query](https://esper.espertech.com/relea
 ### TODO
 
 - [ ] Test cases
+- [ ] Change TestDataGenerator to throw out events that have negative speeds
