@@ -61,18 +61,20 @@ public class EsperClient {
      * @return string representation of the needed esper statements.
      */
     public static String getEsperStatementString() {
-        return """
-               // Event: getSensorsEvents
-               @name('getSensorsEvents')
-               select sensorId, speed
-               from SensorEvent;
-                              
-               // Event: getAverageSpeedEvents
-               @name('getAverageSpeedEvents')
-               insert into AverageSpeedEvent
-               select sensorId, avg(speed) as averageSpeed from SensorEvent#time_batch(30 sec)
-               group by sensorId;
-               """;
+        int windowSeconds = 10;
+        return String.format("""
+                             // Event: getSensorsEvents
+                             @name('getSensorsEvents')
+                             select sensorId, speed
+                             from SensorEvent;
+                                            
+                             // Event: getAverageSpeedEvents
+                             @name('getAverageSpeedEvents')
+                             insert into AverageSpeedEvent
+                             // Use 10 secs for now for easier debugging
+                             select sensorId, avg(speed) as averageSpeed from SensorEvent#time_batch(%d sec)
+                             group by sensorId;
+                             """, windowSeconds);
     }
 
 
