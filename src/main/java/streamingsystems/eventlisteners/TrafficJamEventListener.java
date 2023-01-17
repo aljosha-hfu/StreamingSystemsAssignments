@@ -9,6 +9,8 @@ public class TrafficJamEventListener implements UpdateListener {
     @Override public void update(
             EventBean[] newEvents, EventBean[] oldEvents, EPStatement statement, EPRuntime runtime
     ) {
-        System.out.println("TRAFFIC JAM OCCURRED: for sensor " + newEvents[0].get("sensorId"));
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        System.out.println("====> TRAFFIC JAM OCCURRED: for sensor " + newEvents[0].get("sensorId") + "!");
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
     }
 }
