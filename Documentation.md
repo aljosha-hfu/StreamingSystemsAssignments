@@ -370,14 +370,41 @@ To keep the lines of code needed to define the queries short, we used the follow
 
 ```java
 public static String getEsperStatementString() {
-    return """
-            // Event: getSensorsEvents
-            @name('getSensorsEvents')
-            select sensorId, speed
-            from SensorEvent;
-            """;
-}
+        int averagingWindowSeconds = 5;
+        int trafficJamCheckingWindow = 30;
+        float trafficJamThreshold = 0.6f;
+        return String.format(Locale.ENGLISH,
+        """
+                             // Event: getSensorsEvents
+                             @name('getSensorsEvents')
+                             SELECT sensorId, speed
+                             FROM SensorEvent
+                             WHERE speed >= 0;
+                                            
+                             // Event: getAverageSpeedEvents
+                             @name('getAverageSpeedEvents')
+                             INSERT INTO AverageSpeedEvent
+                             SELECT sensorId, avg(speed) AS averageSpeed
+                             FROM SensorEvent#time_batch(%d sec)
+                             WHERE speed >= 0
+                             GROUP BY sensorId;
+                                                          
+                             // Event: getTrafficJamEvents (fire if for one sensor the average speed decreased by 10 percent in the last 15 seconds)
+                             // IDEA: Use a timed window and check if the minimum speed in the window is 10 percent lower than the average speed
+                             @name('getTrafficJamEvents')
+                             INSERT INTO TrafficJamEvent
+                             SELECT sensorId, avg(averageSpeed) AS averageSpeed, min(averageSpeed) AS minSpeed
+                             FROM AverageSpeedEvent#time(%d sec)
+                             GROUP BY sensorId
+                             HAVING min(averageSpeed) <= avg(averageSpeed) * %f
+                             """,
+        averagingWindowSeconds,
+        trafficJamCheckingWindow,
+        trafficJamThreshold
+        );
+        }
 ```
+We used Locale.ENGLISH because on our machines the formatter formatted the float values with a `,` instead of a `.` which caused a crash.
 
 The `getEsperStatementString()` method returns a string that contains the Esper query.
 We can use `//` to [add comments to the query](https://esper.espertech.com/release-6.0.1/esper-reference/html/epl_clauses.html#epl-syntax-comments).
