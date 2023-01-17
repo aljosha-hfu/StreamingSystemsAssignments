@@ -71,8 +71,9 @@ public class EsperClient {
      */
     public static String getEsperStatementString() {
         int averagingWindowSeconds = 5;
-        int trafficJamCheckingWindow = 30;
-        float trafficJamThreshold = 0.6f;
+        int trafficJamCheckingWindow = 15;
+        float trafficJamThreshold = 0.4f;
+        // Using Locale.ENGLISH to ensure that the decimal separator is a dot
         return String.format(Locale.ENGLISH,
                              """
                              // Event: getSensorsEvents
@@ -87,7 +88,8 @@ public class EsperClient {
                              SELECT sensorId, avg(speed) AS averageSpeed
                              FROM SensorEvent#time_batch(%d sec)
                              WHERE speed >= 0
-                             GROUP BY sensorId;
+                             GROUP BY sensorId
+                             HAVING count(sensorId) > 0;
                                                           
                              // Event: getTrafficJamEvents (fire if for one sensor the average speed decreased by 10 percent in the last 15 seconds)
                              // IDEA: Use a timed window and check if the minimum speed in the window is 10 percent lower than the average speed
@@ -96,7 +98,7 @@ public class EsperClient {
                              SELECT sensorId, avg(averageSpeed) AS averageSpeed, min(averageSpeed) AS minSpeed
                              FROM AverageSpeedEvent#time(%d sec)
                              GROUP BY sensorId
-                             HAVING min(averageSpeed) <= avg(averageSpeed) * %f
+                             HAVING min(averageSpeed) < avg(averageSpeed) * %f
                              """,
                              averagingWindowSeconds,
                              trafficJamCheckingWindow,

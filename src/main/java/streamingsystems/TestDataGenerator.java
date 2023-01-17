@@ -45,23 +45,52 @@ public class TestDataGenerator {
         // Negative speed values should be possible
         // Next step: generate random speed values with a time skip between m1 and m2
 
+        // Traffic jam counter
+        int trafficJamCounter = 1;
+        int trafficJamFrequency = 50;
+
+        int randomSensorId;
+        int randomAmountOfGeneratedSpeedValues;
+
         while (true) {
             // Random values
-            Integer randomSensorId = (int)(randomGenerator.nextDouble() * amountOfSensors);
-            int randomAmountOfGeneratedSpeedValues = (int)(randomGenerator.nextDouble() * amountOfSpeedValues);
+            randomSensorId = (int)(randomGenerator.nextDouble() * amountOfSensors);
+            randomAmountOfGeneratedSpeedValues = (int)(randomGenerator.nextDouble() * amountOfSpeedValues);
+
+            if (trafficJamCounter % trafficJamFrequency == 0) {
+                System.out.println("Simulating TRAFFIC JAM for sensor ID: " + randomSensorId);
+                // Send the event 50 times
+                for (int j = 0; j < 50; j++) {
+                    sendRandomDataMessage(3, 7, randomSensorId);
+                }
+            }
 
             // Generate random speed values
             for (int i = 0; i < randomAmountOfGeneratedSpeedValues; i++) {
-                float randomSpeedValue = randomGenerator.nextFloat() * (maxSpeed - minSpeed) + minSpeed;
-                SensorEvent sensorEvent = new SensorEvent(randomSensorId, randomSpeedValue);
-                EsperClient.getINSTANCE().getSensorEventSender().sendEvent(sensorEvent);
-                logger.info("Sent record with sensor id "
-                            + sensorEvent.getSensorId()
-                            + " and speed "
-                            + sensorEvent.getSpeed());
+                sendRandomDataMessage(minSpeed, maxSpeed, randomSensorId);
             }
+
+            logger.info("Sent data for sensor id "
+                        + randomSensorId
+                        + " with "
+                        + randomAmountOfGeneratedSpeedValues
+                        + " speed values - traffic jam counter is at "
+                        + trafficJamCounter % trafficJamFrequency);
+
             long timeToSleep = (long)(randomGenerator.nextDouble() * (m2 - m1) + m1);
             Thread.sleep(timeToSleep);
+
+            // Increase traffic jam counter
+            trafficJamCounter++;
         }
+    }
+
+    private void sendRandomDataMessage(float thisSensorMinSpeed, float thisSensorMaxSpeed, int randomSensorId) {
+        float
+                randomSpeedValue =
+                randomGenerator.nextFloat() * (thisSensorMaxSpeed - thisSensorMinSpeed) + thisSensorMinSpeed;
+
+        SensorEvent sensorEvent = new SensorEvent(randomSensorId, randomSpeedValue);
+        EsperClient.getINSTANCE().getSensorEventSender().sendEvent(sensorEvent);
     }
 }

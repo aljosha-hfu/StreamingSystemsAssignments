@@ -18,9 +18,9 @@ public class AverageSpeedEventListener implements UpdateListener {
         // die die Anfrage erfüllen
 
         //System.out.println(Arrays.toString(newEvents));
-        Arrays.stream(newEvents).forEach(x -> System.out.println("AVERAGE SPEED: for sensor "
-                                                                 + x.get("sensorId")
-                                                                 + ": "
-                                                                 + x.get("averageSpeed")));
+//        Arrays.stream(newEvents).forEach(x -> System.out.println("Average Speed: for sensor "
+//                                                                 + x.get("sensorId")
+//                                                                 + ": "
+//                                                                 + x.get("averageSpeed")));
     }
 }
