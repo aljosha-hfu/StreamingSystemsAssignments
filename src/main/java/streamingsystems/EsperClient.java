@@ -66,13 +66,16 @@ public class EsperClient {
                              // Event: getSensorsEvents
                              @name('getSensorsEvents')
                              select sensorId, speed
-                             from SensorEvent;
+                             from SensorEvent
+                             where speed >= 0;
                                             
                              // Event: getAverageSpeedEvents
                              @name('getAverageSpeedEvents')
                              insert into AverageSpeedEvent
                              // Use 10 secs for now for easier debugging
-                             select sensorId, avg(speed) as averageSpeed from SensorEvent#time_batch(%d sec)
+                             select sensorId, avg(speed) as averageSpeed
+                             from SensorEvent#time_batch(%d sec)
+                             where speed >= 0
                              group by sensorId;
                              """, windowSeconds);
     }
