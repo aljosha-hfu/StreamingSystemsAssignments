@@ -10,9 +10,12 @@ import com.espertech.esper.compiler.client.EPCompilerProvider;
 import com.espertech.esper.runtime.client.*;
 import streamingsystems.eventlisteners.AverageSpeedEventListener;
 import streamingsystems.eventlisteners.SensorDataEventListener;
+import streamingsystems.eventlisteners.TrafficJamEventListener;
 import streamingsystems.events.AverageSpeedEvent;
 import streamingsystems.events.SensorEvent;
 import streamingsystems.events.TrafficJamEvent;
+
+import java.util.Locale;
 
 public class EsperClient {
     private static EsperClient INSTANCE;
@@ -53,6 +56,12 @@ public class EsperClient {
         );
         getAverageSpeedEventsStatement.addListener(new AverageSpeedEventListener());
 
+        // Add a listener to the getTrafficJamEvents event
+        EPStatement getTrafficJamEventsStatement = epDeploymentService.getStatement(epDeployment.getDeploymentId(),
+                                                                                    "getTrafficJamEvents"
+        );
+        getTrafficJamEventsStatement.addListener(new TrafficJamEventListener());
+
         // Initialize the sensor event sender
         sensorEventSender = epRuntime.getEventService().getEventSender("SensorEvent");
     }
@@ -62,26 +71,36 @@ public class EsperClient {
      */
     public static String getEsperStatementString() {
         int averagingWindowSeconds = 5;
-        int trafficJamCheckingWindow = 20;
-        return String.format("""
+        int trafficJamCheckingWindow = 30;
+        float trafficJamThreshold = 0.75f;
+        return String.format(Locale.ENGLISH,
+                             """
                              // Event: getSensorsEvents
                              @name('getSensorsEvents')
-                             select sensorId, speed
-                             from SensorEvent
-                             where speed >= 0;
+                             SELECT sensorId, speed
+                             FROM SensorEvent
+                             WHERE speed >= 0;
                                             
                              // Event: getAverageSpeedEvents
                              @name('getAverageSpeedEvents')
-                             insert into AverageSpeedEvent
-                             // Use 10 secs for now for easier debugging
-                             select sensorId, avg(speed) as averageSpeed
-                             from SensorEvent#time_batch(%d sec)
-                             where speed >= 0
-                             group by sensorId;
-                             
-                             // Event: getTrafficJamEvents (fire if, for one sensor, the average speed decreased by 10% in the last 15 seconds)
-                             // IDEA: Use a timed window and check if the minimum speed in the window is 10% lower than the average speed
-                             """, averagingWindowSeconds, trafficJamCheckingWindow);
+                             INSERT INTO AverageSpeedEvent
+                             SELECT sensorId, avg(speed) AS averageSpeed
+                             FROM SensorEvent#time_batch(%d sec)
+                             WHERE speed >= 0
+                             GROUP BY sensorId;
+                                                          
+                             // Event: getTrafficJamEvents (fire if for one sensor the average speed decreased by 10 percent in the last 15 seconds)
+                             // IDEA: Use a timed window and check if the minimum speed in the window is 10 percent lower than the average speed
+                             @name('getTrafficJamEvents')
+                             INSERT INTO TrafficJamEvent
+                             SELECT sensorId, avg(averageSpeed) AS averageSpeed, min(averageSpeed) AS minSpeed
+                             FROM AverageSpeedEvent#time(%d sec)
+                             HAVING min(averageSpeed) <= avg(averageSpeed) * %f
+                             """,
+                             averagingWindowSeconds,
+                             trafficJamCheckingWindow,
+                             trafficJamThreshold
+        );
     }
 
 

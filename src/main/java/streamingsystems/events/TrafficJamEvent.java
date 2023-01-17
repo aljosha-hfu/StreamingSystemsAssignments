@@ -6,17 +6,17 @@ public class TrafficJamEvent extends BaseEvent {
     }
 
     private final double averageSpeed;
+    private final double minSpeed;
 
-    public double getPercentageDecrease() {
-        return percentageDecrease;
-    }
 
-    private final double percentageDecrease;
-
-    protected TrafficJamEvent(int sensorId, double averageSpeed, double percentageDecrease) {
+    public TrafficJamEvent(int sensorId, double averageSpeed, double minSpeed) {
         super(sensorId);
         this.averageSpeed = averageSpeed;
-        this.percentageDecrease = percentageDecrease;
 
+        this.minSpeed = minSpeed;
+    }
+
+    public double getMinSpeed() {
+        return minSpeed;
     }
 }
