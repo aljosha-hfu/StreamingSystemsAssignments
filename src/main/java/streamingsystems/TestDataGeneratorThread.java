@@ -20,7 +20,7 @@ public class TestDataGeneratorThread extends Thread {
 
     private void generateTestData() throws InterruptedException {
         logger.info("Starting test data generation...");
-        TestDataGenerator.getSingletonInstance().generateTestData(-20, 160, 5, 3, 30, 600);
+        TestDataGenerator.getSingletonInstance().generateTestData(-20, 160, 5, 5, 20, 400);
         logger.info("Terminating...");
     }
 }
