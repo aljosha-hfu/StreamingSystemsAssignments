@@ -5,9 +5,7 @@ import com.espertech.esper.runtime.client.EPRuntime;
 import com.espertech.esper.runtime.client.EPStatement;
 import com.espertech.esper.runtime.client.UpdateListener;
 
-import java.util.Arrays;
-
-public class SensorEventListener implements UpdateListener {
+public class SensorDataEventListener implements UpdateListener {
     @Override public void update(
             EventBean[] newEvents, EventBean[] oldEvents, EPStatement statement, EPRuntime runtime
     ) {
