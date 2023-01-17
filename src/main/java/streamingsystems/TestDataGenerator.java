@@ -55,26 +55,23 @@ public class TestDataGenerator {
         while (true) {
             // Random values
             randomSensorId = (int)(randomGenerator.nextDouble() * amountOfSensors);
-            randomAmountOfGeneratedSpeedValues = (int)(randomGenerator.nextDouble() * amountOfSpeedValues);
 
             if (trafficJamCounter % trafficJamFrequency == 0) {
                 System.out.println("Simulating TRAFFIC JAM for sensor ID: " + randomSensorId);
-                // Send the event 50 times
-                for (int j = 0; j < 50; j++) {
-                    sendRandomDataMessage(3, 7, randomSensorId);
+                // Send the event 100 times
+                for (int j = 0; j < 100; j++) {
+                    sendRandomDataMessage(0, 6, randomSensorId);
                 }
             }
 
             // Generate random speed values
-            for (int i = 0; i < randomAmountOfGeneratedSpeedValues; i++) {
+            for (int i = 0; i < amountOfSpeedValues; i++) {
                 sendRandomDataMessage(minSpeed, maxSpeed, randomSensorId);
             }
 
             logger.info("Sent data for sensor id "
                         + randomSensorId
-                        + " with "
-                        + randomAmountOfGeneratedSpeedValues
-                        + " speed values - traffic jam counter is at "
+                        + " - traffic jam counter is at "
                         + trafficJamCounter % trafficJamFrequency);
 
             long timeToSleep = (long)(randomGenerator.nextDouble() * (m2 - m1) + m1);

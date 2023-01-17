@@ -72,7 +72,7 @@ public class EsperClient {
     public static String getEsperStatementString() {
         int averagingWindowSeconds = 5;
         int trafficJamCheckingWindow = 15;
-        float trafficJamThreshold = 0.4f;
+        float trafficJamThreshold = 0.6f;
         // Using Locale.ENGLISH to ensure that the decimal separator is a dot
         return String.format(Locale.ENGLISH,
                              """
