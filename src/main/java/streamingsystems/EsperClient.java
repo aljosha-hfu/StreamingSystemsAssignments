@@ -72,7 +72,7 @@ public class EsperClient {
     public static String getEsperStatementString() {
         int averagingWindowSeconds = 5;
         int trafficJamCheckingWindow = 30;
-        float trafficJamThreshold = 0.75f;
+        float trafficJamThreshold = 0.6f;
         return String.format(Locale.ENGLISH,
                              """
                              // Event: getSensorsEvents
@@ -95,6 +95,7 @@ public class EsperClient {
                              INSERT INTO TrafficJamEvent
                              SELECT sensorId, avg(averageSpeed) AS averageSpeed, min(averageSpeed) AS minSpeed
                              FROM AverageSpeedEvent#time(%d sec)
+                             GROUP BY sensorId
                              HAVING min(averageSpeed) <= avg(averageSpeed) * %f
                              """,
                              averagingWindowSeconds,
