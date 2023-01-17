@@ -61,7 +61,8 @@ public class EsperClient {
      * @return string representation of the needed esper statements.
      */
     public static String getEsperStatementString() {
-        int windowSeconds = 15;
+        int averagingWindowSeconds = 5;
+        int trafficJamCheckingWindow = 20;
         return String.format("""
                              // Event: getSensorsEvents
                              @name('getSensorsEvents')
@@ -77,7 +78,10 @@ public class EsperClient {
                              from SensorEvent#time_batch(%d sec)
                              where speed >= 0
                              group by sensorId;
-                             """, windowSeconds);
+                             
+                             // Event: getTrafficJamEvents (fire if, for one sensor, the average speed decreased by 10% in the last 15 seconds)
+                             // IDEA: Use a timed window and check if the minimum speed in the window is 10% lower than the average speed
+                             """, averagingWindowSeconds, trafficJamCheckingWindow);
     }
 
 
