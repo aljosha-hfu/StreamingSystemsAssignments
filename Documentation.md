@@ -404,6 +404,7 @@ public static String getEsperStatementString() {
         );
         }
 ```
+
 We used Locale.ENGLISH because on our machines the formatter formatted the float values with a `,` instead of a `.` which caused a crash.
 
 The `getEsperStatementString()` method returns a string that contains the Esper query.
