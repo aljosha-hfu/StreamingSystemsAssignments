@@ -339,10 +339,6 @@ Example output:
 [direct-runner-worker] INFO streamingsystems.DataParser - Sensor ID: 2; 30s avg speed: 81.06412492735669
 ```
 
-### TODO
-
-- [ ] Add test cases for the `DataParser` class
-
 ## Task 07
 
 This task didn't need a `docker-compose.yml` file, because we didn't need to run any services.
@@ -409,8 +405,3 @@ We used Locale.ENGLISH because on our machines the formatter formatted the float
 
 The `getEsperStatementString()` method returns a string that contains the Esper query.
 We can use `//` to [add comments to the query](https://esper.espertech.com/release-6.0.1/esper-reference/html/epl_clauses.html#epl-syntax-comments).
-
-### TODO
-
-- [ ] Test cases
-- [ ] Change TestDataGenerator to throw out events that have negative speeds
