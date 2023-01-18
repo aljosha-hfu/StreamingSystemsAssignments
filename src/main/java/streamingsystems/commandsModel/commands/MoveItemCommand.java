@@ -1,9 +1,9 @@
-package streamingsystems.CommandsModel.commands;
+package streamingsystems.commandsModel.commands;
 
 
-import streamingsystems.CommandsModel.EventStore;
-import streamingsystems.CommandsModel.Meta.Command;
-import streamingsystems.implemented.events.MovingItemMovedEvent;
+import streamingsystems.commandsModel.EventStore;
+import streamingsystems.commandsModel.meta.Command;
+import streamingsystems.commandsModel.events.MovingItemMovedEvent;
 
 /**
  * Command for moving a moving item.
@@ -12,12 +12,12 @@ public class MoveItemCommand extends Command {
     /**
      * The id of the moving item.
      */
-    String id;
+    final String id;
 
     /**
      * The position of the moving item.
      */
-    int[] vector;
+    final int[] vector;
 
     /**
      * @param id     The id of the moving item.
@@ -29,7 +29,7 @@ public class MoveItemCommand extends Command {
     }
 
     /**
-     * Handle the command.
+     * Handle the command and add the needed events to the event store.
      */
     @Override
     public void handle() {

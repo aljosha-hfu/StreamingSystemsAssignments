@@ -1,6 +1,6 @@
-package streamingsystems.CommandsModel.Meta;
+package streamingsystems.commandsModel.meta;
 
-import streamingsystems.QueryHandlingModel.QueryModel;
+import streamingsystems.queryHandlingModel.QueryModel;
 import streamingsystems.implemented.MovingItemImpl;
 
 /**

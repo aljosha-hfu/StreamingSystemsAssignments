@@ -1,16 +1,15 @@
-package streamingsystems.CommandsModel.commands;
+package streamingsystems.commandsModel.commands;
 
-import streamingsystems.CommandsModel.DomainModel;
-import streamingsystems.CommandsModel.EventStore;
-import streamingsystems.CommandsModel.Meta.Command;
-import streamingsystems.implemented.events.MovingItemCreatedEvent;
-import streamingsystems.implemented.events.MovingItemDeletedEvent;
+import streamingsystems.commandsModel.DomainModel;
+import streamingsystems.commandsModel.EventStore;
+import streamingsystems.commandsModel.meta.Command;
+import streamingsystems.commandsModel.events.MovingItemDeletedEvent;
 
 /**
  * Command for deleting a moving item.
  */
 public class DeleteItemCommand extends Command {
-    String id;
+    final String id;
 
     /**
      * @param id The id of the moving item to delete.
@@ -20,7 +19,7 @@ public class DeleteItemCommand extends Command {
     }
 
     /**
-     * Handle the command.
+     * Handle the command and add the needed events to the event store.
      */
     @Override
     public void handle() {

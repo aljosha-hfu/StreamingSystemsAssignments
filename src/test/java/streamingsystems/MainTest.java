@@ -2,10 +2,10 @@ package streamingsystems;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import streamingsystems.CommandsModel.CommandHandler;
-import streamingsystems.CommandsModel.EventStore;
-import streamingsystems.QueryHandlingModel.QueryHandler;
-import streamingsystems.QueryHandlingModel.QueryModel;
+import streamingsystems.commandsModel.CommandHandler;
+import streamingsystems.commandsModel.EventStore;
+import streamingsystems.queryHandlingModel.QueryHandler;
+import streamingsystems.queryHandlingModel.QueryModel;
 import streamingsystems.implemented.MovingItemImpl;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;

@@ -1,15 +1,15 @@
-package streamingsystems.CommandsModel.commands;
+package streamingsystems.commandsModel.commands;
 
-import streamingsystems.CommandsModel.EventStore;
-import streamingsystems.CommandsModel.Meta.Command;
-import streamingsystems.implemented.events.MovingItemValueChangedEvent;
+import streamingsystems.commandsModel.EventStore;
+import streamingsystems.commandsModel.meta.Command;
+import streamingsystems.commandsModel.events.MovingItemValueChangedEvent;
 
 /**
  * Command for changing the value of a moving item.
  */
 public class ChangeValueCommand extends Command {
-    String id;
-    int newValue;
+    final String id;
+    final int newValue;
 
     /**
      * @param id       The id of the moving item.
@@ -21,7 +21,7 @@ public class ChangeValueCommand extends Command {
     }
 
     /**
-     * Handle the command.
+     * Handle the command and add the needed events to the event store.
      */
     @Override
     public void handle() {

@@ -1,17 +1,17 @@
-package streamingsystems.CommandsModel.commands;
+package streamingsystems.commandsModel.commands;
 
-import streamingsystems.CommandsModel.DomainModel;
-import streamingsystems.CommandsModel.EventStore;
-import streamingsystems.CommandsModel.Meta.Command;
+import streamingsystems.commandsModel.DomainModel;
+import streamingsystems.commandsModel.EventStore;
+import streamingsystems.commandsModel.meta.Command;
 import streamingsystems.implemented.MovingItemImpl;
-import streamingsystems.implemented.events.MovingItemCreatedEvent;
+import streamingsystems.commandsModel.events.MovingItemCreatedEvent;
 
 /**
  * Command for creating a moving item.
  */
 public class CreateItemCommand extends Command {
 
-    MovingItemImpl movingItem;
+    final MovingItemImpl movingItem;
 
     /**
      * @param movingItem The moving item to create.
@@ -21,7 +21,7 @@ public class CreateItemCommand extends Command {
     }
 
     /**
-     * Handle the command.
+     * Handle the command and add the needed events to the event store.
      */
     @Override
     public void handle() {

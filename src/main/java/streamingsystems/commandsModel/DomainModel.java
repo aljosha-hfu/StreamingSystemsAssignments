@@ -1,4 +1,4 @@
-package streamingsystems.CommandsModel;
+package streamingsystems.commandsModel;
 
 import java.util.ArrayList;
 

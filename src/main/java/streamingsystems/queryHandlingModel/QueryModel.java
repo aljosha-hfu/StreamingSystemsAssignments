@@ -1,7 +1,7 @@
-package streamingsystems.QueryHandlingModel;
+package streamingsystems.queryHandlingModel;
 
-import streamingsystems.CommandsModel.EventStore;
-import streamingsystems.CommandsModel.Meta.Event;
+import streamingsystems.commandsModel.EventStore;
+import streamingsystems.commandsModel.meta.Event;
 import streamingsystems.implemented.MovingItemDTO;
 import streamingsystems.implemented.MovingItemImpl;
 
@@ -28,7 +28,7 @@ public class QueryModel {
 
 
     private HashMap<String, MovingItemDTO> movingItemDTOHashMap = new HashMap<>();
-    private HashMap<String, MovingItemImpl> movingItemImplHashMap = new HashMap<>();
+    private final HashMap<String, MovingItemImpl> movingItemImplHashMap = new HashMap<>();
 
     private QueryModel() {
         updateQueryModel();

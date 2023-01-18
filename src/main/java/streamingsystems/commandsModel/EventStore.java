@@ -1,6 +1,6 @@
-package streamingsystems.CommandsModel;
+package streamingsystems.commandsModel;
 
-import streamingsystems.CommandsModel.Meta.Event;
+import streamingsystems.commandsModel.meta.Event;
 
 import java.util.concurrent.LinkedBlockingQueue;
 

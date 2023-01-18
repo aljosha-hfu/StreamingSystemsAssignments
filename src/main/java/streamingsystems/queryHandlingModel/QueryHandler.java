@@ -1,7 +1,7 @@
-package streamingsystems.QueryHandlingModel;
+package streamingsystems.queryHandlingModel;
 
 import streamingsystems.MovingItem;
-import streamingsystems.QueryHandlingModel.Predefined.Query;
+import streamingsystems.queryHandlingModel.predefined.Query;
 import streamingsystems.implemented.MovingItemDTO;
 
 import java.util.Collection;
@@ -31,7 +31,6 @@ public class QueryHandler implements Query {
      *
      * @return All moving items.
      */
-    @SuppressWarnings("Convert2MethodRef")
     public Collection<MovingItemDTO> getAllMovingItemsAsCollection() {
         return queryModel.getAllMovingItems();
     }
