@@ -1,6 +1,6 @@
 package streamingsystems.implemented.events;
 
-import streamingsystems.CommandsModel.Meta.Event;
+import streamingsystems.commandsModel.meta.Event;
 import streamingsystems.implemented.MovingItemImpl;
 
 import java.util.HashMap;

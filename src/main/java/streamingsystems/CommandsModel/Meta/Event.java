@@ -1,4 +1,4 @@
-package streamingsystems.CommandsModel.Meta;
+package streamingsystems.commandsModel.meta;
 
 import streamingsystems.implemented.MovingItemImpl;
 
@@ -27,6 +27,7 @@ public abstract class Event implements Serializable {
 
     /**
      * @param movingItemImplHashMap The moving item list to apply the event to.
+     * @return The moving item that is affected by the event.
      */
     public abstract MovingItemImpl apply(
             HashMap<String, MovingItemImpl> movingItemImplHashMap);

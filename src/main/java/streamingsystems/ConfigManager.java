@@ -15,12 +15,6 @@ public enum ConfigManager {
      */
     INSTANCE;
 
-    private String rabbitMqHost;
-
-    private int rabbitMqPort;
-    private String rabbitMqUser;
-    private String rabbitMqPassword;
-
     private String kafkaTopicName;
 
     private String kafkaClientId;
@@ -36,11 +30,12 @@ public enum ConfigManager {
             FileInputStream fileInputStream = new FileInputStream(
                     "src/main/resources/app.config");
             properties.load(fileInputStream);
-            rabbitMqHost = properties.getProperty("rabbitmq.host");
-            rabbitMqPort = Integer.parseInt(
+            String rabbitMqHost = properties.getProperty("rabbitmq.host");
+            int rabbitMqPort = Integer.parseInt(
                     properties.getProperty("rabbitmq.port"));
-            rabbitMqUser = properties.getProperty("rabbitmq.user");
-            rabbitMqPassword = properties.getProperty("rabbitmq.password");
+            String rabbitMqUser = properties.getProperty("rabbitmq.user");
+            String rabbitMqPassword = properties.getProperty(
+                    "rabbitmq.password");
             kafkaTopicName = properties.getProperty(
                     "kafka.topicname") + new SimpleDateFormat(
                     "yyyyMMdd_HHmmss").format(new Date());

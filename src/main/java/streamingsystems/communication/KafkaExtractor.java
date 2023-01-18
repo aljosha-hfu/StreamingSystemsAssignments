@@ -10,8 +10,8 @@ import org.apache.kafka.common.serialization.ByteArrayDeserializer;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import streamingsystems.CommandsModel.EventStore;
-import streamingsystems.CommandsModel.Meta.Event;
+import streamingsystems.commandsModel.EventStore;
+import streamingsystems.commandsModel.meta.Event;
 
 import java.time.Duration;
 import java.util.Arrays;
@@ -26,9 +26,8 @@ public class KafkaExtractor {
 
     final static String GROUP_ID = "EventStoreClientConsumerGroup";
     private static final KafkaExtractor singletonInstance = new KafkaExtractor();
-    private final int POLL_FREQUENCY_MILLIS = 100;
     private final Logger logger;
-    Properties kafkaConsumerProperties;
+    final Properties kafkaConsumerProperties;
 
 
     private KafkaExtractor() {
@@ -72,6 +71,7 @@ public class KafkaExtractor {
         LinkedList<Event> eventList = new LinkedList<>();
 
         logger.info("Polling for messages...");
+        int POLL_FREQUENCY_MILLIS = 100;
         ConsumerRecords<String, byte[]> consumerRecords = kafkaConsumer.poll(
                 Duration.ofMillis(POLL_FREQUENCY_MILLIS));
         for (ConsumerRecord<String, byte[]> record : consumerRecords) {

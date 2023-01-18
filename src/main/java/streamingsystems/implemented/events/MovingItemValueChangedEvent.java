@@ -1,11 +1,14 @@
 package streamingsystems.implemented.events;
 
-import streamingsystems.CommandsModel.Meta.Event;
+import streamingsystems.commandsModel.meta.Event;
 import streamingsystems.MovingItemListTools;
 import streamingsystems.implemented.MovingItemImpl;
 
 import java.util.HashMap;
 
+/**
+ * Represents a value change of a moving item.
+ */
 public class MovingItemValueChangedEvent extends Event {
     private final int newValue;
 

@@ -2,7 +2,7 @@ package streamingsystems;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import streamingsystems.CommandsModel.CommandHandler;
+import streamingsystems.commandsModel.CommandHandler;
 import streamingsystems.QueryHandlingModel.QueryHandler;
 import streamingsystems.QueryHandlingModel.QueryModel;
 import streamingsystems.implemented.MovingItemImpl;
@@ -11,6 +11,10 @@ import streamingsystems.implemented.MovingItemImpl;
  * The main class of the application.
  */
 public class Main {
+    /**
+     * The main method of the application.
+     * @param args The arguments of the application.
+     */
     public static void main(String[] args) {
         Logger logger = LoggerFactory.getLogger(Main.class);
         logger.info("Starting...");
@@ -26,10 +30,10 @@ public class Main {
 
         logger.info("Creating Query model");
         QueryModel queryModel = QueryModel.getInstance();
-        queryModel.updateEventStore();
+        queryModel.updateQueryModel();
         logger.info("Finished creating Query model");
         QueryHandler queryHandler = new QueryHandler(queryModel);
-        //        queryModel.updateEventStore();
+        //        queryModel.updateQueryModel();
 
         queryModel.getAllMovingItems().forEach(x -> logger.info(x.toString()));
         logger.info(

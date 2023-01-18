@@ -1,8 +1,8 @@
-package streamingsystems.CommandsModel;
+package streamingsystems.commandsModel;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import streamingsystems.CommandsModel.Meta.Event;
+import streamingsystems.commandsModel.meta.Event;
 import streamingsystems.ConfigManager;
 import streamingsystems.MovingItemListTools;
 import streamingsystems.communication.KafkaExtractor;
@@ -16,12 +16,14 @@ import java.util.stream.Collectors;
  */
 public class DomainModel {
 
+    /**
+     * The topic name of the Kafka topic used.
+     */
     final static public String TOPIC_NAME = ConfigManager.INSTANCE.getKafkaTopicName();
     private static final DomainModel singletonInstance = new DomainModel();
-    private final Logger logger;
 
     private DomainModel() {
-        logger = LoggerFactory.getLogger(DomainModel.class);
+        Logger logger = LoggerFactory.getLogger(DomainModel.class);
         logger.info("DomainModel Instance created.");
     }
 

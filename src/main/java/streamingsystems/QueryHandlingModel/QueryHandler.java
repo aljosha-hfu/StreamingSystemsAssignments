@@ -25,6 +25,9 @@ public class QueryHandler implements Query {
         return queryModel.getMovingItemDTOByName(name);
     }
 
+    /**
+     * @return All moving items as a collection.
+     */
     public Collection<MovingItemDTO> getAllMovingItemsAsCollection() {
         return queryModel.getAllMovingItems();
     }

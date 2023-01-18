@@ -2,12 +2,15 @@ package streamingsystems;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import streamingsystems.CommandsModel.Meta.Event;
+import streamingsystems.commandsModel.meta.Event;
 import streamingsystems.implemented.MovingItemImpl;
 
 import java.util.HashMap;
 import java.util.LinkedList;
 
+/**
+ * This class contains the tools to work with the moving item list.
+ */
 // TODO maybe this utility class could be switched into a special implementation of Hashmap with <String, MovingItemImpl>
 public class MovingItemListTools {
     private static final MovingItemListTools singletonInstance = new MovingItemListTools();

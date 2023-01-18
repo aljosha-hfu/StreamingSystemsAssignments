@@ -2,9 +2,9 @@ package streamingsystems.QueryHandlingModel;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import streamingsystems.CommandsModel.Meta.Event;
 import streamingsystems.ConfigManager;
 import streamingsystems.MovingItemListTools;
+import streamingsystems.commandsModel.meta.Event;
 import streamingsystems.communication.KafkaExtractor;
 import streamingsystems.implemented.MovingItemDTO;
 import streamingsystems.implemented.MovingItemImpl;
@@ -30,6 +30,9 @@ public class QueryModel {
         System.out.println("Instantiated QueryModel singleton...");
     }
 
+    /**
+     * @return The singleton instance of this class.
+     */
     public static QueryModel getInstance() {
         if (singletonInstance == null) {
             singletonInstance = new QueryModel();
@@ -37,7 +40,10 @@ public class QueryModel {
         return singletonInstance;
     }
 
-    public void updateEventStore() {
+    /**
+     * Updates the query model from the event store.
+     */
+    public void updateQueryModel() {
         System.out.println("Updating event store...");
         //        Channel channel = RabbitMQConnectionManager.getInstance().getEventStoreChannel();
 
@@ -58,6 +64,11 @@ public class QueryModel {
     }
 
 
+    /**
+     * @param name The name of the moving item.
+     * @return The moving item with the given name as found in the moving
+     * item dto hash map.
+     */
     public MovingItemDTO getMovingItemDTOByName(String name) {
         if (!movingItemDTOHashMap.containsKey(name)) {
             throw new NoSuchElementException(
@@ -66,6 +77,9 @@ public class QueryModel {
         return movingItemDTOHashMap.get(name);
     }
 
+    /**
+     * @return All moving items as a collection.
+     */
     public Collection<MovingItemDTO> getAllMovingItems() {
         return this.movingItemDTOHashMap.values();
     }

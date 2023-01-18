@@ -1,11 +1,14 @@
 package streamingsystems.implemented.events;
 
-import streamingsystems.CommandsModel.Meta.Event;
+import streamingsystems.commandsModel.meta.Event;
 import streamingsystems.MovingItemListTools;
 import streamingsystems.implemented.MovingItemImpl;
 
 import java.util.HashMap;
 
+/**
+ * Represents the moving of a moving item.
+ */
 public class MovingItemMovedEvent extends Event {
     private final int[] vector;
 
