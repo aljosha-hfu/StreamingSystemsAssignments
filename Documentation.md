@@ -63,6 +63,11 @@ For eaxmple, the Kafka service is mapped to port `9092` on the host machine, so 
 
 We're also using the `docker-compose.yml` file to configure the services. For example, we're setting the `KAFKA_CFG_ADVERTISED_LISTENERS` environment variable for the Kafka service to make set this setting in the Kafka server.
 
+### Further documentation
+
+We also used IntelliJ's tools to generate JavaDoc documentation, as well as class diagrams for the project.
+This documentation can be found alongside this markdown file.
+
 ## Task 01
 
 - Considerations: Should we implement the commands directly inside the `CommandsImpl` class or as subclasses of an abstract `Command`class with an abstract `handle()` method which executes the command?
