@@ -2,8 +2,6 @@ package streamingsystems.implemented;
 
 import streamingsystems.MovingItem;
 
-import streamingsystems.MovingItem;
-
 import java.util.Arrays;
 
 /**

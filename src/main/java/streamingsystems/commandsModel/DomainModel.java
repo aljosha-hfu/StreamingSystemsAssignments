@@ -1,4 +1,4 @@
-package streamingsystems.CommandsModel;
+package streamingsystems.commandsModel;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,10 +17,9 @@ import java.util.stream.Collectors;
 public class DomainModel {
 
     private static final DomainModel singletonInstance = new DomainModel();
-    private final Logger logger;
 
     private DomainModel() {
-        logger = LoggerFactory.getLogger(DomainModel.class);
+        Logger logger = LoggerFactory.getLogger(DomainModel.class);
         logger.info("DomainModel Instance created.");
     }
 

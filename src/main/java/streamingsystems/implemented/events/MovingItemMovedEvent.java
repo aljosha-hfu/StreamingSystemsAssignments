@@ -1,7 +1,7 @@
 package streamingsystems.implemented.events;
 
-import streamingsystems.CommandsModel.Meta.Event;
-import streamingsystems.QueryHandlingModel.QueryModel;
+import streamingsystems.commandsModel.meta.Event;
+import streamingsystems.queryHandlingModel.QueryModel;
 import streamingsystems.implemented.MovingItemImpl;
 
 /**

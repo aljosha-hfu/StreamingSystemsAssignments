@@ -1,13 +1,13 @@
-package streamingsystems.CommandsModel;
+package streamingsystems.commandsModel;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import streamingsystems.CommandsModel.Meta.Command;
-import streamingsystems.CommandsModel.Meta.Predefined.Commands;
-import streamingsystems.CommandsModel.commands.ChangeValueCommand;
-import streamingsystems.CommandsModel.commands.CreateItemCommand;
-import streamingsystems.CommandsModel.commands.DeleteItemCommand;
-import streamingsystems.CommandsModel.commands.MoveItemCommand;
+import streamingsystems.commandsModel.meta.Command;
+import streamingsystems.commandsModel.meta.predefined.Commands;
+import streamingsystems.commandsModel.commands.ChangeValueCommand;
+import streamingsystems.commandsModel.commands.CreateItemCommand;
+import streamingsystems.commandsModel.commands.DeleteItemCommand;
+import streamingsystems.commandsModel.commands.MoveItemCommand;
 import streamingsystems.implemented.MovingItemImpl;
 
 /**
@@ -16,10 +16,9 @@ import streamingsystems.implemented.MovingItemImpl;
  */
 public class CommandHandler implements Commands {
     private static final CommandHandler singletonInstance = new CommandHandler();
-    private final Logger logger;
 
     private CommandHandler() {
-        logger = LoggerFactory.getLogger(CommandHandler.class);
+        Logger logger = LoggerFactory.getLogger(CommandHandler.class);
         logger.info("CommandHandler Instance created.");
     }
 

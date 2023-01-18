@@ -1,4 +1,4 @@
-package streamingsystems.CommandsModel.Meta;
+package streamingsystems.commandsModel.meta;
 
 /**
  * Represents a command to be handled by the command handler.
