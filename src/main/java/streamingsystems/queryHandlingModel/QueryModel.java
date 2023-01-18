@@ -1,4 +1,4 @@
-package streamingsystems.QueryHandlingModel;
+package streamingsystems.queryHandlingModel;
 
 import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.Channel;
@@ -6,7 +6,7 @@ import com.rabbitmq.client.GetResponse;
 import org.apache.commons.lang3.SerializationUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import streamingsystems.CommandsModel.Meta.Event;
+import streamingsystems.commandsModel.meta.Event;
 import streamingsystems.RabbitMQConnectionManager;
 import streamingsystems.implemented.MovingItemDTO;
 import streamingsystems.implemented.MovingItemImpl;
@@ -56,7 +56,7 @@ public class QueryModel {
         LinkedList<Event> eventList = new LinkedList<>();
 
 
-        GetResponse response = null;
+        GetResponse response;
         do {
             try {
                 response = channel.basicGet(

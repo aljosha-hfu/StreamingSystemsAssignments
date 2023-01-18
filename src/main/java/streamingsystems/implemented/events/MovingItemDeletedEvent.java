@@ -1,6 +1,6 @@
 package streamingsystems.implemented.events;
 
-import streamingsystems.CommandsModel.Meta.Event;
+import streamingsystems.commandsModel.meta.Event;
 import streamingsystems.implemented.MovingItemImpl;
 
 /**
@@ -14,6 +14,7 @@ public class MovingItemDeletedEvent extends Event {
         super(id);
     }
 
+    @SuppressWarnings("SameReturnValue")
     @Override
     public MovingItemImpl apply() {
         return null;

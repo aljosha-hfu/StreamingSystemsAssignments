@@ -1,4 +1,4 @@
-package streamingsystems.QueryHandlingModel.Predefined;
+package streamingsystems.queryHandlingModel.predefined;
 
 import streamingsystems.implemented.MovingItemDTO;
 
@@ -14,14 +14,14 @@ public interface Query {
      * @param name The name of the moving item.
      * @return The moving item with the given name.
      */
-    public MovingItemDTO getMovingItemByName(String name);
+    MovingItemDTO getMovingItemByName(String name);
 
     /**
      * Gets all moving items.
      *
      * @return All moving items.
      */
-    public Enumeration<MovingItemDTO> getMovingItems();
+    Enumeration<MovingItemDTO> getMovingItems();
 
     /**
      * Gets all moving items at a given position.
@@ -29,5 +29,5 @@ public interface Query {
      * @param position The position to get the moving items at.
      * @return All moving items at the given position.
      */
-    public Enumeration<MovingItemDTO> getMovingItemsAtPosition(int[] position);
+    Enumeration<MovingItemDTO> getMovingItemsAtPosition(int[] position);
 }

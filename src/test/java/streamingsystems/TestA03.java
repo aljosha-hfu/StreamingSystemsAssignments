@@ -2,24 +2,24 @@ package streamingsystems;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import streamingsystems.CommandsModel.CommandHandler;
-import streamingsystems.CommandsModel.EventStore;
-import streamingsystems.QueryHandlingModel.QueryHandler;
-import streamingsystems.QueryHandlingModel.QueryModel;
+import streamingsystems.commandsModel.CommandHandler;
+import streamingsystems.commandsModel.EventStore;
+import streamingsystems.queryHandlingModel.QueryHandler;
+import streamingsystems.queryHandlingModel.QueryModel;
 import streamingsystems.implemented.MovingItemImpl;
 
 import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class Test_A03 {
+class TestA03 {
     CommandHandler commandHandlerInstance;
     EventStore eventStore;
     QueryModel queryModel;
     QueryHandler queryHandler;
 
-    String movingItemTestName1 = "Moving Item 1";
-    String movingItemTestName2 = "Moving Item 2";
+    final String movingItemTestName1 = "Moving Item 1";
+    final String movingItemTestName2 = "Moving Item 2";
     String movingItemTestName3 = "Moving Item 3";
 
     @BeforeEach

@@ -1,7 +1,7 @@
-package streamingsystems.CommandsModel.commands;
-import streamingsystems.CommandsModel.DomainModel;
-import streamingsystems.CommandsModel.EventStore;
-import streamingsystems.CommandsModel.Meta.Command;
+package streamingsystems.commandsModel.commands;
+import streamingsystems.commandsModel.DomainModel;
+import streamingsystems.commandsModel.EventStore;
+import streamingsystems.commandsModel.meta.Command;
 import streamingsystems.Helpers;
 import streamingsystems.implemented.events.MovingItemDeletedEvent;
 import streamingsystems.implemented.events.MovingItemMovedEvent;

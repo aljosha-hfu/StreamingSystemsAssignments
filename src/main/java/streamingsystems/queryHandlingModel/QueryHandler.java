@@ -1,6 +1,6 @@
-package streamingsystems.QueryHandlingModel;
+package streamingsystems.queryHandlingModel;
 
-import streamingsystems.QueryHandlingModel.Predefined.Query;
+import streamingsystems.queryHandlingModel.predefined.Query;
 import streamingsystems.implemented.MovingItemDTO;
 
 import java.util.Collection;
@@ -25,6 +25,9 @@ public class QueryHandler implements Query {
         return queryModel.getMovingItemDTOByName(name);
     }
 
+    /**
+     * @return All moving items as a collection.
+     */
     public Collection<MovingItemDTO> getAllMovingItemsAsCollection() {
         return queryModel.getAllMovingItems();
     }

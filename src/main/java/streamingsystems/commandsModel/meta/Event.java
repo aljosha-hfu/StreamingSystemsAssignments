@@ -1,4 +1,4 @@
-package streamingsystems.CommandsModel.Meta;
+package streamingsystems.commandsModel.meta;
 
 import streamingsystems.implemented.MovingItemImpl;
 
