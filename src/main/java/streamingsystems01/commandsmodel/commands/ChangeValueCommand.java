@@ -1,0 +1,31 @@
+package streamingsystems01.commandsmodel.commands;
+
+import streamingsystems01.commandsmodel.EventStore;
+import streamingsystems01.commandsmodel.meta.Command;
+import streamingsystems01.commandsmodel.events.MovingItemValueChangedEvent;
+
+/**
+ * Command for changing the value of a moving item.
+ */
+public class ChangeValueCommand extends Command {
+    final String id;
+    final int newValue;
+
+    /**
+     * @param id       The id of the moving item.
+     * @param newValue The new value to set.
+     */
+    public ChangeValueCommand(String id, int newValue) {
+        this.id = id;
+        this.newValue = newValue;
+    }
+
+    /**
+     * Handle the command and add the needed events to the event store.
+     */
+    @Override
+    public void handle() {
+        EventStore.getInstance()
+                .addEvent(new MovingItemValueChangedEvent(id, newValue));
+    }
+}

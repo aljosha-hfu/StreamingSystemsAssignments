@@ -1,0 +1,21 @@
+package streamingsystems01.commandsmodel.events;
+
+import streamingsystems01.commandsmodel.meta.Event;
+import streamingsystems01.implemented.MovingItemImpl;
+
+/**
+ * Represents an event that is created when a moving item is deleted.
+ */
+public class MovingItemDeletedEvent extends Event {
+    /**
+     * @param id The id of the moving item.
+     */
+    public MovingItemDeletedEvent(String id) {
+        super(id);
+    }
+
+    @Override
+    public MovingItemImpl apply() {
+        return null;
+    }
+}
