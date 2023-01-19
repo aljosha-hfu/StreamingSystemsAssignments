@@ -90,9 +90,9 @@ public class EsperClient {
                              WHERE speed >= 0
                              GROUP BY sensorId
                              HAVING count(sensorId) > 0;
-                                                          
+
                              // Event: getTrafficJamEvents (fire if for one sensor the average speed decreased by 10 percent in the last 15 seconds)
-                             // IDEA: Use a timed window and check if the minimum speed in the window is 10 percent lower than the average speed
+                             // TODO: Temporaloperator verwenden
                              @name('getTrafficJamEvents')
                              INSERT INTO TrafficJamEvent
                              SELECT sensorId, avg(averageSpeed) AS averageSpeed, min(averageSpeed) AS minSpeed
