@@ -367,43 +367,25 @@ The `DataParser` class uses Esper to parse the data points.
 
 The Esper queries are defined in the `EsperClient` class, as well.
 
-To keep the lines of code needed to define the queries short, we used the following syntax:
+This is the Esper query that we first used to calculate the average speed of each sensor ID:
 
-```java
-public static String getEsperStatementString() {
-        int averagingWindowSeconds = 5;
-        int trafficJamCheckingWindow = 30;
-        float trafficJamThreshold = 0.6f;
-        return String.format(Locale.ENGLISH,
-        """
-                             // Event: getSensorsEvents
-                             @name('getSensorsEvents')
-                             SELECT sensorId, speed
-                             FROM SensorEvent
-                             WHERE speed >= 0;
-                                            
-                             // Event: getAverageSpeedEvents
-                             @name('getAverageSpeedEvents')
-                             INSERT INTO AverageSpeedEvent
-                             SELECT sensorId, avg(speed) AS averageSpeed
-                             FROM SensorEvent#time_batch(%d sec)
-                             WHERE speed >= 0
-                             GROUP BY sensorId;
-                                                          
-                             // Event: getTrafficJamEvents (fire if for one sensor the average speed decreased by 10 percent in the last 15 seconds)
-                             // IDEA: Use a timed window and check if the minimum speed in the window is 10 percent lower than the average speed
-                             @name('getTrafficJamEvents')
-                             INSERT INTO TrafficJamEvent
-                             SELECT sensorId, avg(averageSpeed) AS averageSpeed, min(averageSpeed) AS minSpeed
-                             FROM AverageSpeedEvent#time(%d sec)
-                             GROUP BY sensorId
-                             HAVING min(averageSpeed) <= avg(averageSpeed) * %f
-                             """,
-        averagingWindowSeconds,
-        trafficJamCheckingWindow,
-        trafficJamThreshold
-        );
-        }
+```epl
+
+```epl
+@name('getTrafficJamEvents')
+INSERT INTO TrafficJamEvent
+SELECT sensorId, avg(averageSpeed) AS averageSpeed, min(averageSpeed) AS minSpeed
+FROM AverageSpeedEvent#time(%d sec)
+GROUP BY sensorId
+HAVING min(averageSpeed) < avg(averageSpeed) * %f
+```
+
+It uses the `AverageSpeedEvent` stream to calculate the average speed of each sensor ID by checking if the minimum speed of the sensor ID is less than the average speed of the sensor ID multiplied by a factor.
+
+Afterwards, we changed the query to the following, using a temporal window:
+
+```epl
+TODO
 ```
 
 We used Locale.ENGLISH because on our machines the formatter formatted the float values with a `,` instead of a `.` which caused a crash.
