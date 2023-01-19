@@ -1,9 +1,9 @@
-package streamingsystems;
+package streamingsystems05;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import streamingsystems.DataRepresentation.TaxiTrip;
-import streamingsystems.Queries.KafkaTaxiTripConsumer;
+import streamingsystems05.DataRepresentation.TaxiTrip;
+import streamingsystems05.Queries.KafkaTaxiTripConsumer;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

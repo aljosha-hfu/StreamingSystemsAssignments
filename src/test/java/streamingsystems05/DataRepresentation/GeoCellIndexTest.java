@@ -1,4 +1,4 @@
-package streamingsystems.DataRepresentation;
+package streamingsystems05.DataRepresentation;
 
 import org.junit.jupiter.api.Test;
 

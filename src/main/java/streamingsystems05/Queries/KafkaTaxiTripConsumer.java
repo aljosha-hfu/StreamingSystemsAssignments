@@ -1,4 +1,4 @@
-package streamingsystems.Queries;
+package streamingsystems05.Queries;
 
 import org.apache.commons.lang3.SerializationUtils;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
@@ -10,10 +10,10 @@ import org.apache.kafka.common.serialization.ByteArrayDeserializer;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import streamingsystems.ConfigManager;
-import streamingsystems.DataRepresentation.Route;
-import streamingsystems.DataRepresentation.TaxiTrip;
-import streamingsystems.Top10RoutesStringBuilder;
+import streamingsystems05.ConfigManager;
+import streamingsystems05.DataRepresentation.Route;
+import streamingsystems05.DataRepresentation.TaxiTrip;
+import streamingsystems05.Top10RoutesStringBuilder;
 
 import java.time.Duration;
 import java.util.*;

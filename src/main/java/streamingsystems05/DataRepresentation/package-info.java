@@ -2,4 +2,4 @@
  * Classes for data representation for taxi trips.
  */
 
-package streamingsystems.DataRepresentation;
+package streamingsystems05.DataRepresentation;

@@ -1,4 +1,4 @@
-package streamingsystems.DataRepresentation;
+package streamingsystems05.DataRepresentation;
 
 import java.io.Serializable;
 import java.text.ParseException;
