@@ -59,15 +59,13 @@ public class TestDataGenerator {
         int randomAmountOfGeneratedSpeedValues;
 
 
-
         while (true) {
             randomSensorId = (int)(randomGenerator.nextDouble() * amountOfSensors);
-            randomAmountOfGeneratedSpeedValues = (int)(randomGenerator.nextDouble() * amountOfSpeedValues);
 
             StringJoiner speedValueStringBuilder = new StringJoiner(",");
 
             // Generate random speed values
-            for (int i = 0; i < randomAmountOfGeneratedSpeedValues; i++) {
+            for (int i = 0; i < amountOfSpeedValues; i++) {
                 float randomSpeedValue = randomGenerator.nextFloat() * (maxSpeed - minSpeed) + minSpeed;
                 speedValueStringBuilder.add(String.valueOf(randomSpeedValue));
             }
@@ -79,12 +77,16 @@ public class TestDataGenerator {
                 for (int j = 0; j < 100; j++) {
                     float
                             randomTrafficJamSpeedValue =
-                            randomGenerator.nextFloat() * (maxTrafficJamSpeed- minTrafficJamSpeed) + minTrafficJamSpeed;
+                            randomGenerator.nextFloat() * (maxTrafficJamSpeed - minTrafficJamSpeed)
+                            + minTrafficJamSpeed;
                     speedValueStringBuilder.add(String.valueOf(randomTrafficJamSpeedValue));
                 }
             }
-
-            sendSensorEvents(generateSensorEventList(randomSensorId,speedValueStringBuilder.toString()));
+            logger.info("(TrafficCount= "+trafficJamCounter + ")Generated data for sensor with id = "
+                        + randomSensorId
+                        + ": "
+                        + speedValueStringBuilder);
+            sendSensorEvents(generateSensorEventList(randomSensorId, speedValueStringBuilder.toString()));
             //logger.info("Sent record: " + recordToSend);
 
             long timeToSleep = (long)(randomGenerator.nextDouble() * (m2 - m1) + m1);
@@ -127,17 +129,20 @@ public class TestDataGenerator {
          */
     }
 
-    // TODO: fix bug. The speedvalue is sometimes not an double. Check split and joiner.
-    private ArrayList<SensorEvent> generateSensorEventList(int sensorId, String speedValues){
+    // TODO: remove not used code
+    private ArrayList<SensorEvent> generateSensorEventList(int sensorId, String speedValues) {
         ArrayList<SensorEvent> sensorEvents = new ArrayList<>();
-        Arrays.stream(speedValues.split(",")).forEach(speedValue -> sensorEvents.add(new SensorEvent(sensorId, Double.parseDouble(speedValue))));
+        Arrays.stream(speedValues.split(",")).forEach(speedValue -> sensorEvents.add(new SensorEvent(sensorId,
+                                                                                                     Double.parseDouble(
+                                                                                                             speedValue)
+        )));
         return sensorEvents;
     }
 
-    private void sendSensorEvents(ArrayList<SensorEvent> sensorEvents){
+    private void sendSensorEvents(ArrayList<SensorEvent> sensorEvents) {
         sensorEvents.forEach(sensorEvent -> {
             EsperClient.getINSTANCE().getSensorEventSender().sendEvent(sensorEvent);
-            logger.info("Sent SensorEvent: sensorId= " + sensorEvent.getSensorId() + " speed: " + sensorEvent.getSpeed());
+            //logger.info("Sent SensorEvent: sensorId= "                        + sensorEvent.getSensorId()+ " speed: "+sensorEvent.getSpeed());
         });
     }
 
