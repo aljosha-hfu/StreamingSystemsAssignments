@@ -1,4 +1,4 @@
-package streamingsystems;
+package streamingsystems06;
 
 import org.apache.beam.sdk.Pipeline;
 import org.apache.beam.sdk.io.kafka.KafkaIO;

@@ -1,4 +1,4 @@
-package streamingsystems;
+package streamingsystems06;
 
 /**
  * A class for starting Kafka test data generation and parsing thereof.

@@ -1,4 +1,4 @@
-package streamingsystems;
+package streamingsystems06;
 
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
