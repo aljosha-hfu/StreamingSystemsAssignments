@@ -1,4 +1,4 @@
-package streamingsystems;
+package streamingsystems07;
 
 import com.espertech.esper.common.client.EPCompiled;
 import com.espertech.esper.common.client.EventSender;
@@ -8,12 +8,12 @@ import com.espertech.esper.compiler.client.EPCompileException;
 import com.espertech.esper.compiler.client.EPCompiler;
 import com.espertech.esper.compiler.client.EPCompilerProvider;
 import com.espertech.esper.runtime.client.*;
-import streamingsystems.eventlisteners.AverageSpeedEventListener;
-import streamingsystems.eventlisteners.SensorDataEventListener;
-import streamingsystems.eventlisteners.TrafficJamEventListener;
-import streamingsystems.events.AverageSpeedEvent;
-import streamingsystems.events.SensorEvent;
-import streamingsystems.events.TrafficJamEvent;
+import streamingsystems07.eventlisteners.AverageSpeedEventListener;
+import streamingsystems07.eventlisteners.SensorDataEventListener;
+import streamingsystems07.eventlisteners.TrafficJamEventListener;
+import streamingsystems07.events.AverageSpeedEvent;
+import streamingsystems07.events.SensorEvent;
+import streamingsystems07.events.TrafficJamEvent;
 
 import java.util.Locale;
 
@@ -90,9 +90,9 @@ public class EsperClient {
                              WHERE speed >= 0
                              GROUP BY sensorId
                              HAVING count(sensorId) > 0;
-                                                          
+
                              // Event: getTrafficJamEvents (fire if for one sensor the average speed decreased by 10 percent in the last 15 seconds)
-                             // IDEA: Use a timed window and check if the minimum speed in the window is 10 percent lower than the average speed
+                             // TODO: Temporaloperator verwenden
                              @name('getTrafficJamEvents')
                              INSERT INTO TrafficJamEvent
                              SELECT sensorId, avg(averageSpeed) AS averageSpeed, min(averageSpeed) AS minSpeed

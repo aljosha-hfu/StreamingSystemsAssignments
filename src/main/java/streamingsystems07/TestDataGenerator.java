@@ -1,9 +1,9 @@
-package streamingsystems;
+package streamingsystems07;
 
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import streamingsystems.events.SensorEvent;
+import streamingsystems07.events.SensorEvent;
 
 import java.util.ArrayList;
 import java.util.Arrays;
