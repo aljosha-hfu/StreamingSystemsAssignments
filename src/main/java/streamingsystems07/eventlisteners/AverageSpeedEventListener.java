@@ -1,11 +1,9 @@
-package streamingsystems.eventlisteners;
+package streamingsystems07.eventlisteners;
 
 import com.espertech.esper.common.client.EventBean;
 import com.espertech.esper.runtime.client.EPRuntime;
 import com.espertech.esper.runtime.client.EPStatement;
 import com.espertech.esper.runtime.client.UpdateListener;
-
-import java.util.Arrays;
 
 /**
  * Event listener for avg speed events

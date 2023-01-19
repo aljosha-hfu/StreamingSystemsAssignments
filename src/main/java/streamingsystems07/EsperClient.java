@@ -1,4 +1,4 @@
-package streamingsystems;
+package streamingsystems07;
 
 import com.espertech.esper.common.client.EPCompiled;
 import com.espertech.esper.common.client.EventSender;
@@ -8,12 +8,12 @@ import com.espertech.esper.compiler.client.EPCompileException;
 import com.espertech.esper.compiler.client.EPCompiler;
 import com.espertech.esper.compiler.client.EPCompilerProvider;
 import com.espertech.esper.runtime.client.*;
-import streamingsystems.eventlisteners.AverageSpeedEventListener;
-import streamingsystems.eventlisteners.SensorDataEventListener;
-import streamingsystems.eventlisteners.TrafficJamEventListener;
-import streamingsystems.events.AverageSpeedEvent;
-import streamingsystems.events.SensorEvent;
-import streamingsystems.events.TrafficJamEvent;
+import streamingsystems07.eventlisteners.AverageSpeedEventListener;
+import streamingsystems07.eventlisteners.SensorDataEventListener;
+import streamingsystems07.eventlisteners.TrafficJamEventListener;
+import streamingsystems07.events.AverageSpeedEvent;
+import streamingsystems07.events.SensorEvent;
+import streamingsystems07.events.TrafficJamEvent;
 
 import java.util.Locale;
 

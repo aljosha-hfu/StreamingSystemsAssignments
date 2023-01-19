@@ -1,4 +1,4 @@
-package streamingsystems.events;
+package streamingsystems07.events;
 
 public abstract class BaseEvent {
 

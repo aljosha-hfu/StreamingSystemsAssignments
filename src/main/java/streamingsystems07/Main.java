@@ -1,4 +1,4 @@
-package streamingsystems;
+package streamingsystems07;
 
 import com.espertech.esper.compiler.client.EPCompileException;
 import com.espertech.esper.runtime.client.EPDeployException;
