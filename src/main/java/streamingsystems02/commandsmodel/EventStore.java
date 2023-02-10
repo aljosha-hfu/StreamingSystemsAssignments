@@ -1,8 +1,8 @@
-package streamingsystems02.commandsModel;
+package streamingsystems02.commandsmodel;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import streamingsystems02.commandsModel.meta.Event;
+import streamingsystems02.commandsmodel.meta.Event;
 
 import java.util.concurrent.LinkedBlockingQueue;
 

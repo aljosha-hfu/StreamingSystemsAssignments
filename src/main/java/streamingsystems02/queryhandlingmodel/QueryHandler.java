@@ -1,6 +1,6 @@
-package streamingsystems02.queryHandlingModel;
+package streamingsystems02.queryhandlingmodel;
 
-import streamingsystems02.queryHandlingModel.predefined.Query;
+import streamingsystems02.queryhandlingmodel.predefined.Query;
 import streamingsystems02.implemented.MovingItemDTO;
 
 import java.util.Collection;

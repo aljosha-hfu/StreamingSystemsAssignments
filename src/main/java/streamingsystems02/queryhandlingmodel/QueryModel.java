@@ -1,9 +1,9 @@
-package streamingsystems02.queryHandlingModel;
+package streamingsystems02.queryhandlingmodel;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import streamingsystems02.commandsModel.EventStore;
-import streamingsystems02.commandsModel.meta.Event;
+import streamingsystems02.commandsmodel.EventStore;
+import streamingsystems02.commandsmodel.meta.Event;
 import streamingsystems02.implemented.MovingItemDTO;
 import streamingsystems02.implemented.MovingItemImpl;
 
