@@ -81,7 +81,6 @@ public class CommandHandler implements Commands {
      */
     @Override
     public void moveItem(String id, int[] vector) {
-        // TODO: Is this alright?
         if (vector.length != 3) {
             throw new IllegalArgumentException(
                     "Vector must be of length 3 (x, y, z)");
