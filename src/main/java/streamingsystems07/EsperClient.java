@@ -33,8 +33,8 @@ public class EsperClient {
         EPCompiler compiler = EPCompilerProvider.getCompiler();
         CompilerArguments args = new CompilerArguments(configuration);
         epRuntime.initialize();
-        EPDeployment epDeployment = null;
-        EPDeploymentService epDeploymentService = null;
+        EPDeployment epDeployment;
+        EPDeploymentService epDeploymentService;
         try {
             EPCompiled epCompiled = compiler.compile(getEsperStatementString(), args);
             epDeploymentService = epRuntime.getDeploymentService();
