@@ -1,4 +1,4 @@
-package streamingsystems04.commandsModel;
+package streamingsystems04.commandsmodel;
 
 import org.apache.commons.lang3.SerializationUtils;
 import org.apache.kafka.clients.producer.KafkaProducer;
@@ -9,8 +9,8 @@ import org.apache.kafka.common.serialization.ByteArraySerializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import streamingsystems04.commandsModel.meta.Event;
 import streamingsystems04.ConfigManager;
+import streamingsystems04.commandsmodel.meta.Event;
 
 import java.util.Properties;
 import java.util.concurrent.ExecutionException;

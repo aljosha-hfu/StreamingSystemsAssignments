@@ -1,6 +1,6 @@
 package streamingsystems04.implemented.events;
 
-import streamingsystems04.commandsModel.meta.Event;
+import streamingsystems04.commandsmodel.meta.Event;
 import streamingsystems04.MovingItemListTools;
 import streamingsystems04.implemented.MovingItemImpl;
 

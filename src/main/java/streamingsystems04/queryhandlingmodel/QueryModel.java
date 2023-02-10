@@ -1,10 +1,10 @@
-package streamingsystems04.QueryHandlingModel;
+package streamingsystems04.queryhandlingmodel;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import streamingsystems04.ConfigManager;
 import streamingsystems04.MovingItemListTools;
-import streamingsystems04.commandsModel.meta.Event;
+import streamingsystems04.commandsmodel.meta.Event;
 import streamingsystems04.communication.KafkaExtractor;
 import streamingsystems04.implemented.MovingItemDTO;
 import streamingsystems04.implemented.MovingItemImpl;

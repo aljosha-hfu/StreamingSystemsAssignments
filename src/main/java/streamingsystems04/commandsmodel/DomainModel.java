@@ -1,8 +1,8 @@
-package streamingsystems04.commandsModel;
+package streamingsystems04.commandsmodel;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import streamingsystems04.commandsModel.meta.Event;
+import streamingsystems04.commandsmodel.meta.Event;
 import streamingsystems04.ConfigManager;
 import streamingsystems04.MovingItemListTools;
 import streamingsystems04.communication.KafkaExtractor;

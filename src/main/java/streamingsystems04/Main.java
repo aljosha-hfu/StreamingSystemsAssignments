@@ -2,9 +2,9 @@ package streamingsystems04;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import streamingsystems04.commandsModel.CommandHandler;
-import streamingsystems04.QueryHandlingModel.QueryHandler;
-import streamingsystems04.QueryHandlingModel.QueryModel;
+import streamingsystems04.commandsmodel.CommandHandler;
+import streamingsystems04.queryhandlingmodel.QueryHandler;
+import streamingsystems04.queryhandlingmodel.QueryModel;
 import streamingsystems04.implemented.MovingItemImpl;
 
 /**

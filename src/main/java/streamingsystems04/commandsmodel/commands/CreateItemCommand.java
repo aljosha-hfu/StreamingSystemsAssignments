@@ -1,7 +1,7 @@
-package streamingsystems04.commandsModel.commands;
+package streamingsystems04.commandsmodel.commands;
 
-import streamingsystems04.commandsModel.EventStore;
-import streamingsystems04.commandsModel.meta.Command;
+import streamingsystems04.commandsmodel.EventStore;
+import streamingsystems04.commandsmodel.meta.Command;
 import streamingsystems04.implemented.MovingItemImpl;
 import streamingsystems04.implemented.events.MovingItemCreatedEvent;
 

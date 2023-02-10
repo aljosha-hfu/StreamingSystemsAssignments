@@ -1,4 +1,4 @@
-package streamingsystems04.commandsModel.meta;
+package streamingsystems04.commandsmodel.meta;
 
 /**
  * Represents a command to be handled by the command handler.
