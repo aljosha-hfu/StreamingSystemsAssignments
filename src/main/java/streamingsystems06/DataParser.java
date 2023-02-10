@@ -57,7 +57,6 @@ public class DataParser implements Serializable {
                                                                                                                    .toDateTimeAtCurrentTime()
                                                                                                                    .toInstant()));
 
-        // TODO: Pull the Pardo functions into a separate class
         // Pardo into a new PCollection as arrays with keys
         PCollection<KV<Integer, Double>>
                 parsedRecords =
