@@ -11,6 +11,12 @@
 
 ## General Task Remarks
 
+## Development with GitHub
+
+<https://github.com/AljoshaVieth/StreamingSystemsAssignments>
+
+We used GitHub to manage our source code and to collaborate on the project.
+
 ### Design decisions
 
 - Test-Driven Design (TDD) for automatic feedback on any changes
