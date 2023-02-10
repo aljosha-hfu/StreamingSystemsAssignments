@@ -2,10 +2,10 @@ package streamingsystems03;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import streamingsystems03.commandsModel.CommandHandler;
-import streamingsystems03.commandsModel.EventStore;
-import streamingsystems03.queryHandlingModel.QueryHandler;
-import streamingsystems03.queryHandlingModel.QueryModel;
+import streamingsystems03.commandsmodel.CommandHandler;
+import streamingsystems03.commandsmodel.EventStore;
+import streamingsystems03.queryhandlingmodel.QueryHandler;
+import streamingsystems03.queryhandlingmodel.QueryModel;
 import streamingsystems03.implemented.MovingItemImpl;
 
 import java.util.stream.IntStream;

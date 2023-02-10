@@ -1,4 +1,4 @@
-package streamingsystems03.queryHandlingModel;
+package streamingsystems03.queryhandlingmodel;
 
 import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.Channel;
@@ -6,7 +6,7 @@ import com.rabbitmq.client.GetResponse;
 import org.apache.commons.lang3.SerializationUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import streamingsystems03.commandsModel.meta.Event;
+import streamingsystems03.commandsmodel.meta.Event;
 import streamingsystems03.RabbitMQConnectionManager;
 import streamingsystems03.implemented.MovingItemDTO;
 import streamingsystems03.implemented.MovingItemImpl;

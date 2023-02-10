@@ -1,6 +1,6 @@
 package streamingsystems03.implemented.events;
 
-import streamingsystems03.commandsModel.meta.Event;
+import streamingsystems03.commandsmodel.meta.Event;
 import streamingsystems03.implemented.MovingItemImpl;
 
 /**

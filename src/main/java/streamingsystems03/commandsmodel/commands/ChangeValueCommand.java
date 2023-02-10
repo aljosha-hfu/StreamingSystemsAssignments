@@ -1,7 +1,7 @@
-package streamingsystems03.commandsModel.commands;
+package streamingsystems03.commandsmodel.commands;
 
-import streamingsystems03.commandsModel.EventStore;
-import streamingsystems03.commandsModel.meta.Command;
+import streamingsystems03.commandsmodel.EventStore;
+import streamingsystems03.commandsmodel.meta.Command;
 import streamingsystems03.implemented.events.MovingItemValueChangedEvent;
 
 /**

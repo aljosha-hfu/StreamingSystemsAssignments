@@ -1,13 +1,13 @@
-package streamingsystems03.commandsModel;
+package streamingsystems03.commandsmodel;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import streamingsystems03.commandsModel.meta.Command;
-import streamingsystems03.commandsModel.commands.ChangeValueCommand;
-import streamingsystems03.commandsModel.commands.CreateItemCommand;
-import streamingsystems03.commandsModel.commands.DeleteItemCommand;
-import streamingsystems03.commandsModel.commands.MoveItemCommand;
-import streamingsystems03.commandsModel.meta.Predefined.Commands;
+import streamingsystems03.commandsmodel.meta.Command;
+import streamingsystems03.commandsmodel.commands.ChangeValueCommand;
+import streamingsystems03.commandsmodel.commands.CreateItemCommand;
+import streamingsystems03.commandsmodel.commands.DeleteItemCommand;
+import streamingsystems03.commandsmodel.commands.MoveItemCommand;
+import streamingsystems03.commandsmodel.meta.Predefined.Commands;
 import streamingsystems03.implemented.MovingItemImpl;
 
 /**

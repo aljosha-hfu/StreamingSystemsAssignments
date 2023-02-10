@@ -1,4 +1,4 @@
-package streamingsystems03.commandsModel;
+package streamingsystems03.commandsmodel;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,9 +1,9 @@
-package streamingsystems03.commandsModel;
+package streamingsystems03.commandsmodel;
 
 import org.apache.commons.lang3.SerializationUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import streamingsystems03.commandsModel.meta.Event;
+import streamingsystems03.commandsmodel.meta.Event;
 import streamingsystems03.RabbitMQConnectionManager;
 
 import java.io.IOException;
