@@ -3,11 +3,11 @@ package streamingsystems03.commandsModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import streamingsystems03.commandsModel.meta.Command;
-import streamingsystems03.commandsModel.meta.predefined.Commands;
 import streamingsystems03.commandsModel.commands.ChangeValueCommand;
 import streamingsystems03.commandsModel.commands.CreateItemCommand;
 import streamingsystems03.commandsModel.commands.DeleteItemCommand;
 import streamingsystems03.commandsModel.commands.MoveItemCommand;
+import streamingsystems03.commandsModel.meta.Predefined.Commands;
 import streamingsystems03.implemented.MovingItemImpl;
 
 /**
@@ -84,7 +84,6 @@ public class CommandHandler implements Commands {
      */
     @Override
     public void moveItem(String id, int[] vector) {
-        // TODO: Is this alright?
         if (vector.length != 3) {
             throw new IllegalArgumentException(
                     "Vector must be of length 3 (x, y, z)");
