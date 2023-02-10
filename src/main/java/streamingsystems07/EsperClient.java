@@ -8,7 +8,6 @@ import com.espertech.esper.compiler.client.EPCompileException;
 import com.espertech.esper.compiler.client.EPCompiler;
 import com.espertech.esper.compiler.client.EPCompilerProvider;
 import com.espertech.esper.runtime.client.*;
-import streamingsystems07.eventlisteners.AverageSpeedEventListener;
 import streamingsystems07.eventlisteners.SensorDataEventListener;
 import streamingsystems07.eventlisteners.TrafficJamEventListener;
 import streamingsystems07.events.AverageSpeedEvent;
@@ -54,7 +53,6 @@ public class EsperClient {
         EPStatement getAverageSpeedEventsStatement = epDeploymentService.getStatement(epDeployment.getDeploymentId(),
                                                                                       "getAverageSpeedEvents"
         );
-        getAverageSpeedEventsStatement.addListener(new AverageSpeedEventListener());
 
         // Add a listener to the getTrafficJamEvents event
         EPStatement getTrafficJamEventsStatement = epDeploymentService.getStatement(epDeployment.getDeploymentId(),
