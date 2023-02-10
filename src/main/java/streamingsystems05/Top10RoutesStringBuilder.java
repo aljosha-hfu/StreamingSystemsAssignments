@@ -1,7 +1,7 @@
 package streamingsystems05;
 
-import streamingsystems05.DataRepresentation.Route;
-import streamingsystems05.DataRepresentation.TaxiTrip;
+import streamingsystems05.datarepresentation.Route;
+import streamingsystems05.datarepresentation.TaxiTrip;
 
 import java.util.ArrayList;
 import java.util.StringJoiner;

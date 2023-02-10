@@ -2,8 +2,8 @@ package streamingsystems05;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import streamingsystems05.DataRepresentation.TaxiTrip;
-import streamingsystems05.Queries.KafkaTaxiTripConsumer;
+import streamingsystems05.datarepresentation.TaxiTrip;
+import streamingsystems05.queries.KafkaTaxiTripConsumer;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -13,7 +13,6 @@ import java.util.concurrent.atomic.AtomicLong;
 /**
  * Reads the taxi trip data from a file and sends it to the Kafka topic.
  */
-//TODO change to singleton (for consistence)!
 public class TaxiDataReader {
     /**
      * @param filePath The path to the file containing the taxi trip data.
@@ -45,7 +44,6 @@ public class TaxiDataReader {
                 logger.info("Read line at index " + lineIndex.get() +
                                     " is not valid! Expected a line with 17 entries, got " + split.length);
             }
-
             lineIndex.getAndIncrement();
         });
     }

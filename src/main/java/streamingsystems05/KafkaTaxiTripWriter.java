@@ -6,7 +6,7 @@ import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.serialization.ByteArraySerializer;
 import org.apache.kafka.common.serialization.StringSerializer;
-import streamingsystems05.DataRepresentation.TaxiTrip;
+import streamingsystems05.datarepresentation.TaxiTrip;
 
 import java.util.Properties;
 
