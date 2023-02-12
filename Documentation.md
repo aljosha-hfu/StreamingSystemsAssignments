@@ -373,9 +373,7 @@ The `DataParser` class uses Esper to parse the data points.
 
 The Esper queries are defined in the `EsperClient` class, as well.
 
-This is the Esper query that we first used to calculate the average speed of each sensor ID:
-
-```epl
+This is the Esper query that we used to calculate the average speed of each sensor ID:
 
 ```epl
 @name('getTrafficJamEvents')
@@ -387,12 +385,6 @@ HAVING min(averageSpeed) < avg(averageSpeed) * %f
 ```
 
 It uses the `AverageSpeedEvent` stream to calculate the average speed of each sensor ID by checking if the minimum speed of the sensor ID is less than the average speed of the sensor ID multiplied by a factor.
-
-Afterwards, we changed the query to the following, using a temporal window:
-
-```epl
-TODO
-```
 
 We used Locale.ENGLISH because on our machines the formatter formatted the float values with a `,` instead of a `.` which caused a crash.
 
